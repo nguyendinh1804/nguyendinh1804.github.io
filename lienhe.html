@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Liên hệ</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    main {
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #2c3e50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1a252f;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Liên hệ với chúng tôi</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Trang chủ</a></li>
+        <li><a href="diadiem.html">Địa Điểm</a></li>
+        <li><a href="anuong.html">Ăn uống</a></li>
+        <li><a href="dichvu.html">Dịch vụ</a></li>
+        <li><a href="lienhe.html">Liên hệ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Gửi phản hồi hoặc yêu cầu hỗ trợ</h2>
+    <form>
+      <label>Họ tên:<br><input type="text" name="name" required></label><br><br>
+      <label>Email:<br><input type="email" name="email" required></label><br><br>
+      <label>Nội dung:<br><textarea name="message" rows="5" required></textarea></label><br><br>
+      <button type="submit">Gửi</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Du lịch Ninh Bình | Email: <a href="mailto:dulich@ninhbinh.vn">dulich@ninhbinh.vn</a></p>
+  </footer>
+</body>
+</html>
