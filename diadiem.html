@@ -3,51 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Khám phá Ninh Bình</title>
+  <title>Này tặng bé </title>
   <link rel="stylesheet" href="style1.css">
+  <style>
+    /* Cài đặt nhỏ riêng cho trang này */
+    .message {
+      max-width: 1100px;
+      margin: 28px auto 12px;
+      padding: 20px;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.4;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    /* 2 ô ngang — mỗi ô chiếm 50% */
+    .image-grid {
+      max-width: 1100px;
+      margin: 16px auto 40px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .image-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center; /* ảnh nằm giữa ô */
+      min-height: 220px; /* đảm bảo chiều cao bằng nhau */
+    }
+
+    /* Ảnh nhỏ hơn, giữ tỉ lệ, responsive */
+    .image-card img {
+      width: 100%;
+      max-width: 320px; /* giới hạn kích thước ảnh */
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .image-card h3 {
+      margin: 6px 0;
+      font-size: 16px;
+      color: #222;
+    }
+
+    .image-card p {
+      margin: 0;
+      color: #555;
+      font-size: 14px;
+    }
+
+    /* Trên màn nhỏ chuyển thành 1 cột */
+    @media (max-width: 720px) {
+      .image-grid {
+        grid-template-columns: 1fr;
+      }
+      .image-card {
+        min-height: auto;
+        padding: 10px;
+      }
+      .image-card img {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Du lịch Ninh Bình</h1>
     <nav>
       <ul>
         <li><a href="index1.html">Trang chủ</a></li>
-        <li><a href="diadiem.html">Địa Điểm</a></li>
-        <li><a href="anuong.html">Ăn uống</a></li>
-        <li><a href="dichvu.html">Dịch vụ</a></li>
-        <li><a href="lienhe.html">Liên hệ</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="gioithieu">
-    <h2>Giới thiệu về Ninh Bình</h2>
-    <p>Ninh Bình là một tỉnh miền Bắc Việt Nam, nổi tiếng với cảnh quan thiên nhiên hùng vĩ và di sản văn hóa phong phú. Nơi đây có Tràng An – Di sản Thế giới được UNESCO công nhận, chùa Bái Đính – ngôi chùa lớn nhất Đông Nam Á, và nhiều địa điểm hấp dẫn khác.</p>
+  <!-- Chỗ ghi văn bản / lời chúc -->
+  <section class="message container" aria-label="Lời chúc">
+    <strong>Chúc em có một ngày 20/10 thật vui vẻ nè</strong>
+    <p>
+      Hy vọng em sẽ nhận được nhiều yêu thương và niềm vui trong những ngày đặc biệt này và ngày càng xinh đẹp hơn, luôn luôn thật vui vẻ và hạnh phúc nhoa ❤️🌸
+    </p>
+    <!-- Nếu không muốn dùng file ảnh, thay bằng emoji: ❤️ 🌸 -->
   </section>
 
-  <section id="diadiem">
-    <h2>Địa điểm du lịch nổi bật</h2>
-    <div class="place">
-      <img src="trangan.JPG" alt="Tràng An">
-      <h3>Tràng An</h3>
-      <p>Quần thể danh thắng Tràng An nổi bật với hệ thống hang động, sông nước và núi đá vôi tuyệt đẹp. Đây là điểm đến lý tưởng cho du khách yêu thiên nhiên.</p>
+  <!-- Hai ô để hình -->
+  <section class="image-grid container" aria-label="Hai hình ảnh">
+    <div class="image-card">
+      <img src="em.JPG" alt="Hình 1 — Tràng An">
+
     </div>
-    <div class="place">
-      <img src="baidinh.JPG" alt="Chùa Bái Đính">
-      <h3>Chùa Bái Đính</h3>
-      <p>Chùa Bái Đính là quần thể chùa lớn nhất Việt Nam, nổi tiếng với tượng Phật bằng đồng lớn và hành lang La Hán dài nhất châu Á.</p>
-    </div>
-    <div class="place">
-      <img src="tamcoc.JPG" alt="Tam Cốc - Bích Động">
-      <h3>Tam Cốc - Bích Động</h3>
-      <p>Được mệnh danh là “Vịnh Hạ Long trên cạn”, Tam Cốc - Bích Động mang đến trải nghiệm du thuyền giữa những cánh đồng lúa và núi đá vôi kỳ vĩ.</p>
+
+    <div class="image-card">
+      <img src="em1.JPG" alt="Hình 2 — Tam Cốc">
     </div>
   </section>
 
-  <footer>
-    <p>&copy; 2025 Du lịch Ninh Bình | Liên hệ: <a href="mailto:dulich@ninhbinh.vn">dulich@ninhbinh.vn</a></p>
-  </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
