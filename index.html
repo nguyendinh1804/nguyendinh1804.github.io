@@ -2,31 +2,87 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Trang chủ - Du lịch Ninh Bình</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang chủ</title>
+  <link rel="stylesheet" href="style1.css">
+  <style>
+    /* ô nhập văn bản đơn giản */
+    .write-section {
+      max-width: 900px;
+      margin: 24px auto;
+      padding: 16px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+    .write-section .label-with-icon {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:8px;
+      margin-bottom:8px;
+    }
+    .write-section .label-with-icon .icon-up {
+      width:28px;
+      height:28px;
+      fill: #fff;
+      opacity:0.95;
+      transform: translateY(0);
+      transition: transform .18s ease;
+    }
+    .write-section .label-with-icon .icon-up.bounce {
+      animation: bounceUp 1.2s infinite;
+    }
+    @keyframes bounceUp {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+
+    .write-section label {
+      display:block;
+      margin-bottom:8px;
+      font-weight:600;
+      color: #fff;
+    }
+    .write-section textarea {
+      width:100%;
+      min-height:140px;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid rgba(0,0,0,0.08);
+      resize:vertical;
+      font-size:14px;
+    }
+    @media (max-width:600px){
+      .write-section { padding:12px; }
+      .write-section textarea { min-height:100px; }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Du lịch Ninh Bình</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Trang chủ</a></li>
-        <li><a href="diadiem.html">Địa Điểm</a></li>
-        <li><a href="anuong.html">Ăn uống</a></li>
-        <li><a href="dichvu.html">Dịch vụ</a></li>
-        <li><a href="lienhe.html">Liên hệ</a></li>
+        <li><a href="diadiem.html">Quà onl của bé nè </a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <h2>Chào mừng đến với Ninh Bình</h2>
-    <p>Khám phá vẻ đẹp thiên nhiên, văn hóa và ẩm thực đặc sắc của Ninh Bình – điểm đến lý tưởng cho mọi du khách.</p>
-    <img src="ninhbinh.JPG" alt="Phong cảnh Ninh Bình" style="width:100%; max-width:800px;">
-  </main>
+  <!-- ô để viết văn bản với label -->
+  <section class="write-section container" aria-label="Ghi văn bản">
+    <div class="label-with-icon" aria-hidden="true">
+      <!-- SVG mũi tên chỉ lên (icon) -->
+      <svg class="icon-up bounce" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 4l-8 8h6v8h4v-8h6z"/>
+      </svg>
 
-  <footer>
-    <p>&copy; 2025 Du lịch Ninh Bình</p>
-  </footer>
+      <label for="note">bấm vào chỗ ở trên này nhoa</label>
+    </div>
+
+    <label for="note">Cái này ảnh là hơi gấp á nên chỉ làm được vậy thui nếu có không đẹp hay sao thì ẻm bỏ qua cho tui nhoa :((</label>
+
+  </section>
 </body>
 </html>
