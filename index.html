@@ -1,88 +1,665 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trang chủ</title>
-  <link rel="stylesheet" href="style1.css">
-  <style>
-    /* ô nhập văn bản đơn giản */
-    .write-section {
-      max-width: 900px;
-      margin: 24px auto;
-      padding: 16px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 10px;
-      color: #fff;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    }
-    .write-section .label-with-icon {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:8px;
-      margin-bottom:8px;
-    }
-    .write-section .label-with-icon .icon-up {
-      width:28px;
-      height:28px;
-      fill: #fff;
-      opacity:0.95;
-      transform: translateY(0);
-      transition: transform .18s ease;
-    }
-    .write-section .label-with-icon .icon-up.bounce {
-      animation: bounceUp 1.2s infinite;
-    }
-    @keyframes bounceUp {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-      100% { transform: translateY(0); }
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm A/B/C/D - Từ viết tắt thanh toán quốc tế</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .write-section label {
-      display:block;
-      margin-bottom:8px;
-      font-weight:600;
-      color: #fff;
-    }
-    .write-section textarea {
-      width:100%;
-      min-height:140px;
-      padding:10px;
-      border-radius:8px;
-      border:1px solid rgba(0,0,0,0.08);
-      resize:vertical;
-      font-size:14px;
-    }
-    @media (max-width:600px){
-      .write-section { padding:12px; }
-      .write-section textarea { min-height:100px; }
-    }
-  </style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .question-item.answered {
+            border-left-color: #4caf50;
+        }
+
+        .question-item.answered.incorrect {
+            border-left-color: #f44336;
+        }
+
+        .question-number {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .question-text {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .option-btn {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option-btn:disabled {
+            opacity: 1;
+            cursor: not-allowed;
+        }
+
+        .option-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .option-btn.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .option-btn.incorrect {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .feedback.incorrect {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .results-container {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .results-container.show {
+            display: block;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .score-circle.excellent {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+        }
+
+        .score-circle.good {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        }
+
+        .score-circle.fair {
+            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+        }
+
+        .score-circle.poor {
+            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+        }
+
+        .results-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .results-details {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .answer-summary {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .answer-summary h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .answer-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .answer-item.correct {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .answer-item.incorrect {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .answer-item-number {
+            font-weight: bold;
+            min-width: 40px;
+        }
+
+        .answer-item-result {
+            margin-left: auto;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .quiz-info {
+                flex-direction: column;
+            }
+
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="diadiem.html">Quà onl của bé nè </a></li>
-      </ul>
-    </nav>
-  </header>
+    <div class="container">
+        <div class="header">
+            <h1>📝 Trắc nghiệm Chọn A/B/C/D</h1>
+            <p>Từ viết tắt trong thanh toán quốc tế</p>
+        </div>
 
-  <!-- ô để viết văn bản với label -->
-  <section class="write-section container" aria-label="Ghi văn bản">
-    <div class="label-with-icon" aria-hidden="true">
-      <!-- SVG mũi tên chỉ lên (icon) -->
-      <svg class="icon-up bounce" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M12 4l-8 8h6v8h4v-8h6z"/>
-      </svg>
+        <div class="content">
+            <!-- Quiz Info -->
+            <div class="quiz-info">
+                <div class="info-item">
+                    <span class="info-label">Câu hỏi</span>
+                    <span class="info-value"><span id="current-question">0</span>/42</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Câu đúng</span>
+                    <span class="info-value" style="color: #4caf50;" id="correct-count">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Câu sai</span>
+                    <span class="info-value" style="color: #f44336;" id="incorrect-count">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Tỷ lệ</span>
+                    <span class="info-value" id="percentage">0%</span>
+                </div>
+            </div>
 
-      <label for="note">bấm vào chỗ ở trên này nhoa</label>
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quiz-container"></div>
+
+            <!-- Results Container -->
+            <div id="results-container" class="results-container">
+                <div class="score-circle" id="score-circle">0/42</div>
+                <div class="results-message" id="results-message"></div>
+                <div class="results-details" id="results-details"></div>
+                <div class="answer-summary" id="answer-summary"></div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="buttons-container">
+                <button class="btn btn-secondary" id="btn-reset" onclick="resetQuiz()">🔄 Làm lại</button>
+                <button class="btn btn-primary" id="btn-submit" onclick="submitQuiz()" style="display:none;">✓ Nộp bài</button>
+            </div>
+        </div>
     </div>
 
-    <label for="note">Cái này ảnh là hơi gấp á nên chỉ làm được vậy thui nếu có không đẹp hay sao thì ẻm bỏ qua cho tui nhoa :((</label>
+    <script>
+        const quizData = [
+            { question: "AWB là viết tắt của cụm từ nào?", options: ["Air Waybill", "Air World Bill", "Asia Way Bill", "Air Warehouse Bill"], answer: 0 },
+            { question: "AWB có nghĩa tiếng Việt là gì?", options: ["Vận đơn đường biển", "Vận đơn hàng không", "Giấy chứng nhận xuất xứ", "Phiếu đóng gói"], answer: 1 },
+            { question: "B/L là viết tắt của cụm từ nào?", options: ["Bill of Loading", "Bill of Lading", "Booking of Lading", "Bank of Lading"], answer: 1 },
+            { question: "B/L có nghĩa tiếng Việt là gì?", options: ["Vận đơn hàng không", "Thư tín dụng", "Vận đơn đường biển", "Giấy chứng nhận số lượng"], answer: 2 },
+            { question: "C/O là viết tắt của:", options: ["Certificate of Origin", "Certificate of Ownership", "Cargo of Origin", "Customs of Origin"], answer: 0 },
+            { question: "C/O có nghĩa tiếng Việt là:", options: ["Giấy chứng nhận chất lượng", "Giấy chứng nhận xuất xứ", "Vận đơn đường biển", "Chứng từ bảo hiểm"], answer: 1 },
+            { question: "C/Q là viết tắt của:", options: ["Certificate of Quantity/Quality", "Cargo of Quantity", "Certificate of Quotation", "Customs of Quality"], answer: 0 },
+            { question: "C/Q có nghĩa tiếng Việt là:", options: ["Giấy chứng nhận xuất xứ", "Giấy chứng nhận số lượng/chất lượng", "Phiếu cân hàng", "Lệnh giao hàng"], answer: 1 },
+            { question: "CIF là viết tắt của:", options: ["Cost, Insurance and Freight", "Carriage, Insurance and Freight", "Cost, Import and Freight", "Cargo, Insurance and Fee"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của CIF là:", options: ["Giao hàng cho người chuyên chở", "Tiền hàng, bảo hiểm và cước phí", "Cước phí và bảo hiểm trả tới", "Giao hàng lên tàu"], answer: 1 },
+            { question: "CIP là viết tắt của:", options: ["Carriage and Insurance Paid To", "Cost and Insurance Paid To", "Cargo and Insurance Paid To", "Carriage and Inspection Paid To"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của CIP là:", options: ["Cước phí và bảo hiểm trả tới", "Tiền hàng, bảo hiểm và cước phí", "Giao hàng đã thanh toán tại nơi đến", "Giao hàng cho người chuyên chở"], answer: 2 },
+            { question: "CPT là viết tắt của:", options: ["Carriage Paid To", "Cargo Paid To", "Carriage Port To", "Cost Paid To"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của CPT là:", options: ["Cước phí và bảo hiểm trả tới", "Giao hàng lên tàu", "Giao hàng đã thanh toán tại nơi đến", "Nhờ thu trả ngay"], answer: 2 },
+            { question: "D/A là viết tắt của:", options: ["Documents against Acceptance", "Delivery against Acceptance", "Documents and Acceptance", "Draft against Account"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của D/A là:", options: ["Nhờ thu trả ngay", "Nhờ thu trả sau (chấp nhận hối phiếu)", "Thư tín dụng dự phòng", "Chứng từ vận tải"], answer: 1 },
+            { question: "D/P là viết tắt của:", options: ["Documents against Payment", "Delivery against Payment", "Documents and Payment", "Draft against Payment"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của D/P là:", options: ["Nhờ thu trả sau", "Nhờ thu trả ngay (chấp nhận thanh toán)", "Trả chậm có bảo lãnh", "Thanh toán qua L/C"], answer: 1 },
+            { question: "DEM/DET là viết tắt của:", options: ["Demurrage/Detention", "Demand/Detail", "Delivery/Detention", "Demurrage/Delivery"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của DEM/DET là:", options: ["Phí bảo hiểm hàng hóa", "Phí lưu container, lưu bãi", "Phí chuyển tiền quốc tế", "Phí mở L/C"], answer: 1 },
+            { question: "FCA là viết tắt của:", options: ["Free Carrier", "Freight Carrier Agency", "Free Cargo Agreement", "Foreign Carrier Act"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của FCA là:", options: ["Giao hàng lên tàu", "Giao hàng cho người chuyên chở", "Cước phí trả tới", "Tiền hàng, bảo hiểm và cước phí"], answer: 1 },
+            { question: "FDI là viết tắt của:", options: ["Foreign Direct Investment", "Foreign Domestic Investment", "Finance Direct Investment", "Foreign Debt Investment"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của FDI là:", options: ["Đầu tư gián tiếp nước ngoài", "Đầu tư trực tiếp nước ngoài", "Đầu tư công quốc tế", "Đầu tư nội địa"], answer: 1 },
+            { question: "FII là viết tắt của:", options: ["Foreign Institutional Investment", "Foreign Internal Investment", "Financial Institutional Import", "Foreign Insurance Investment"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của FII là:", options: ["Đầu tư trực tiếp nước ngoài", "Đầu tư gián tiếp nước ngoài", "Đầu tư ra nước ngoài của chính phủ", "Đầu tư công nghệ tài chính"], answer: 1 },
+            { question: "FOB là viết tắt của:", options: ["Free On Board", "Freight On Board", "Free Ocean Bill", "Freight of Booking"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của FOB là:", options: ["Giao hàng cho người chuyên chở", "Giao hàng lên tàu", "Cước phí trả tới", "Cước phí và bảo hiểm trả tới"], answer: 1 },
+            { question: "ICC là viết tắt của:", options: ["International Chamber of Commerce", "International Cargo Council", "International Credit Committee", "Interbank Commerce Center"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của ICC là:", options: ["Trung tâm Trọng tài Quốc tế Việt Nam", "Phòng Thương mại Quốc tế", "Quỹ Tiền tệ Quốc tế", "Tổ chức Hải quan Thế giới"], answer: 1 },
+            { question: "ISBP 745 là viết tắt của:", options: ["International Standard Banking Practice", "International Settlement Banking Policy", "International Standard Bill Practice", "International System Banking Procedure"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của ISBP 745 là:", options: ["Quy tắc thống nhất về nhờ thu", "Thực hành Ngân hàng Tiêu chuẩn Quốc tế", "Quy tắc thống nhất về tín dụng chứng từ", "Bộ quy tắc về bảo lãnh ngân hàng"], answer: 1 },
+            { question: "L/C là viết tắt của:", options: ["Line of Credit", "Letter of Credit", "Loan of Contract", "List of Cargo"], answer: 1 },
+            { question: "Nghĩa tiếng Việt của L/C là:", options: ["Thư tín dụng", "Thư bảo lãnh", "Lệnh chuyển tiền", "Chứng từ thanh toán"], answer: 0 },
+            { question: "SBLC là viết tắt của:", options: ["Standby Letter of Credit", "Standard Bank Letter of Credit", "Secured Business Loan Contract", "Special Bill of Letter Credit"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của SBLC là:", options: ["Thư tín dụng thường", "Thư tín dụng dự phòng", "Chứng từ nhờ thu", "Cam kết trả chậm"], answer: 1 },
+            { question: "UCP 600 là viết tắt của:", options: ["The Uniform Customs and Practice for Documentary Credits", "The Unified Credit Practice 600", "Universal Customs of Payment 600", "Uniform Cargo Procedure 600"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của UCP 600 là:", options: ["Quy tắc thống nhất về nhờ thu", "Quy tắc và Thực hành thống nhất về Tín dụng chứng từ", "Thực hành ngân hàng tiêu chuẩn quốc tế", "Quy tắc trọng tài quốc tế"], answer: 1 },
+            { question: "URC 522 là viết tắt của:", options: ["The Uniform Rules for Collections", "The Unified Rules for Credits", "Universal Rules for Cargo", "Uniform Regulation for Collection Credits"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của URC 522 là:", options: ["Quy tắc thống nhất về tín dụng chứng từ", "Quy tắc thống nhất về nhờ thu", "Quy tắc thống nhất về vận tải biển", "Quy tắc thống nhất về bảo lãnh"], answer: 1 },
+            { question: "VIAC là viết tắt của:", options: ["Vietnam International Arbitration Centre", "Vietnam Investment and Arbitration Council", "Viet International Audit Center", "Vietnam International Accounting Centre"], answer: 0 },
+            { question: "Nghĩa tiếng Việt của VIAC là:", options: ["Phòng Thương mại Quốc tế", "Trung tâm Trọng tài Quốc tế Việt Nam", "Trung tâm Hòa giải Thương mại Việt Nam", "Viện Nghiên cứu Thương mại Quốc tế"], answer: 1 }
+        ];
 
-  </section>
+        let userAnswers = [];
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            quizData.forEach((item, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-item';
+                questionDiv.id = `question-${index}`;
+
+                const numberDiv = document.createElement('div');
+                numberDiv.className = 'question-number';
+                numberDiv.textContent = `Câu ${index + 1}`;
+
+                const textDiv = document.createElement('div');
+                textDiv.className = 'question-text';
+                textDiv.textContent = item.question;
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options-container';
+
+                const labels = ['A', 'B', 'C', 'D'];
+                item.options.forEach((option, optionIndex) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = labels[optionIndex] + '. ' + option;
+                    btn.onclick = () => selectAnswer(index, optionIndex);
+                    btn.id = `option-${index}-${optionIndex}`;
+                    optionsDiv.appendChild(btn);
+                });
+
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = 'feedback';
+                feedbackDiv.id = `feedback-${index}`;
+
+                questionDiv.appendChild(numberDiv);
+                questionDiv.appendChild(textDiv);
+                questionDiv.appendChild(optionsDiv);
+                questionDiv.appendChild(feedbackDiv);
+
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function selectAnswer(questionIndex, optionIndex) {
+            userAnswers[questionIndex] = optionIndex;
+
+            // Update visual feedback - allow changing answers
+            const labels = ['A', 'B', 'C', 'D'];
+            labels.forEach((_, i) => {
+                const btn = document.getElementById(`option-${questionIndex}-${i}`);
+                if (btn) {
+                    if (i === optionIndex) {
+                        btn.classList.add('selected');
+                    } else {
+                        btn.classList.remove('selected');
+                    }
+                }
+            });
+
+            const questionItem = document.getElementById(`question-${questionIndex}`);
+            questionItem.classList.add('answered');
+
+            // Check if all questions are answered
+            if (userAnswers.length === quizData.length) {
+                document.getElementById('btn-submit').style.display = 'inline-block';
+            }
+
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const answered = userAnswers.filter(ans => ans !== undefined).length;
+            const total = quizData.length;
+            const percentage = Math.round((answered / total) * 100);
+
+            document.getElementById('current-question').textContent = answered;
+            document.getElementById('progress-fill').style.width = percentage + '%';
+        }
+
+        function submitQuiz() {
+            let correct = 0;
+            let incorrect = 0;
+
+            quizData.forEach((item, index) => {
+                const feedbackDiv = document.getElementById(`feedback-${index}`);
+                const questionItem = document.getElementById(`question-${index}`);
+                const labels = ['A', 'B', 'C', 'D'];
+
+                const isCorrect = userAnswers[index] === item.answer;
+
+                if (isCorrect) {
+                    correct++;
+                    const btn = document.getElementById(`option-${index}-${userAnswers[index]}`);
+                    if (btn) btn.classList.add('correct');
+                    feedbackDiv.className = 'feedback show correct';
+                    feedbackDiv.textContent = '✓ Chính xác!';
+                } else {
+                    incorrect++;
+                    const userBtn = document.getElementById(`option-${index}-${userAnswers[index]}`);
+                    if (userBtn) userBtn.classList.add('incorrect');
+                    const correctBtn = document.getElementById(`option-${index}-${item.answer}`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                    feedbackDiv.className = 'feedback show incorrect';
+                    feedbackDiv.textContent = `✗ Sai! Đáp án đúng là: ${labels[item.answer]}`;
+                    questionItem.classList.add('incorrect');
+                }
+            });
+
+            document.getElementById('correct-count').textContent = correct;
+            document.getElementById('incorrect-count').textContent = incorrect;
+
+            const percentage = Math.round((correct / quizData.length) * 100);
+            document.getElementById('percentage').textContent = percentage + '%';
+
+            showResults(correct, incorrect, percentage);
+            document.getElementById('btn-submit').style.display = 'none';
+        }
+
+        function showResults(correct, incorrect, percentage) {
+            const resultsContainer = document.getElementById('results-container');
+            const scoreCircle = document.getElementById('score-circle');
+            const resultsMessage = document.getElementById('results-message');
+            const resultsDetails = document.getElementById('results-details');
+            const answerSummary = document.getElementById('answer-summary');
+
+            scoreCircle.textContent = correct + '/' + quizData.length;
+
+            let message = '';
+            let className = '';
+
+            if (percentage >= 90) {
+                message = '🎉 Xuất sắc!';
+                className = 'excellent';
+            } else if (percentage >= 70) {
+                message = '👏 Tốt lắm!';
+                className = 'good';
+            } else if (percentage >= 50) {
+                message = '📚 Còn cần cố gắng!';
+                className = 'fair';
+            } else {
+                message = '💪 Cần ôn luyện thêm!';
+                className = 'poor';
+            }
+
+            scoreCircle.className = 'score-circle ' + className;
+            resultsMessage.textContent = message;
+            resultsDetails.innerHTML = `
+                <p>Bạn trả lời đúng <strong>${correct}</strong> trên <strong>${quizData.length}</strong> câu (${percentage}%)</p>
+            `;
+
+            // Generate answer summary
+            let summaryHTML = '<h3>📋 Tóm tắt đáp án</h3>';
+            const labels = ['A', 'B', 'C', 'D'];
+            quizData.forEach((item, index) => {
+                const isCorrect = userAnswers[index] === item.answer;
+                const userAnswer = labels[userAnswers[index]];
+                const correctAnswer = labels[item.answer];
+                
+                const status = isCorrect ? 
+                    `<span style="color: #4caf50;">✓ Đúng (${userAnswer})</span>` : 
+                    `<span style="color: #f44336;">✗ Sai (Chọn ${userAnswer}, đúng là ${correctAnswer})</span>`;
+                
+                summaryHTML += `
+                    <div class="answer-item ${isCorrect ? 'correct' : 'incorrect'}">
+                        <span class="answer-item-number">Câu ${index + 1}:</span>
+                        <span style="flex: 1; margin: 0 10px;">${item.question.substring(0, 50)}...</span>
+                        <span class="answer-item-result">${isCorrect ? '✓' : '✗'}</span>
+                    </div>
+                `;
+            });
+
+            answerSummary.innerHTML = summaryHTML;
+
+            resultsContainer.classList.add('show');
+            document.getElementById('quiz-container').style.display = 'none';
+        }
+
+        function resetQuiz() {
+            userAnswers = [];
+
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('results-container').classList.remove('show');
+            document.getElementById('btn-submit').style.display = 'none';
+
+            document.getElementById('current-question').textContent = '0';
+            document.getElementById('correct-count').textContent = '0';
+            document.getElementById('incorrect-count').textContent = '0';
+            document.getElementById('percentage').textContent = '0%';
+            document.getElementById('progress-fill').style.width = '0%';
+            document.getElementById('answer-summary').innerHTML = '';
+
+            renderQuiz();
+        }
+
+        // Initialize quiz on page load
+        window.addEventListener('load', () => {
+            renderQuiz();
+        });
+    </script>
 </body>
 </html>
