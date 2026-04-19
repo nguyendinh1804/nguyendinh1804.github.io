@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 2 - 45 câu trắc nghiệm thanh toán quốc tế</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .main-menu {
+            background: #f5f7ff;
+            border-bottom: 1px solid #dfe4ff;
+            padding: 14px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: #3f51b5;
+            background: white;
+            border: 1px solid #cdd7ff;
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .menu-link:hover {
+            background: #e8edff;
+            border-color: #9fb2ff;
+        }
+
+        .menu-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .question-item.answered {
+            border-left-color: #4caf50;
+        }
+
+        .question-item.answered.incorrect {
+            border-left-color: #f44336;
+        }
+
+        .question-number {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .question-text {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .option-btn {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .option-btn.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .option-btn.incorrect {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .feedback.incorrect {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .results-container {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .results-container.show {
+            display: block;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .score-circle.excellent { background: linear-gradient(135deg, #4caf50 0%, #45a049 100%); }
+        .score-circle.good { background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); }
+        .score-circle.fair { background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); }
+        .score-circle.poor { background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); }
+
+        .results-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .results-details {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .wrong-answers {
+            text-align: left;
+            background: #fff7f7;
+            border: 1px solid #ffd6d6;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 18px;
+        }
+
+        .wrong-answers h3 {
+            font-size: 18px;
+            color: #b71c1c;
+            margin-bottom: 12px;
+        }
+
+        .wrong-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #f0b4b4;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .wrong-item:last-child {
+            border-bottom: none;
+        }
+
+        .wrong-item strong {
+            color: #c62828;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 21px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .quiz-info {
+                flex-direction: column;
+            }
+
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Chương 2 - Trắc nghiệm thanh toán quốc tế</h1>
+            <p>Bộ 45 câu hỏi A/B/C/D</p>
+        </div>
+
+        <nav class="main-menu">
+            <a class="menu-link" href="index.html">Trang này</a>
+            <a class="menu-link" href="chuong-1.html">Chương 1</a>
+            <a class="menu-link active" href="chuong-2.html">Chương 2</a>
+            <a class="menu-link" href="chuong-3.html">Chương 3</a>
+            <a class="menu-link" href="chuong-4.html">Chương 4</a>
+            <a class="menu-link" href="chuong-5.html">Chương 5</a>
+            <a class="menu-link" href="chuong-6.html">Chương 6</a>
+        </nav>
+
+        <div class="content">
+            <div class="quiz-info">
+                <div class="info-item">
+                    <span class="info-label">Câu hỏi</span>
+                    <span class="info-value"><span id="current-question">0</span>/45</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Câu đúng</span>
+                    <span class="info-value" style="color: #4caf50;" id="correct-count">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Câu sai</span>
+                    <span class="info-value" style="color: #f44336;" id="incorrect-count">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Tỷ lệ</span>
+                    <span class="info-value" id="percentage">0%</span>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <div id="quiz-container"></div>
+
+            <div id="results-container" class="results-container">
+                <div class="score-circle" id="score-circle">0/45</div>
+                <div class="results-message" id="results-message"></div>
+                <div class="results-details" id="results-details"></div>
+                <div class="wrong-answers" id="wrong-answers" style="display: none;"></div>
+            </div>
+
+            <div class="buttons-container">
+                <button class="btn btn-secondary" id="btn-reset" onclick="resetQuiz()">Làm lại</button>
+                <button class="btn btn-primary" id="btn-submit" onclick="submitQuiz()">Nộp bài</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            { question: "Đặc điểm nào phản ánh đúng bản chất pháp lý của Hối phiếu đòi nợ (Bill of Exchange)?", options: ["Là cam kết trả tiền vô điều kiện của người lập", "Là mệnh lệnh trả tiền vô điều kiện do người ký phát lập", "Là hợp đồng mua bán hàng hóa quốc tế", "Là bảo lãnh bắt buộc của ngân hàng"], answer: 1 },
+            { question: "Kỳ phiếu/ Hối phiếu nhận nợ (Promissory Note) khác Hối phiếu đòi nợ ở điểm cốt lõi nào?", options: ["Kỳ phiếu là lệnh đòi tiền người bị ký phát", "Kỳ phiếu là cam kết trả tiền của người lập cho người thụ hưởng", "Kỳ phiếu không có giá trị pháp lý", "Kỳ phiếu chỉ dùng trong giao dịch nội địa"], answer: 1 },
+            { question: "Hối phiếu trơn (Clean Bill) là loại hối phiếu:", options: ["Kèm đầy đủ chứng từ thương mại", "Không kèm chứng từ thương mại", "Chỉ do ngân hàng phát hành", "Chỉ sử dụng trong phương thức L/C"], answer: 1 },
+            { question: "Hối phiếu kèm chứng từ (Documentary Bill) thường được sử dụng phổ biến trong:", options: ["Giao dịch phi thương mại", "Nhờ thu và tín dụng chứng từ", "Chuyển tiền kiều hối cá nhân", "Thanh toán học phí quốc tế"], answer: 1 },
+            { question: "Trong quan hệ hối phiếu, người ký phát (drawer) là người:", options: ["Bị yêu cầu trả tiền", "Nhận tiền cuối cùng", "Lập và phát hành hối phiếu", "Xác nhận vận đơn đường biển"], answer: 2 },
+            { question: "Người bị ký phát (drawee) trong hối phiếu là:", options: ["Người được quyền nhận tiền", "Người bị yêu cầu thanh toán theo hối phiếu", "Người thu hộ của ngân hàng", "Người bảo hiểm hàng hóa"], answer: 1 },
+            { question: "Người thụ hưởng (payee/beneficiary) của hối phiếu là:", options: ["Người nhận được số tiền ghi trên hối phiếu", "Người phát hành vận đơn", "Người kiểm tra chất lượng hàng", "Người lập hóa đơn thương mại"], answer: 0 },
+            { question: "Tính trừu tượng của hối phiếu được hiểu là:", options: ["Hối phiếu luôn phải ghi chi tiết hợp đồng gốc", "Nghĩa vụ trả tiền trên hối phiếu độc lập tương đối với quan hệ cơ sở", "Hối phiếu chỉ có hiệu lực khi có bảo lãnh ngân hàng", "Hối phiếu chỉ dùng cho giao dịch hàng hóa"], answer: 1 },
+            { question: "Tính bắt buộc của hối phiếu thể hiện ở:", options: ["Người bị ký phát có thể trả hoặc không trả tùy ý", "Nghĩa vụ thanh toán phải thực hiện theo điều kiện ghi trên hối phiếu khi đã chấp nhận/đến hạn", "Chỉ trả khi người ký phát có yêu cầu lại", "Chỉ trả nếu có lợi nhuận từ lô hàng"], answer: 1 },
+            { question: "Tính lưu thông của hối phiếu cho phép:", options: ["Chuyển nhượng quyền hưởng lợi hợp pháp cho người khác", "Thay đổi hàng hóa trong hợp đồng mua bán", "Miễn mọi loại phí ngân hàng", "Hủy bỏ mọi nghĩa vụ thanh toán"], answer: 0 },
+            { question: "Chấp nhận hối phiếu (acceptance) thường áp dụng chủ yếu đối với:", options: ["Hối phiếu trả ngay khi xuất trình (sight)", "Hối phiếu trả chậm (usance/time bill)", "Séc du lịch", "Thẻ ghi nợ"], answer: 1 },
+            { question: "Khi người bị ký phát ký chấp nhận trên hối phiếu, ý nghĩa chính là:", options: ["Từ chối thanh toán", "Cam kết thanh toán khi đến hạn", "Chuyển quyền sở hữu hàng hóa", "Miễn trách cho người ký phát"], answer: 1 },
+            { question: "Ký hậu để trắng (Blank Endorsement) có đặc điểm:", options: ["Chỉ định đích danh người nhận tiếp theo", "Cấm chuyển nhượng tiếp", "Không ghi tên người nhận tiếp theo, làm hối phiếu lưu thông như vô danh", "Chỉ dùng cho séc bảo chi"], answer: 2 },
+            { question: "Ký hậu theo lệnh (Order Endorsement) là:", options: ["Ký hậu có chỉ định người thụ hưởng tiếp theo", "Ký hậu cấm chuyển nhượng", "Ký hậu miễn truy đòi mặc định", "Ký hậu chỉ hợp lệ với thẻ tín dụng"], answer: 0 },
+            { question: "Ký hậu hạn chế (Restrictive Endorsement) nhằm mục đích:", options: ["Tăng khả năng chuyển nhượng tự do", "Hạn chế phạm vi sử dụng/chuyển nhượng của hối phiếu", "Xóa mọi trách nhiệm của người ký hậu", "Bắt buộc ngân hàng xác nhận"], answer: 1 },
+            { question: "Ký hậu miễn truy đòi (Without Recourse Endorsement) có nghĩa:", options: ["Người ký hậu không chịu trách nhiệm thanh toán khi bị truy đòi", "Người ký hậu chịu trách nhiệm cao hơn bình thường", "Hối phiếu mất hiệu lực pháp lý", "Chỉ áp dụng với giao dịch nội địa"], answer: 0 },
+            { question: "Truy đòi hối phiếu (recourse) thường phát sinh khi:", options: ["Hối phiếu được thanh toán đầy đủ đúng hạn", "Hối phiếu bị từ chối chấp nhận hoặc từ chối thanh toán", "Hàng hóa được giao sớm", "Tỷ giá ổn định"], answer: 1 },
+            { question: "Séc (Cheque) là:", options: ["Mệnh lệnh trả tiền vô điều kiện do chủ tài khoản ký phát cho ngân hàng trích tiền trả người thụ hưởng", "Cam kết trả tiền của người nhập khẩu cho người xuất khẩu", "Hợp đồng bảo hiểm hàng hải", "Chứng từ vận tải đường biển"], answer: 0 },
+            { question: "Đặc điểm nổi bật của séc so với hối phiếu thương mại là:", options: ["Séc luôn là công cụ trả chậm dài hạn", "Séc do ngân hàng phát hành bắt buộc", "Séc thường gắn với tài khoản tiền gửi thanh toán tại ngân hàng và có tính trả tiền ngay khi hợp lệ", "Séc chỉ dùng trong L/C"], answer: 2 },
+            { question: "Điều kiện quan trọng để séc được thanh toán là:", options: ["Người ký phát có đủ số dư hoặc hạn mức thanh toán hợp lệ", "Người thụ hưởng có hợp đồng ngoại thương", "Có vận đơn gốc đi kèm", "Có xác nhận của hãng tàu"], answer: 0 },
+            { question: "Trong thanh toán thẻ, đơn vị chấp nhận thẻ (merchant) là:", options: ["Tổ chức phát hành thẻ", "Cơ sở bán hàng/dịch vụ chấp nhận thanh toán bằng thẻ", "Ngân hàng trung ương", "Công ty bảo hiểm tín dụng xuất khẩu"], answer: 1 },
+            { question: "Ngân hàng phát hành thẻ (issuing bank) là ngân hàng:", options: ["Cung cấp máy POS cho cửa hàng", "Mở tài khoản cho đơn vị chấp nhận thẻ bắt buộc", "Phát hành thẻ cho chủ thẻ và quản lý hạn mức/chứng từ nợ của chủ thẻ", "Chỉ làm nhiệm vụ thu đổi ngoại tệ"], answer: 2 },
+            { question: "Ngân hàng thanh toán thẻ (acquiring bank) chủ yếu:", options: ["Phát hành thẻ tín dụng cá nhân", "Ký hợp đồng với đơn vị chấp nhận thẻ, tiếp nhận và thanh toán giao dịch thẻ cho đơn vị này", "Ban hành chuẩn mực kế toán quốc tế", "Kiểm dịch hàng xuất khẩu"], answer: 1 },
+            { question: "Điểm khác biệt cốt lõi giữa thẻ ghi nợ (Debit Card) và thẻ tín dụng (Credit Card) là:", options: ["Debit dùng tiền có sẵn/tài khoản, Credit dùng hạn mức tín dụng do ngân hàng cấp", "Debit chỉ thanh toán quốc tế, Credit chỉ nội địa", "Debit luôn có lãi suất, Credit không có lãi", "Không có khác biệt"], answer: 0 },
+            { question: "Với thẻ ghi nợ, khi mua hàng thành công, tiền thường:", options: ["Trích trực tiếp/giữ chỗ ngay trên tài khoản của chủ thẻ", "Được ngân hàng cho vay không cần hoàn trả", "Trích từ quỹ bảo hiểm thương mại", "Chỉ thanh toán vào cuối năm"], answer: 0 },
+            { question: "Với thẻ tín dụng, chủ thẻ thường thanh toán cho ngân hàng phát hành:", options: ["Ngay tại thời điểm quẹt thẻ bắt buộc", "Theo sao kê vào kỳ hạn, có thể phát sinh lãi nếu không trả đủ đúng hạn", "Chỉ khi ngân hàng yêu cầu bằng văn bản giấy", "Sau khi người bán xác nhận giao đủ hàng"], answer: 1 },
+            { question: "Rủi ro thường gặp của đơn vị chấp nhận thẻ là:", options: ["Không nhận được tiền vì giao dịch gian lận/chargeback", "Không cần trả phí chiết khấu thương mại (MDR)", "Không cần tuân thủ chuẩn bảo mật nào", "Luôn được đảm bảo doanh số tăng"], answer: 0 },
+            { question: "Trong quy trình thanh toán thẻ, tổ chức thẻ quốc tế (Visa/Mastercard...) có vai trò:", options: ["Ban hành pháp luật quốc gia về ngoại hối", "Kết nối mạng lưới, chuẩn hóa thông điệp, bù trừ và quy tắc vận hành hệ thống thẻ", "Trực tiếp bán hàng hóa cho người tiêu dùng", "Là cơ quan hải quan cửa khẩu"], answer: 1 },
+            { question: "Phương thức nhờ thu trả chậm D/A (Documents against Acceptance) đặc trưng bởi:", options: ["Giao chứng từ khi người mua trả tiền ngay", "Giao chứng từ khi người mua chấp nhận hối phiếu kỳ hạn", "Ngân hàng phát hành cam kết trả thay vô điều kiện", "Không có chứng từ thương mại"], answer: 1 },
+            { question: "Trong D/A, rủi ro lớn hơn đối với người xuất khẩu vì:", options: ["Người mua có thể nhận chứng từ sau khi chấp nhận nhưng đến hạn không trả tiền", "Ngân hàng luôn bảo lãnh thanh toán", "Người mua phải trả ngay khi nhận chứng từ", "Không có biến động tỷ giá"], answer: 0 },
+            { question: "Trong phương thức L/C, hối phiếu ký phát theo L/C thường đòi tiền:", options: ["Người xuất khẩu", "Ngân hàng phát hành hoặc ngân hàng được chỉ định theo quy định L/C", "Hãng tàu vận chuyển", "Công ty bảo hiểm"], answer: 1 },
+            { question: "L/C không hủy ngang (Irrevocable L/C) nghĩa là:", options: ["Có thể hủy bất cứ lúc nào bởi người mua", "Không thể sửa đổi/hủy nếu không có sự đồng ý của các bên liên quan theo quy định", "Chỉ áp dụng cho giao dịch nội địa", "Không cần chứng từ"], answer: 1 },
+            { question: "Trong giao dịch L/C, nguyên tắc độc lập thể hiện rằng:", options: ["Ngân hàng xử lý dựa trên hàng hóa thực tế", "Ngân hàng xử lý dựa trên chứng từ phù hợp, độc lập với hợp đồng cơ sở", "Ngân hàng chịu mọi tranh chấp chất lượng hàng", "Người mua không có nghĩa vụ thanh toán"], answer: 1 },
+            { question: "Chứng từ nào dưới đây thường là căn cứ quan trọng để ngân hàng xem xét giao hàng đã được xếp lên tàu?", options: ["Phiếu xuất kho nội bộ", "Vận đơn đường biển (B/L)", "Giấy giới thiệu", "Biên bản họp công ty"], answer: 1 },
+            { question: "Trong thanh toán quốc tế bằng công cụ hối phiếu, biện pháp giúp giảm rủi ro không thanh toán là:", options: ["Không thẩm định người mua", "Chỉ giao dịch bằng thỏa thuận miệng", "Kết hợp bảo lãnh/xác nhận ngân hàng hoặc chọn phương thức L/C phù hợp", "Luôn giao chứng từ trước khi có ràng buộc thanh toán"], answer: 2 },
+            { question: "Hối phiếu trả ngay (at sight) được thanh toán:", options: ["Vào một ngày cố định sau 180 ngày", "Khi xuất trình hợp lệ theo quy định", "Chỉ khi có phán quyết tòa án", "Sau khi người mua bán lại hàng hóa"], answer: 1 },
+            { question: "Hối phiếu kỳ hạn 90 ngày sau khi nhìn thấy (90 days after sight) được hiểu là:", options: ["Trả ngay khi ký phát", "Trả sau 90 ngày kể từ ngày giao hàng", "Trả sau 90 ngày kể từ ngày chấp nhận/nhìn thấy theo quy định", "Trả sau 90 ngày kể từ ngày mở L/C"], answer: 2 },
+            { question: "Khi ký phát hối phiếu trong hợp đồng xuất khẩu, nội dung nào là thiết yếu để đảm bảo hiệu lực nghiệp vụ?", options: ["Mệnh lệnh trả tiền vô điều kiện, số tiền, người bị ký phát, người thụ hưởng, thời hạn trả", "Màu sắc logo công ty xuất khẩu", "Thông số kỹ thuật container lạnh", "Tên tàu dự kiến nhưng không cần số tiền"], answer: 0 },
+            { question: "Trong phương thức nhờ thu kèm chứng từ, ngân hàng thu hộ thường:", options: ["Cam kết chắc chắn người mua sẽ thanh toán", "Chỉ đóng vai trò trung gian thu hộ theo chỉ thị, không cam kết thanh toán thay người mua (trừ khi có bảo lãnh riêng)", "Mua luôn hàng hóa của người bán", "Quyết định thay giá hàng hóa trong hợp đồng"], answer: 1 },
+            { question: "Nhận định nào đúng về vai trò của các công cụ thanh toán chương 2 (hối phiếu, kỳ phiếu, séc, thẻ)?", options: ["Chỉ có giá trị kế toán, không hỗ trợ quản trị rủi ro", "Giúp chuẩn hóa nghĩa vụ thanh toán, tạo cơ sở pháp lý và hỗ trợ lưu thông vốn trong thương mại", "Không liên quan đến ngân hàng", "Chỉ áp dụng cho giao dịch dưới 10.000 USD"], answer: 1 },
+            { question: "Câu hỏi tình huống: Doanh nghiệp xuất khẩu Việt Nam giao hàng theo hợp đồng nhờ thu D/P. Người mua đề nghị nhận bộ chứng từ trước để kịp thông quan và hứa sẽ chuyển tiền sau 3 ngày. Cách xử lý phù hợp nhất là gì?", options: ["Giao chứng từ ngay để giữ quan hệ khách hàng", "Chỉ giao chứng từ khi ngân hàng xác nhận đã thu đủ tiền theo đúng điều kiện D/P", "Chuyển luôn sang D/A mà không cần phụ lục hợp đồng", "Giao một phần chứng từ gốc để người mua lấy hàng trước"], answer: 1 },
+            { question: "Câu hỏi tình huống: Công ty A nhận L/C trả chậm 90 ngày từ ngân hàng phát hành ở thị trường có rủi ro cao. Để giảm rủi ro không được thanh toán khi đến hạn, lựa chọn nào tốt nhất?", options: ["Giữ nguyên L/C, không cần điều chỉnh", "Đề nghị ngân hàng thông báo thêm xác nhận L/C (confirmed L/C)", "Chuyển sang nhờ thu trơn để giảm phí", "Bỏ yêu cầu kiểm tra chứng từ để xuất hàng nhanh hơn"], answer: 1 },
+            { question: "Câu hỏi tình huống: Chủ thẻ tín dụng phát hiện giao dịch lạ tại một website quốc tế và lập khiếu nại. Rủi ro lớn nhất đối với đơn vị chấp nhận thẻ trong trường hợp này là gì?", options: ["Được nhận thêm phí thưởng từ ngân hàng thanh toán", "Giao dịch có thể bị chargeback, bị hoàn tiền và phát sinh phí phạt", "Ngân hàng phát hành tự chịu toàn bộ thiệt hại, không ảnh hưởng người bán", "Giao dịch tự động chuyển thành chuyển khoản không hoàn lại"], answer: 1 },
+            { question: "Câu hỏi tình huống: Người xuất khẩu ký phát hối phiếu kỳ hạn 60 ngày sau khi nhìn thấy và gửi nhờ thu. Người mua đã ký chấp nhận trên hối phiếu. Ý nghĩa pháp lý trực tiếp của hành vi này là gì?", options: ["Người mua chỉ xác nhận đã nhận hàng, chưa có nghĩa vụ trả tiền", "Người mua cam kết thanh toán số tiền hối phiếu khi đến hạn", "Ngân hàng thu hộ trở thành bên chịu trách nhiệm thanh toán thay", "Hối phiếu tự động trở thành séc"], answer: 1 },
+            { question: "Câu hỏi tình huống: Doanh nghiệp xuất khẩu lần đầu giao dịch với khách hàng mới, giá trị hợp đồng lớn. Biện pháp kết hợp nào hợp lý nhất để giảm rủi ro thanh toán?", options: ["Chấp nhận ghi sổ toàn bộ để tăng khả năng chốt đơn", "Dùng L/C không hủy ngang, thẩm định tín nhiệm đối tác và kiểm soát chặt bộ chứng từ", "Giao hàng trước rồi đàm phán phương thức thanh toán sau", "Chỉ yêu cầu đặt cọc tượng trưng 1% và bỏ điều khoản phạt"], answer: 1 }
+        ];
+
+        let userAnswers = [];
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            quizData.forEach((item, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-item';
+                questionDiv.id = `question-${index}`;
+
+                const numberDiv = document.createElement('div');
+                numberDiv.className = 'question-number';
+                numberDiv.textContent = `Câu ${index + 1}`;
+
+                const textDiv = document.createElement('div');
+                textDiv.className = 'question-text';
+                textDiv.textContent = item.question;
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options-container';
+
+                const labels = ['A', 'B', 'C', 'D'];
+                item.options.forEach((option, optionIndex) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = labels[optionIndex] + '. ' + option;
+                    btn.onclick = () => selectAnswer(index, optionIndex);
+                    btn.id = `option-${index}-${optionIndex}`;
+                    optionsDiv.appendChild(btn);
+                });
+
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = 'feedback';
+                feedbackDiv.id = `feedback-${index}`;
+
+                questionDiv.appendChild(numberDiv);
+                questionDiv.appendChild(textDiv);
+                questionDiv.appendChild(optionsDiv);
+                questionDiv.appendChild(feedbackDiv);
+
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function selectAnswer(questionIndex, optionIndex) {
+            userAnswers[questionIndex] = optionIndex;
+
+            ['A', 'B', 'C', 'D'].forEach((_, i) => {
+                const btn = document.getElementById(`option-${questionIndex}-${i}`);
+                if (btn) {
+                    if (i === optionIndex) {
+                        btn.classList.add('selected');
+                    } else {
+                        btn.classList.remove('selected');
+                    }
+                }
+            });
+
+            document.getElementById(`question-${questionIndex}`).classList.add('answered');
+
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const answered = userAnswers.filter(ans => ans !== undefined).length;
+            const total = quizData.length;
+            const percent = Math.round((answered / total) * 100);
+
+            document.getElementById('current-question').textContent = answered;
+            document.getElementById('progress-fill').style.width = percent + '%';
+        }
+
+        function submitQuiz() {
+            let correct = 0;
+            let incorrect = 0;
+
+            quizData.forEach((item, index) => {
+                const feedbackDiv = document.getElementById(`feedback-${index}`);
+                const questionItem = document.getElementById(`question-${index}`);
+                const labels = ['A', 'B', 'C', 'D'];
+                const isCorrect = userAnswers[index] === item.answer;
+
+                if (isCorrect) {
+                    correct++;
+                    const btn = document.getElementById(`option-${index}-${userAnswers[index]}`);
+                    if (btn) btn.classList.add('correct');
+                    feedbackDiv.className = 'feedback show correct';
+                    feedbackDiv.textContent = 'Chính xác!';
+                } else {
+                    incorrect++;
+                    const userBtn = document.getElementById(`option-${index}-${userAnswers[index]}`);
+                    if (userBtn) userBtn.classList.add('incorrect');
+                    const correctBtn = document.getElementById(`option-${index}-${item.answer}`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                    feedbackDiv.className = 'feedback show incorrect';
+                    feedbackDiv.textContent = `Sai! Đáp án đúng là: ${labels[item.answer]}`;
+                    questionItem.classList.add('incorrect');
+                }
+            });
+
+            const percentage = Math.round((correct / quizData.length) * 100);
+            document.getElementById('correct-count').textContent = correct;
+            document.getElementById('incorrect-count').textContent = incorrect;
+            document.getElementById('percentage').textContent = percentage + '%';
+
+            showResults(correct, percentage);
+        }
+
+        function showResults(correct, percentage) {
+            const resultsContainer = document.getElementById('results-container');
+            const scoreCircle = document.getElementById('score-circle');
+            const resultsMessage = document.getElementById('results-message');
+            const resultsDetails = document.getElementById('results-details');
+            const wrongAnswers = document.getElementById('wrong-answers');
+            const labels = ['A', 'B', 'C', 'D'];
+
+            scoreCircle.textContent = correct + '/' + quizData.length;
+
+            if (percentage >= 90) {
+                scoreCircle.className = 'score-circle excellent';
+                resultsMessage.textContent = 'Xuất sắc!';
+            } else if (percentage >= 70) {
+                scoreCircle.className = 'score-circle good';
+                resultsMessage.textContent = 'Tốt lắm!';
+            } else if (percentage >= 50) {
+                scoreCircle.className = 'score-circle fair';
+                resultsMessage.textContent = 'Cần cố gắng thêm!';
+            } else {
+                scoreCircle.className = 'score-circle poor';
+                resultsMessage.textContent = 'Cần ôn luyện thêm!';
+            }
+
+            resultsDetails.innerHTML = `<p>Bạn trả lời đúng <strong>${correct}</strong> trên <strong>${quizData.length}</strong> câu (${percentage}%)</p>`;
+
+            const wrongList = [];
+            quizData.forEach((item, index) => {
+                const userAnswer = userAnswers[index];
+                if (userAnswer !== item.answer) {
+                    const selected = userAnswer !== undefined
+                        ? `${labels[userAnswer]} - ${item.options[userAnswer]}`
+                        : 'Chưa chọn';
+
+                    wrongList.push(`
+                        <div class="wrong-item">
+                            <div><strong>Câu ${index + 1}:</strong> ${item.question}</div>
+                            <div>Bạn chọn: <strong>${selected}</strong></div>
+                            <div>Đáp án đúng: <strong>${labels[item.answer]}</strong> - ${item.options[item.answer]}</div>
+                        </div>
+                    `);
+                }
+            });
+
+            if (wrongList.length > 0) {
+                wrongAnswers.style.display = 'block';
+                wrongAnswers.innerHTML = `<h3>Các câu sai (${wrongList.length})</h3>${wrongList.join('')}`;
+            } else {
+                wrongAnswers.style.display = 'none';
+                wrongAnswers.innerHTML = '';
+            }
+
+            resultsContainer.classList.add('show');
+            document.getElementById('quiz-container').style.display = 'none';
+        }
+
+        function resetQuiz() {
+            userAnswers = [];
+
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('results-container').classList.remove('show');
+
+            document.getElementById('current-question').textContent = '0';
+            document.getElementById('correct-count').textContent = '0';
+            document.getElementById('incorrect-count').textContent = '0';
+            document.getElementById('percentage').textContent = '0%';
+            document.getElementById('progress-fill').style.width = '0%';
+            document.getElementById('wrong-answers').style.display = 'none';
+            document.getElementById('wrong-answers').innerHTML = '';
+
+            renderQuiz();
+        }
+
+        window.addEventListener('load', renderQuiz);
+    </script>
+</body>
+</html>

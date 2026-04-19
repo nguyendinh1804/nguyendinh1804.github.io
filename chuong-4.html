@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trắc nghiệm A/B/C/D - Từ viết tắt thanh toán quốc tế</title>
+    <title>Chương 4 - 30 câu trắc nghiệm thanh toán quốc tế</title>
     <style>
         * {
             margin: 0;
@@ -181,11 +181,6 @@
             background: #f0f4ff;
         }
 
-        .option-btn:disabled {
-            opacity: 1;
-            cursor: not-allowed;
-        }
-
         .option-btn.selected {
             background: #667eea;
             color: white;
@@ -244,29 +239,20 @@
             transition: all 0.3s ease;
         }
 
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         .btn-secondary {
             background: #f5f5f5;
             color: #333;
             border: 2px solid #ddd;
-        }
-
-        .btn-secondary:hover {
-            background: #e0e0e0;
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
         }
 
         .results-container {
@@ -292,21 +278,10 @@
             color: white;
         }
 
-        .score-circle.excellent {
-            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
-        }
-
-        .score-circle.good {
-            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
-        }
-
-        .score-circle.fair {
-            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
-        }
-
-        .score-circle.poor {
-            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
-        }
+        .score-circle.excellent { background: linear-gradient(135deg, #4caf50 0%, #45a049 100%); }
+        .score-circle.good { background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); }
+        .score-circle.fair { background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); }
+        .score-circle.poor { background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); }
 
         .results-message {
             font-size: 24px;
@@ -328,8 +303,6 @@
             border-radius: 8px;
             padding: 16px;
             margin-top: 18px;
-            max-height: 420px;
-            overflow-y: auto;
         }
 
         .wrong-answers h3 {
@@ -355,21 +328,11 @@
 
         @media (max-width: 600px) {
             .header h1 {
-                font-size: 20px;
+                font-size: 21px;
             }
 
             .content {
                 padding: 20px;
-            }
-
-            .main-menu {
-                padding: 12px;
-                gap: 8px;
-            }
-
-            .menu-link {
-                font-size: 13px;
-                padding: 7px 12px;
             }
 
             .quiz-info {
@@ -393,26 +356,25 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📝 Trắc nghiệm Chọn A/B/C/D</h1>
-            <p>Từ viết tắt trong thanh toán quốc tế</p>
+            <h1>Chương 4 - Trắc nghiệm thanh toán quốc tế</h1>
+            <p>Bộ 30 câu hỏi A/B/C/D</p>
         </div>
 
         <nav class="main-menu">
-            <a class="menu-link active" href="index.html">Trang này</a>
+            <a class="menu-link" href="index.html">Trang này</a>
             <a class="menu-link" href="chuong-1.html">Chương 1</a>
             <a class="menu-link" href="chuong-2.html">Chương 2</a>
             <a class="menu-link" href="chuong-3.html">Chương 3</a>
-            <a class="menu-link" href="chuong-4.html">Chương 4</a>
+            <a class="menu-link active" href="chuong-4.html">Chương 4</a>
             <a class="menu-link" href="chuong-5.html">Chương 5</a>
             <a class="menu-link" href="chuong-6.html">Chương 6</a>
         </nav>
 
         <div class="content">
-            <!-- Quiz Info -->
             <div class="quiz-info">
                 <div class="info-item">
                     <span class="info-label">Câu hỏi</span>
-                    <span class="info-value"><span id="current-question">0</span>/42</span>
+                    <span class="info-value"><span id="current-question">0</span>/30</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Câu đúng</span>
@@ -428,74 +390,58 @@
                 </div>
             </div>
 
-            <!-- Progress Bar -->
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
 
-            <!-- Quiz Container -->
             <div id="quiz-container"></div>
 
-            <!-- Results Container -->
             <div id="results-container" class="results-container">
-                <div class="score-circle" id="score-circle">0/42</div>
+                <div class="score-circle" id="score-circle">0/30</div>
                 <div class="results-message" id="results-message"></div>
                 <div class="results-details" id="results-details"></div>
                 <div class="wrong-answers" id="wrong-answers" style="display: none;"></div>
             </div>
 
-            <!-- Buttons -->
             <div class="buttons-container">
-                <button class="btn btn-secondary" id="btn-reset" onclick="resetQuiz()">🔄 Làm lại</button>
-                <button class="btn btn-primary" id="btn-submit" onclick="submitQuiz()" style="display:none;">✓ Nộp bài</button>
+                <button class="btn btn-secondary" id="btn-reset" onclick="resetQuiz()">Làm lại</button>
+                <button class="btn btn-primary" id="btn-submit" onclick="submitQuiz()">Nộp bài</button>
             </div>
         </div>
     </div>
 
     <script>
         const quizData = [
-            { question: "AWB là viết tắt của cụm từ nào?", options: ["Air Waybill", "Air World Bill", "Asia Way Bill", "Air Warehouse Bill"], answer: 0 },
-            { question: "AWB có nghĩa tiếng Việt là gì?", options: ["Vận đơn đường biển", "Vận đơn hàng không", "Giấy chứng nhận xuất xứ", "Phiếu đóng gói"], answer: 1 },
-            { question: "B/L là viết tắt của cụm từ nào?", options: ["Bill of Loading", "Bill of Lading", "Booking of Lading", "Bank of Lading"], answer: 1 },
-            { question: "B/L có nghĩa tiếng Việt là gì?", options: ["Vận đơn hàng không", "Thư tín dụng", "Vận đơn đường biển", "Giấy chứng nhận số lượng"], answer: 2 },
-            { question: "C/O là viết tắt của:", options: ["Certificate of Origin", "Certificate of Ownership", "Cargo of Origin", "Customs of Origin"], answer: 0 },
-            { question: "C/O có nghĩa tiếng Việt là:", options: ["Giấy chứng nhận chất lượng", "Giấy chứng nhận xuất xứ", "Vận đơn đường biển", "Chứng từ bảo hiểm"], answer: 1 },
-            { question: "C/Q là viết tắt của:", options: ["Certificate of Quantity/Quality", "Cargo of Quantity", "Certificate of Quotation", "Customs of Quality"], answer: 0 },
-            { question: "C/Q có nghĩa tiếng Việt là:", options: ["Giấy chứng nhận xuất xứ", "Giấy chứng nhận số lượng/chất lượng", "Phiếu cân hàng", "Lệnh giao hàng"], answer: 1 },
-            { question: "CIF là viết tắt của:", options: ["Cost, Insurance and Freight", "Carriage, Insurance and Freight", "Cost, Import and Freight", "Cargo, Insurance and Fee"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của CIF là:", options: ["Giao hàng cho người chuyên chở", "Tiền hàng, bảo hiểm và cước phí", "Cước phí và bảo hiểm trả tới", "Giao hàng lên tàu"], answer: 1 },
-            { question: "CIP là viết tắt của:", options: ["Carriage and Insurance Paid To", "Cost and Insurance Paid To", "Cargo and Insurance Paid To", "Carriage and Inspection Paid To"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của CIP là:", options: ["Cước phí và bảo hiểm trả tới", "Tiền hàng, bảo hiểm và cước phí", "Giao hàng đã thanh toán tại nơi đến", "Giao hàng cho người chuyên chở"], answer: 2 },
-            { question: "CPT là viết tắt của:", options: ["Carriage Paid To", "Cargo Paid To", "Carriage Port To", "Cost Paid To"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của CPT là:", options: ["Cước phí và bảo hiểm trả tới", "Giao hàng lên tàu", "Giao hàng đã thanh toán tại nơi đến", "Nhờ thu trả ngay"], answer: 2 },
-            { question: "D/A là viết tắt của:", options: ["Documents against Acceptance", "Delivery against Acceptance", "Documents and Acceptance", "Draft against Account"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của D/A là:", options: ["Nhờ thu trả ngay", "Nhờ thu trả sau (chấp nhận hối phiếu)", "Thư tín dụng dự phòng", "Chứng từ vận tải"], answer: 1 },
-            { question: "D/P là viết tắt của:", options: ["Documents against Payment", "Delivery against Payment", "Documents and Payment", "Draft against Payment"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của D/P là:", options: ["Nhờ thu trả sau", "Nhờ thu trả ngay (chấp nhận thanh toán)", "Trả chậm có bảo lãnh", "Thanh toán qua L/C"], answer: 1 },
-            { question: "DEM/DET là viết tắt của:", options: ["Demurrage/Detention", "Demand/Detail", "Delivery/Detention", "Demurrage/Delivery"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của DEM/DET là:", options: ["Phí bảo hiểm hàng hóa", "Phí lưu container, lưu bãi", "Phí chuyển tiền quốc tế", "Phí mở L/C"], answer: 1 },
-            { question: "FCA là viết tắt của:", options: ["Free Carrier", "Freight Carrier Agency", "Free Cargo Agreement", "Foreign Carrier Act"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của FCA là:", options: ["Giao hàng lên tàu", "Giao hàng cho người chuyên chở", "Cước phí trả tới", "Tiền hàng, bảo hiểm và cước phí"], answer: 1 },
-            { question: "FDI là viết tắt của:", options: ["Foreign Direct Investment", "Foreign Domestic Investment", "Finance Direct Investment", "Foreign Debt Investment"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của FDI là:", options: ["Đầu tư gián tiếp nước ngoài", "Đầu tư trực tiếp nước ngoài", "Đầu tư công quốc tế", "Đầu tư nội địa"], answer: 1 },
-            { question: "FII là viết tắt của:", options: ["Foreign Institutional Investment", "Foreign Internal Investment", "Financial Institutional Import", "Foreign Insurance Investment"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của FII là:", options: ["Đầu tư trực tiếp nước ngoài", "Đầu tư gián tiếp nước ngoài", "Đầu tư ra nước ngoài của chính phủ", "Đầu tư công nghệ tài chính"], answer: 1 },
-            { question: "FOB là viết tắt của:", options: ["Free On Board", "Freight On Board", "Free Ocean Bill", "Freight of Booking"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của FOB là:", options: ["Giao hàng cho người chuyên chở", "Giao hàng lên tàu", "Cước phí trả tới", "Cước phí và bảo hiểm trả tới"], answer: 1 },
-            { question: "ICC là viết tắt của:", options: ["International Chamber of Commerce", "International Cargo Council", "International Credit Committee", "Interbank Commerce Center"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của ICC là:", options: ["Trung tâm Trọng tài Quốc tế Việt Nam", "Phòng Thương mại Quốc tế", "Quỹ Tiền tệ Quốc tế", "Tổ chức Hải quan Thế giới"], answer: 1 },
-            { question: "ISBP 745 là viết tắt của:", options: ["International Standard Banking Practice", "International Settlement Banking Policy", "International Standard Bill Practice", "International System Banking Procedure"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của ISBP 745 là:", options: ["Quy tắc thống nhất về nhờ thu", "Thực hành Ngân hàng Tiêu chuẩn Quốc tế", "Quy tắc thống nhất về tín dụng chứng từ", "Bộ quy tắc về bảo lãnh ngân hàng"], answer: 1 },
-            { question: "L/C là viết tắt của:", options: ["Line of Credit", "Letter of Credit", "Loan of Contract", "List of Cargo"], answer: 1 },
-            { question: "Nghĩa tiếng Việt của L/C là:", options: ["Thư tín dụng", "Thư bảo lãnh", "Lệnh chuyển tiền", "Chứng từ thanh toán"], answer: 0 },
-            { question: "SBLC là viết tắt của:", options: ["Standby Letter of Credit", "Standard Bank Letter of Credit", "Secured Business Loan Contract", "Special Bill of Letter Credit"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của SBLC là:", options: ["Thư tín dụng thường", "Thư tín dụng dự phòng", "Chứng từ nhờ thu", "Cam kết trả chậm"], answer: 1 },
-            { question: "UCP 600 là viết tắt của:", options: ["The Uniform Customs and Practice for Documentary Credits", "The Unified Credit Practice 600", "Universal Customs of Payment 600", "Uniform Cargo Procedure 600"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của UCP 600 là:", options: ["Quy tắc thống nhất về nhờ thu", "Quy tắc và Thực hành thống nhất về Tín dụng chứng từ", "Thực hành ngân hàng tiêu chuẩn quốc tế", "Quy tắc trọng tài quốc tế"], answer: 1 },
-            { question: "URC 522 là viết tắt của:", options: ["The Uniform Rules for Collections", "The Unified Rules for Credits", "Universal Rules for Cargo", "Uniform Regulation for Collection Credits"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của URC 522 là:", options: ["Quy tắc thống nhất về tín dụng chứng từ", "Quy tắc thống nhất về nhờ thu", "Quy tắc thống nhất về vận tải biển", "Quy tắc thống nhất về bảo lãnh"], answer: 1 },
-            { question: "VIAC là viết tắt của:", options: ["Vietnam International Arbitration Centre", "Vietnam Investment and Arbitration Council", "Viet International Audit Center", "Vietnam International Accounting Centre"], answer: 0 },
-            { question: "Nghĩa tiếng Việt của VIAC là:", options: ["Phòng Thương mại Quốc tế", "Trung tâm Trọng tài Quốc tế Việt Nam", "Trung tâm Hòa giải Thương mại Việt Nam", "Viện Nghiên cứu Thương mại Quốc tế"], answer: 1 }
+            { question: 'Phương thức chuyển tiền (Remittance) trong thanh toán quốc tế được hiểu là:', options: ['Ngân hàng cam kết thanh toán thay người mua', 'Người chuyển tiền yêu cầu ngân hàng chuyển một số tiền cho người thụ hưởng', 'Hàng được giao trước, tiền tự động thu sau', 'Chỉ dùng cho giao dịch nội địa'], answer: 1 },
+            { question: 'Trong phương thức chuyển tiền trả trước 100%, bên chịu rủi ro cao hơn thường là:', options: ['Nhà xuất khẩu', 'Nhà nhập khẩu', 'Ngân hàng chuyển tiền', 'Hải quan'], answer: 1 },
+            { question: 'Trong phương thức chuyển tiền trả sau, bên chịu rủi ro cao hơn thường là:', options: ['Nhà xuất khẩu', 'Nhà nhập khẩu', 'Ngân hàng trung ương', 'Công ty bảo hiểm'], answer: 0 },
+            { question: 'T/T (Telegraphic Transfer) có đặc điểm chính là:', options: ['Chuyển tiền bằng thư tay giấy', 'Chuyển tiền điện tử, tốc độ nhanh', 'Chỉ dùng cho số tiền nhỏ', 'Không qua ngân hàng'], answer: 1 },
+            { question: 'M/T (Mail Transfer) truyền thống khác T/T chủ yếu ở điểm:', options: ['Luôn rẻ hơn và nhanh hơn T/T', 'Dùng phương thức chứng từ điện tử tức thời', 'Gửi lệnh qua thư, thời gian chậm hơn', 'Không cần thông tin người thụ hưởng'], answer: 2 },
+            { question: 'Chủ thể phát lệnh chuyển tiền trong giao dịch nhập khẩu thường là:', options: ['Người xuất khẩu', 'Người nhập khẩu', 'Ngân hàng thông báo', 'Hãng tàu'], answer: 1 },
+            { question: 'Ngân hàng trong phương thức chuyển tiền thường đóng vai trò chính là:', options: ['Bảo lãnh chắc chắn người bán nhận tiền', 'Trung gian thực hiện lệnh chuyển tiền theo chỉ thị khách hàng', 'Kiểm tra chất lượng hàng hóa', 'Quyết định giá hợp đồng'], answer: 1 },
+            { question: 'Một nội dung quan trọng bắt buộc trên lệnh chuyển tiền là:', options: ['Màu bao bì hàng hóa', 'Thông tin tài khoản người thụ hưởng', 'Số container rỗng', 'Tên thuyền trưởng'], answer: 1 },
+            { question: 'Mã SWIFT/BIC trong thanh toán quốc tế dùng để:', options: ['Xác định cảng xếp hàng', 'Định danh ngân hàng nhận/chuyển tiền', 'Tính thuế nhập khẩu', 'Kiểm tra chất lượng hàng hóa'], answer: 1 },
+            { question: 'Chọn phát biểu đúng về phí ngân hàng trong chuyển tiền:', options: ['Luôn do nhà xuất khẩu chịu toàn bộ', 'Luôn do nhà nhập khẩu chịu toàn bộ', 'Phụ thuộc thỏa thuận phí (OUR/SHA/BEN) giữa các bên', 'Không phát sinh phí'], answer: 2 },
+            { question: 'Điều khoản phí OUR nghĩa là:', options: ['Người thụ hưởng chịu mọi phí', 'Người chuyển tiền chịu toàn bộ phí liên quan', 'Hai bên chia đôi bắt buộc', 'Ngân hàng phát hành chịu phí'], answer: 1 },
+            { question: 'Điều khoản phí BEN nghĩa là:', options: ['Người chuyển tiền chịu tất cả phí', 'Người thụ hưởng chịu phí ngân hàng', 'Bên mua và bên bán không chịu phí', 'Chỉ áp dụng cho L/C'], answer: 1 },
+            { question: 'Điều khoản phí SHA thường được hiểu là:', options: ['Người chuyển tiền chịu phí ngân hàng của mình, người thụ hưởng chịu phí ngân hàng bên nhận/trung gian', 'Người chuyển tiền chịu toàn bộ phí', 'Người thụ hưởng chịu toàn bộ phí', 'Không có phí trung gian'], answer: 0 },
+            { question: 'Trong chuyển tiền trả trước, biện pháp giảm rủi ro cho nhà nhập khẩu là:', options: ['Không cần hợp đồng', 'Đặt cọc một phần, thanh toán phần còn lại theo mốc giao hàng/chứng từ', 'Trả toàn bộ không điều kiện ngay từ đầu', 'Không kiểm tra đối tác'], answer: 1 },
+            { question: 'Trong chuyển tiền trả sau, biện pháp giảm rủi ro cho nhà xuất khẩu là:', options: ['Giao hàng không ràng buộc thanh toán', 'Thẩm định tín nhiệm người mua và quy định phạt chậm trả trong hợp đồng', 'Không cần điều khoản tranh chấp', 'Chỉ giao dịch miệng'], answer: 1 },
+            { question: 'Một nhược điểm của phương thức chuyển tiền so với L/C là:', options: ['Thủ tục luôn phức tạp hơn', 'Không có cam kết thanh toán độc lập của ngân hàng phát hành như L/C', 'Không dùng được ngoại tệ', 'Chỉ áp dụng cho dịch vụ'], answer: 1 },
+            { question: 'Ưu điểm nổi bật của phương thức chuyển tiền là:', options: ['Thời gian xử lý linh hoạt, thủ tục tương đối đơn giản', 'Ngân hàng kiểm tra chứng từ rất chặt như L/C', 'Không cần thông tin người thụ hưởng', 'Luôn loại bỏ hoàn toàn rủi ro'], answer: 0 },
+            { question: 'Khi lập lệnh chuyển tiền, nội dung sai thông tin tài khoản người thụ hưởng có thể dẫn đến:', options: ['Tiền vẫn đến đúng ngay lập tức', 'Giao dịch bị treo, hoàn trả hoặc chuyển nhầm', 'Ngân hàng tự sửa mà không cần xác nhận', 'Không ảnh hưởng gì'], answer: 1 },
+            { question: 'Thông tin nào giúp tăng độ chính xác khi chuyển tiền quốc tế?', options: ['Chỉ ghi tên công ty thụ hưởng', 'Ghi đầy đủ tên thụ hưởng, số tài khoản/IBAN, SWIFT và địa chỉ ngân hàng nhận', 'Chỉ ghi số hợp đồng', 'Chỉ ghi quốc gia'], answer: 1 },
+            { question: 'Chọn nhận định đúng:', options: ['Chuyển tiền trả sau luôn an toàn tuyệt đối cho nhà xuất khẩu', 'Chuyển tiền trả trước luôn an toàn tuyệt đối cho nhà nhập khẩu', 'Mỗi hình thức trả trước/trả sau có phân bổ rủi ro khác nhau giữa hai bên', 'Rủi ro chỉ nằm ở ngân hàng'], answer: 2 },
+            { question: 'Trong thực tế thương mại, chuyển tiền trả trước 100% thường áp dụng khi:', options: ['Hai bên chưa từng giao dịch và người mua không tin tưởng người bán', 'Người bán có vị thế mạnh, hàng khan hiếm hoặc sản xuất theo đơn hàng riêng', 'Luôn bắt buộc theo UCP 600', 'Hàng đã giao xong'], answer: 1 },
+            { question: 'Khi người nhập khẩu yêu cầu ngân hàng chuyển tiền trả sau cho lô hàng đã nhận, đây là hình thức:', options: ['Advance payment', 'Open account theo kỳ hạn trả sau', 'L/C xác nhận', 'Nhờ thu D/P'], answer: 1 },
+            { question: 'Trường hợp nào sau đây làm tăng rủi ro trong phương thức chuyển tiền?', options: ['Có hợp đồng rõ điều khoản thanh toán', 'Xác minh đối tác trước khi giao dịch', 'Không quy định rõ thời điểm trả tiền và chứng từ giao nhận', 'Có cơ chế phạt chậm thanh toán'], answer: 2 },
+            { question: 'Trong chuyển tiền quốc tế, ngân hàng trung gian (intermediary bank) có thể tham gia khi:', options: ['Hai ngân hàng không có quan hệ tài khoản trực tiếp', 'Người bán yêu cầu giảm giá', 'Hàng hóa cần kiểm dịch', 'Hợp đồng dùng Incoterms FOB'], answer: 0 },
+            { question: 'Nếu người nhập khẩu chọn phí BEN, số tiền người xuất khẩu thực nhận thường:', options: ['Bằng đúng số tiền người nhập khẩu ghi lệnh, không trừ phí', 'Có thể thấp hơn do bị trừ phí ngân hàng phía nhận/trung gian', 'Luôn cao hơn số tiền lệnh chuyển', 'Do hải quan quyết định'], answer: 1 },
+            { question: 'Mục đích của nội dung nội dung thanh toán/Payment details trên lệnh chuyển tiền là:', options: ['Trang trí chứng từ', 'Hỗ trợ đối chiếu công nợ, hợp đồng, hóa đơn giữa các bên', 'Thay thế hoàn toàn hợp đồng', 'Thay thế vận đơn'], answer: 1 },
+            { question: 'Tình huống: Người mua đã chuyển tiền trả trước 100%, nhưng người bán giao hàng thiếu số lượng. Rủi ro chính thuộc về:', options: ['Người bán', 'Người mua', 'Ngân hàng chuyển tiền', 'Ngân hàng nhận tiền'], answer: 1 },
+            { question: 'Tình huống: Người bán giao hàng theo thỏa thuận trả sau, đến hạn người mua chậm trả kéo dài. Rủi ro chính thuộc về:', options: ['Người bán', 'Người mua', 'Ngân hàng trung gian', 'Cơ quan hải quan'], answer: 0 },
+            { question: 'Tình huống: Lệnh chuyển tiền ghi sai 1 ký tự trong IBAN, ngân hàng yêu cầu tra soát. Kết luận đúng là:', options: ['Đây là rủi ro tác nghiệp có thể làm chậm thanh toán', 'Không ảnh hưởng vì tên người thụ hưởng luôn đủ', 'Tiền chắc chắn vào tài khoản đúng trong ngày', 'Ngân hàng phải bồi thường ngay không điều kiện'], answer: 0 },
+            { question: 'Tình huống: Hai bên mới hợp tác lần đầu, giá trị hợp đồng lớn. Phương án thanh toán cân bằng rủi ro hơn chuyển tiền thuần túy là:', options: ['Trả sau toàn bộ không điều khoản bảo đảm', 'Trả trước toàn bộ không ràng buộc', 'Kết hợp đặt cọc và phần còn lại thanh toán theo mốc/chứng từ hoặc chuyển sang phương thức bảo đảm cao hơn (L/C)', 'Chỉ thỏa thuận miệng để linh hoạt'], answer: 2 }
         ];
 
         let userAnswers = [];
@@ -546,9 +492,7 @@
         function selectAnswer(questionIndex, optionIndex) {
             userAnswers[questionIndex] = optionIndex;
 
-            // Update visual feedback - allow changing answers
-            const labels = ['A', 'B', 'C', 'D'];
-            labels.forEach((_, i) => {
+            ['A', 'B', 'C', 'D'].forEach((_, i) => {
                 const btn = document.getElementById(`option-${questionIndex}-${i}`);
                 if (btn) {
                     if (i === optionIndex) {
@@ -559,24 +503,17 @@
                 }
             });
 
-            const questionItem = document.getElementById(`question-${questionIndex}`);
-            questionItem.classList.add('answered');
-
-            // Check if all questions are answered
-            if (userAnswers.length === quizData.length) {
-                document.getElementById('btn-submit').style.display = 'inline-block';
-            }
-
+            document.getElementById(`question-${questionIndex}`).classList.add('answered');
             updateProgress();
         }
 
         function updateProgress() {
             const answered = userAnswers.filter(ans => ans !== undefined).length;
             const total = quizData.length;
-            const percentage = Math.round((answered / total) * 100);
+            const percent = Math.round((answered / total) * 100);
 
             document.getElementById('current-question').textContent = answered;
-            document.getElementById('progress-fill').style.width = percentage + '%';
+            document.getElementById('progress-fill').style.width = percent + '%';
         }
 
         function submitQuiz() {
@@ -587,7 +524,6 @@
                 const feedbackDiv = document.getElementById(`feedback-${index}`);
                 const questionItem = document.getElementById(`question-${index}`);
                 const labels = ['A', 'B', 'C', 'D'];
-
                 const isCorrect = userAnswers[index] === item.answer;
 
                 if (isCorrect) {
@@ -595,7 +531,7 @@
                     const btn = document.getElementById(`option-${index}-${userAnswers[index]}`);
                     if (btn) btn.classList.add('correct');
                     feedbackDiv.className = 'feedback show correct';
-                    feedbackDiv.textContent = '✓ Chính xác!';
+                    feedbackDiv.textContent = 'Chính xác!';
                 } else {
                     incorrect++;
                     const userBtn = document.getElementById(`option-${index}-${userAnswers[index]}`);
@@ -603,76 +539,66 @@
                     const correctBtn = document.getElementById(`option-${index}-${item.answer}`);
                     if (correctBtn) correctBtn.classList.add('correct');
                     feedbackDiv.className = 'feedback show incorrect';
-                    feedbackDiv.textContent = `✗ Sai! Đáp án đúng là: ${labels[item.answer]}`;
+                    feedbackDiv.textContent = `Sai! Đáp án đúng là: ${labels[item.answer]}`;
                     questionItem.classList.add('incorrect');
                 }
             });
 
+            const percentage = Math.round((correct / quizData.length) * 100);
             document.getElementById('correct-count').textContent = correct;
             document.getElementById('incorrect-count').textContent = incorrect;
-
-            const percentage = Math.round((correct / quizData.length) * 100);
             document.getElementById('percentage').textContent = percentage + '%';
 
-            showResults(correct, incorrect, percentage);
-            document.getElementById('btn-submit').style.display = 'none';
+            showResults(correct, percentage);
         }
 
-        function showResults(correct, incorrect, percentage) {
+        function showResults(correct, percentage) {
             const resultsContainer = document.getElementById('results-container');
             const scoreCircle = document.getElementById('score-circle');
             const resultsMessage = document.getElementById('results-message');
             const resultsDetails = document.getElementById('results-details');
             const wrongAnswers = document.getElementById('wrong-answers');
+            const labels = ['A', 'B', 'C', 'D'];
 
             scoreCircle.textContent = correct + '/' + quizData.length;
 
-            let message = '';
-            let className = '';
-
             if (percentage >= 90) {
-                message = '🎉 Xuất sắc!';
-                className = 'excellent';
+                scoreCircle.className = 'score-circle excellent';
+                resultsMessage.textContent = 'Xuất sắc!';
             } else if (percentage >= 70) {
-                message = '👏 Tốt lắm!';
-                className = 'good';
+                scoreCircle.className = 'score-circle good';
+                resultsMessage.textContent = 'Tốt lắm!';
             } else if (percentage >= 50) {
-                message = '📚 Còn cần cố gắng!';
-                className = 'fair';
+                scoreCircle.className = 'score-circle fair';
+                resultsMessage.textContent = 'Cần cố gắng thêm!';
             } else {
-                message = '💪 Cần ôn luyện thêm!';
-                className = 'poor';
+                scoreCircle.className = 'score-circle poor';
+                resultsMessage.textContent = 'Cần ôn luyện thêm!';
             }
 
-            scoreCircle.className = 'score-circle ' + className;
-            resultsMessage.textContent = message;
-            resultsDetails.innerHTML = `
-                <p>Bạn trả lời đúng <strong>${correct}</strong> trên <strong>${quizData.length}</strong> câu (${percentage}%)</p>
-                <p>Số câu bị sai: <strong>${incorrect}</strong></p>
-            `;
+            resultsDetails.innerHTML = `<p>Bạn trả lời đúng <strong>${correct}</strong> trên <strong>${quizData.length}</strong> câu (${percentage}%)</p>`;
 
-            // Generate wrong answer details
-            let wrongHTML = '';
-            const labels = ['A', 'B', 'C', 'D'];
+            const wrongList = [];
             quizData.forEach((item, index) => {
-                const isCorrect = userAnswers[index] === item.answer;
-                if (!isCorrect) {
-                    const userAnswerIndex = userAnswers[index];
-                    const userChoice = userAnswerIndex !== undefined ? `${labels[userAnswerIndex]} - ${item.options[userAnswerIndex]}` : 'Chưa chọn';
+                const userAnswer = userAnswers[index];
+                if (userAnswer !== item.answer) {
+                    const selected = userAnswer !== undefined
+                        ? `${labels[userAnswer]} - ${item.options[userAnswer]}`
+                        : 'Chưa chọn';
 
-                    wrongHTML += `
-                    <div class="wrong-item">
-                        <div><strong>Câu ${index + 1}:</strong> ${item.question}</div>
-                        <div>Bạn chọn: <strong>${userChoice}</strong></div>
-                        <div>Đáp án đúng: <strong>${labels[item.answer]} - ${item.options[item.answer]}</strong></div>
-                    </div>
-                `;
+                    wrongList.push(`
+                        <div class="wrong-item">
+                            <div><strong>Câu ${index + 1}:</strong> ${item.question}</div>
+                            <div>Bạn chọn: <strong>${selected}</strong></div>
+                            <div>Đáp án đúng: <strong>${labels[item.answer]}</strong> - ${item.options[item.answer]}</div>
+                        </div>
+                    `);
                 }
             });
 
-            if (incorrect > 0) {
+            if (wrongList.length > 0) {
                 wrongAnswers.style.display = 'block';
-                wrongAnswers.innerHTML = `<h3>Các câu sai (${incorrect})</h3>${wrongHTML}`;
+                wrongAnswers.innerHTML = `<h3>Các câu sai (${wrongList.length})</h3>${wrongList.join('')}`;
             } else {
                 wrongAnswers.style.display = 'none';
                 wrongAnswers.innerHTML = '';
@@ -687,7 +613,6 @@
 
             document.getElementById('quiz-container').style.display = 'block';
             document.getElementById('results-container').classList.remove('show');
-            document.getElementById('btn-submit').style.display = 'none';
 
             document.getElementById('current-question').textContent = '0';
             document.getElementById('correct-count').textContent = '0';
@@ -700,10 +625,7 @@
             renderQuiz();
         }
 
-        // Initialize quiz on page load
-        window.addEventListener('load', () => {
-            renderQuiz();
-        });
+        window.addEventListener('load', renderQuiz);
     </script>
 </body>
 </html>

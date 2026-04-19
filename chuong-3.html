@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 3 - 45 câu trắc nghiệm thanh toán quốc tế</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .main-menu {
+            background: #f5f7ff;
+            border-bottom: 1px solid #dfe4ff;
+            padding: 14px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: #3f51b5;
+            background: white;
+            border: 1px solid #cdd7ff;
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .menu-link:hover {
+            background: #e8edff;
+            border-color: #9fb2ff;
+        }
+
+        .menu-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .question-item.answered {
+            border-left-color: #4caf50;
+        }
+
+        .question-item.answered.incorrect {
+            border-left-color: #f44336;
+        }
+
+        .question-number {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .question-text {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .option-btn {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            background: white;
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .option-btn.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .option-btn.incorrect {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .feedback.incorrect {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .results-container {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .results-container.show {
+            display: block;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .score-circle.excellent { background: linear-gradient(135deg, #4caf50 0%, #45a049 100%); }
+        .score-circle.good { background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); }
+        .score-circle.fair { background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); }
+        .score-circle.poor { background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%); }
+
+        .results-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .results-details {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .wrong-answers {
+            text-align: left;
+            background: #fff7f7;
+            border: 1px solid #ffd6d6;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 18px;
+        }
+
+        .wrong-answers h3 {
+            font-size: 18px;
+            color: #b71c1c;
+            margin-bottom: 12px;
+        }
+
+        .wrong-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #f0b4b4;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .wrong-item:last-child {
+            border-bottom: none;
+        }
+
+        .wrong-item strong {
+            color: #c62828;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 21px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .quiz-info {
+                flex-direction: column;
+            }
+
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Chương 3 - Trắc nghiệm thanh toán quốc tế</h1>
+            <p>Bộ 45 câu hỏi A/B/C/D</p>
+        </div>
+
+        <nav class="main-menu">
+            <a class="menu-link" href="index.html">Trang này</a>
+            <a class="menu-link" href="chuong-1.html">Chương 1</a>
+            <a class="menu-link" href="chuong-2.html">Chương 2</a>
+            <a class="menu-link active" href="chuong-3.html">Chương 3</a>
+            <a class="menu-link" href="chuong-4.html">Chương 4</a>
+            <a class="menu-link" href="chuong-5.html">Chương 5</a>
+            <a class="menu-link" href="chuong-6.html">Chương 6</a>
+        </nav>
+
+        <div class="content">
+            <div class="quiz-info">
+                <div class="info-item">
+                    <span class="info-label">Câu hỏi</span>
+                    <span class="info-value"><span id="current-question">0</span>/45</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Câu đúng</span>
+                    <span class="info-value" style="color: #4caf50;" id="correct-count">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Câu sai</span>
+                    <span class="info-value" style="color: #f44336;" id="incorrect-count">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Tỷ lệ</span>
+                    <span class="info-value" id="percentage">0%</span>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <div id="quiz-container"></div>
+
+            <div id="results-container" class="results-container">
+                <div class="score-circle" id="score-circle">0/45</div>
+                <div class="results-message" id="results-message"></div>
+                <div class="results-details" id="results-details"></div>
+                <div class="wrong-answers" id="wrong-answers" style="display: none;"></div>
+            </div>
+
+            <div class="buttons-container">
+                <button class="btn btn-secondary" id="btn-reset" onclick="resetQuiz()">Làm lại</button>
+                <button class="btn btn-primary" id="btn-submit" onclick="submitQuiz()">Nộp bài</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            { question: 'Theo UCP 600 Điều 28, loại chứng từ bảo hiểm nào sau đây ngân hàng KHÔNG chấp nhận?', options: ['Đơn bảo hiểm (Insurance Policy)', 'Giấy chứng nhận bảo hiểm (Insurance Certificate)', 'Phiếu bảo hiểm tạm thời (Cover Note)', 'Tờ khai theo hợp đồng bảo hiểm bao (Declaration under an open cover)'], answer: 2 },
+            { question: 'Chứng từ vận tải nào có chức năng là chứng từ sở hữu (document of title) và có thể chuyển nhượng bằng ký hậu?', options: ['Air Waybill (AWB)', 'Vận đơn đường biển theo lệnh (To order B/L)', 'CMR', 'Sea Waybill'], answer: 1 },
+            { question: 'Theo UCP 600 Điều 18(c), mô tả hàng hóa trên hóa đơn thương mại phải:', options: ['Tương ứng với mô tả trong L/C', 'Được phép khác hoàn toàn nếu tổng tiền đúng', 'Chỉ cần ghi số lượng, không cần tên hàng', 'Được quyền bỏ qua quy cách thương mại'], answer: 0 },
+            { question: 'Chức năng quan trọng của C/O ưu đãi (Preferential C/O) là:', options: ['Xác nhận bảo hiểm mọi rủi ro', 'Làm cơ sở hưởng thuế suất ưu đãi theo FTA', 'Thay thế vận đơn đường biển', 'Là chứng từ bắt buộc để mở L/C'], answer: 1 },
+            { question: 'House Bill of Lading (HBL) thường do ai phát hành?', options: ['Hãng tàu thực tế', 'Freight Forwarder/NVOCC', 'Người nhập khẩu', 'Ngân hàng phát hành'], answer: 1 },
+            { question: 'Master Bill of Lading (MBL) thường do ai phát hành?', options: ['Freight Forwarder', 'Hãng tàu hoặc người chuyên chở thực tế', 'Người xuất khẩu', 'Công ty bảo hiểm'], answer: 1 },
+            { question: 'Clean B/L là vận đơn:', options: ['Có ghi chú bất lợi về tình trạng hàng/bao bì', 'Không có ghi chú bất lợi thể hiện hàng nhận ở tình trạng bề ngoài tốt', 'Chỉ phát hành dưới dạng điện tử', 'Chỉ dùng cho hàng container lạnh'], answer: 1 },
+            { question: 'Unclean/Claused B/L là vận đơn:', options: ['Có ghi chú bất lợi về tình trạng hàng hoặc bao bì', 'Không có chữ ký của người chuyên chở', 'Không có ngày giao hàng', 'Không ghi cảng đi, cảng đến'], answer: 0 },
+            { question: 'Theo thông lệ, ngân hàng trong L/C chủ yếu kiểm tra:', options: ['Hàng hóa thực tế tại cảng', 'Chứng từ xuất trình có phù hợp điều khoản L/C hay không', 'Năng lực sản xuất của người bán', 'Lợi nhuận của hợp đồng ngoại thương'], answer: 1 },
+            { question: 'Thư cam kết bồi thường (LOI) thường phát sinh trong bối cảnh nào?', options: ['Người mua trả tiền trước hạn', 'Chứng từ có sai biệt nhưng bên nhận vẫn muốn lấy hàng/chấp nhận chứng từ', 'Hợp đồng không quy định Incoterms', 'Mở L/C trả ngay'], answer: 1 },
+            { question: 'Rủi ro pháp lý lớn khi dùng LOI là:', options: ['Luôn được tòa án công nhận vô điều kiện', 'Có thể khó thực thi hoặc vô hiệu trong một số hệ thống pháp luật/tình huống gian lận', 'Tự động thay thế mọi bảo hiểm', 'Làm tăng giá trị pháp lý của B/L'], answer: 1 },
+            { question: 'Trong bộ chứng từ L/C, nếu yêu cầu "full set of originals" cho B/L, nghĩa là:', options: ['Chỉ cần 1 bản gốc', 'Nộp đủ toàn bộ số bản gốc được phát hành', 'Chỉ cần bản photo có đóng dấu', 'Chỉ cần điện SWIFT xác nhận'], answer: 1 },
+            { question: 'Nếu L/C yêu cầu "3/3 originals" nhưng chỉ xuất trình 2/3 bản gốc B/L, đây là:', options: ['Phù hợp vì chỉ cần đa số', 'Sai biệt chứng từ', 'Không liên quan quyền sở hữu hàng', 'Tự động được miễn trừ theo UCP 600'], answer: 1 },
+            { question: 'Trường hợp nào sau đây thường bị coi là sai biệt nghiêm trọng theo L/C cấm chuyển tải?', options: ['B/L thể hiện transshipment đã xảy ra', 'B/L ghi cảng đi và cảng đến rõ ràng', 'B/L có ngày shipped on board', 'B/L có số chuyến tàu'], answer: 0 },
+            { question: 'Endorsed in blank đối với chứng từ bảo hiểm mang ý nghĩa:', options: ['Chỉ người mua mới được khiếu nại bảo hiểm', 'Chuyển quyền đòi bồi thường cho người cầm giữ hợp pháp', 'Hủy hiệu lực hợp đồng bảo hiểm', 'Làm giảm số tiền bảo hiểm'], answer: 1 },
+            { question: 'Theo UCP 600 Điều 28, mức bảo hiểm tối thiểu nếu L/C không quy định khác thường là:', options: ['100% trị giá hóa đơn', '105% trị giá hóa đơn', '110% trị giá hóa đơn', '120% trị giá hóa đơn'], answer: 2 },
+            { question: 'Nếu chứng từ bảo hiểm ghi số tiền bảo hiểm thấp hơn mức tối thiểu L/C yêu cầu, kết luận đúng là:', options: ['Vẫn chấp nhận nếu người mua đồng ý miệng', 'Là sai biệt chứng từ', 'Không ảnh hưởng vì ngân hàng không xem bảo hiểm', 'Tự động chuyển thành bảo hiểm bổ sung'], answer: 1 },
+            { question: 'Ngày hiệu lực bảo hiểm trong chứng từ bảo hiểm cần đáp ứng nguyên tắc:', options: ['Có thể sau ngày giao hàng miễn đúng số tiền', 'Không muộn hơn ngày giao hàng/shipment date (trừ khi có chỉ dẫn khác)', 'Luôn phải trước ngày mở L/C', 'Luôn trùng ngày phát hành hóa đơn'], answer: 1 },
+            { question: 'Description of Goods trên hóa đơn khác với L/C về chủng loại/số lượng, thông thường:', options: ['Có thể bỏ qua nếu trị giá không đổi', 'Bị coi là sai biệt theo Điều 18 UCP 600', 'Được phép nếu có packing list', 'Chỉ cần người bán xác nhận lại qua email'], answer: 1 },
+            { question: 'Nếu L/C quy định Incoterms rất cụ thể (ví dụ CIF Haiphong Port, Vietnam Incoterms 2020), hóa đơn nên thể hiện:', options: ['Chỉ cần ghi CIF', 'Điều kiện giao hàng tương ứng đầy đủ theo L/C', 'Có thể ghi FOB thay CIF', 'Không cần ghi điều kiện giao hàng'], answer: 1 },
+            { question: 'Mục đích chính của Phytosanitary Certificate là:', options: ['Xác nhận xuất xứ ưu đãi thuế', 'Chứng nhận kiểm dịch thực vật theo yêu cầu SPS', 'Chứng minh sở hữu hàng hóa', 'Thay thế giấy chứng nhận bảo hiểm'], answer: 1 },
+            { question: 'C/O ưu đãi và Phytosanitary Certificate khác nhau chủ yếu ở:', options: ['Cơ quan cấp và mục đích pháp lý', 'Cả hai cùng do ngân hàng phát hành', 'Cả hai chỉ dùng cho hàng phi thương mại', 'Không có khác biệt thực tế'], answer: 0 },
+            { question: 'Sai sót trên C/O ưu đãi có thể gây hậu quả nào?', options: ['Chỉ ảnh hưởng hình thức, không ảnh hưởng thuế', 'Mất ưu đãi thuế, phát sinh truy thu/chi phí', 'Tự động bị tiêu hủy hàng hóa', 'Không bị cơ quan hải quan kiểm tra'], answer: 1 },
+            { question: 'Sai sót nghiêm trọng trên Phytosanitary Certificate có thể dẫn tới:', options: ['Chỉ bị cảnh báo hành chính nhẹ', 'Từ chối nhập khẩu, tái xuất hoặc tiêu hủy hàng', 'Tăng ưu đãi thuế nhập khẩu', 'Được miễn kiểm tra tại cửa khẩu'], answer: 1 },
+            { question: 'Vai trò của ISBP 745 trong kiểm tra chứng từ là:', options: ['Thay thế hoàn toàn UCP 600', 'Hướng dẫn thực hành chi tiết để diễn giải và áp dụng UCP 600', 'Quy định biểu thuế hải quan', 'Quy định điều kiện giao hàng Incoterms'], answer: 1 },
+            { question: 'Ngân hàng có nghĩa vụ kiểm tra chứng từ trong thời hạn hợp lý theo UCP 600, mục tiêu là:', options: ['Đảm bảo giao hàng đúng chất lượng thực tế', 'Xác định chứng từ có phù hợp trên bề mặt', 'Đảm bảo lợi nhuận cho người mua', 'Thẩm định nhà máy sản xuất'], answer: 1 },
+            { question: 'Air Waybill (AWB) nhìn chung không phải chứng từ sở hữu vì:', options: ['Không thể hiện người chuyên chở', 'Không phải chứng từ có thể ký hậu chuyển nhượng theo cách B/L theo lệnh', 'Không có giá trị vận tải', 'Không ghi số chuyến bay'], answer: 1 },
+            { question: 'Sea Waybill khác B/L theo lệnh ở điểm:', options: ['Sea Waybill yêu cầu xuất trình bản gốc để nhận hàng', 'Sea Waybill không có chức năng lưu thông như chứng từ sở hữu', 'Sea Waybill chỉ dùng cho hàng rời', 'Sea Waybill do ngân hàng phát hành'], answer: 1 },
+            { question: 'Trong L/C, nếu yêu cầu "clean on board B/L", cụm từ này nhấn mạnh:', options: ['Vận đơn phải có ghi chú hàng lỗi để cảnh báo', 'Vận đơn thể hiện hàng đã xếp lên tàu và không có ghi chú bất lợi', 'Vận đơn chỉ cần bản photo', 'Chỉ cần khai báo manifest'], answer: 1 },
+            { question: 'Nếu người ký phát B/L không đúng thẩm quyền (không phải carrier/master/đại lý hợp lệ), khả năng cao:', options: ['Chứng từ vẫn luôn hợp lệ', 'Bị xem là sai biệt về hình thức phát hành/chữ ký', 'Không ảnh hưởng đến thanh toán L/C', 'Tự động được ngân hàng xác nhận'], answer: 1 },
+            { question: 'Mục đích của Commercial Invoice trong bộ chứng từ là:', options: ['Chứng minh quyền sở hữu tương đương B/L theo lệnh', 'Thể hiện yêu cầu thanh toán và mô tả thương mại của lô hàng', 'Thay thế C/O ưu đãi', 'Là chứng từ kiểm dịch'], answer: 1 },
+            { question: 'Trong kiểm tra chứng từ, nguyên tắc "data not to conflict" hàm ý:', options: ['Mọi dữ liệu giữa các chứng từ phải giống từng ký tự', 'Dữ liệu không được mâu thuẫn trọng yếu giữa các chứng từ', 'Chỉ kiểm tra một chứng từ chính', 'Có thể bỏ qua mâu thuẫn về cảng đi/đến'], answer: 1 },
+            { question: 'Nếu ngày shipment trên B/L vượt quá latest shipment date của L/C:', options: ['Vẫn phù hợp nếu người bán giải trình', 'Là sai biệt nghiêm trọng về thời hạn giao hàng', 'Không ảnh hưởng nếu hóa đơn đúng hạn', 'Chỉ bị phạt hành chính nội bộ'], answer: 1 },
+            { question: 'Khi L/C cấm chuyển tải nhưng thực tế tuyến tàu có chuyển tải, giải pháp an toàn nhất cho người xuất khẩu là:', options: ['Tự ý sửa B/L', 'Xin sửa đổi L/C (amendment) trước khi xuất trình', 'Bỏ qua vì ngân hàng không kiểm tra', 'Dùng LOI thay cho amendment'], answer: 1 },
+            { question: 'Nếu chứng từ bảo hiểm thể hiện điều kiện bảo hiểm hẹp hơn yêu cầu L/C, đây là:', options: ['Không thành vấn đề vì có bảo hiểm là đủ', 'Sai biệt vì không đáp ứng phạm vi rủi ro yêu cầu', 'Tự động được chấp nhận nếu số tiền đủ', 'Sai biệt nhỏ có thể bỏ qua mặc định'], answer: 1 },
+            { question: 'Tình huống: L/C yêu cầu Insurance Policy/Certificate, nhưng bộ chứng từ xuất trình Cover Note do broker cấp. Kết luận phù hợp nhất là:', options: ['Chấp nhận vì Cover Note cũng là chứng từ bảo hiểm đầy đủ', 'Sai biệt vì Cover Note không được chấp nhận theo Điều 28 UCP 600', 'Chấp nhận nếu có email xác nhận của người bán', 'Chấp nhận nếu trị giá lô hàng nhỏ'], answer: 1 },
+            { question: 'Tình huống: L/C yêu cầu bảo hiểm 110% trị giá hóa đơn, ICC (A). Chứng từ bảo hiểm xuất trình mức 100%, ICC (C). Đánh giá nào đúng?', options: ['Phù hợp vì vẫn có bảo hiểm', 'Chỉ sai về tỷ lệ, không sai về điều kiện', 'Sai kép: thiếu số tiền bảo hiểm và phạm vi bảo hiểm không đạt', 'Được miễn kiểm tra do ngân hàng không xem điều khoản bảo hiểm'], answer: 2 },
+            { question: 'Tình huống: L/C yêu cầu latest shipment date 15/12/2025; B/L ghi shipped on board 18/12/2025. Đây là:', options: ['Chênh lệch không trọng yếu', 'Sai biệt về giao hàng trễ hạn so với L/C', 'Chấp nhận nếu invoice phát hành trước 15/12/2025', 'Tự động xử lý bằng LOI'], answer: 1 },
+            { question: 'Tình huống: L/C yêu cầu 3/3 original B/L, bộ chứng từ chỉ có 2/3. Cách nhìn đúng là:', options: ['Không ảnh hưởng vì đã có đa số bản gốc', 'Sai biệt do không nộp đủ full set theo yêu cầu L/C', 'Chỉ sai khi người mua khiếu nại', 'Chấp nhận nếu có telex release'], answer: 1 },
+            { question: 'Tình huống: Hóa đơn mô tả 1,050 units Electronic Components Model X5, trong khi L/C quy định 1,000 units Model X5 Electronic Components, brand new. Nhận định đúng là:', options: ['Hoàn toàn phù hợp vì cùng Model X5', 'Sai biệt do khác số lượng và mô tả không tương ứng hoàn toàn với L/C', 'Được chấp nhận vì sai số dưới 10%', 'Chỉ cần sửa packing list là đủ'], answer: 1 },
+            { question: 'Tình huống: C/O Form ưu đãi bị sai tiêu chí xuất xứ, hải quan nước nhập khẩu từ chối ưu đãi. Hệ quả trực tiếp nhất là:', options: ['Người nhập khẩu vẫn hưởng thuế ưu đãi như bình thường', 'Phát sinh thuế MFN/thông thường và có thể bị truy thu chênh lệch', 'Hàng bắt buộc bị tiêu hủy', 'Ngân hàng phát hành tự bù phần thuế thiếu'], answer: 1 },
+            { question: 'Tình huống: Phytosanitary Certificate ghi không đúng tên khoa học loài hàng thực vật. Rủi ro lớn nhất tại cửa khẩu nhập là:', options: ['Chỉ cần bổ sung hóa đơn là thông quan', 'Lô hàng có thể bị giữ lại, tái xuất hoặc xử lý tiêu hủy theo quy định kiểm dịch', 'Tự động chuyển sang ưu đãi thuế cao hơn', 'Không ảnh hưởng vì đã có B/L'], answer: 1 },
+            { question: 'Tình huống: Người mua yêu cầu nhận hàng sớm dù B/L có ghi chú packages torn and wet; người bán đề xuất dùng LOI để giải quyết. Nhận định phù hợp nhất là:', options: ['LOI luôn thay thế được clean B/L trong mọi giao dịch L/C', 'LOI có thể hỗ trợ thương mại nhưng không loại bỏ hoàn toàn rủi ro pháp lý/chứng từ', 'Dùng LOI sẽ tự động làm B/L thành clean', 'LOI bắt buộc ngân hàng phải thanh toán'], answer: 1 },
+            { question: 'Tình huống: L/C quy định Incoterms 2020, nhưng invoice chỉ ghi CIF Haiphong không nêu phiên bản. Trong kiểm tra chặt theo L/C, khả năng nào hợp lý nhất?', options: ['Luôn phù hợp tuyệt đối', 'Có thể bị nêu sai biệt vì điều kiện thể hiện chưa đầy đủ theo yêu cầu cụ thể của L/C', 'Tự động được bỏ qua theo UCP 600', 'Chỉ người mua mới có quyền đánh giá, ngân hàng không xét'], answer: 1 },
+            { question: 'Tình huống: Bộ chứng từ có dữ liệu cảng dỡ hàng trên B/L là Singapore, nhưng insurance certificate lại ghi nơi dỡ hàng là Jakarta. Theo nguyên tắc kiểm tra chứng từ, đây là:', options: ['Chấp nhận vì chứng từ nào cũng có thể khác nhau', 'Mâu thuẫn dữ liệu trọng yếu giữa chứng từ, có thể bị coi là sai biệt', 'Không liên quan vì bảo hiểm không cần cảng đến', 'Chỉ cần xác nhận miệng của người bán'], answer: 1 }
+        ];
+
+        let userAnswers = [];
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            quizData.forEach((item, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-item';
+                questionDiv.id = `question-${index}`;
+
+                const numberDiv = document.createElement('div');
+                numberDiv.className = 'question-number';
+                numberDiv.textContent = `Câu ${index + 1}`;
+
+                const textDiv = document.createElement('div');
+                textDiv.className = 'question-text';
+                textDiv.textContent = item.question;
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options-container';
+
+                const labels = ['A', 'B', 'C', 'D'];
+                item.options.forEach((option, optionIndex) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = labels[optionIndex] + '. ' + option;
+                    btn.onclick = () => selectAnswer(index, optionIndex);
+                    btn.id = `option-${index}-${optionIndex}`;
+                    optionsDiv.appendChild(btn);
+                });
+
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = 'feedback';
+                feedbackDiv.id = `feedback-${index}`;
+
+                questionDiv.appendChild(numberDiv);
+                questionDiv.appendChild(textDiv);
+                questionDiv.appendChild(optionsDiv);
+                questionDiv.appendChild(feedbackDiv);
+
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function selectAnswer(questionIndex, optionIndex) {
+            userAnswers[questionIndex] = optionIndex;
+
+            ['A', 'B', 'C', 'D'].forEach((_, i) => {
+                const btn = document.getElementById(`option-${questionIndex}-${i}`);
+                if (btn) {
+                    if (i === optionIndex) {
+                        btn.classList.add('selected');
+                    } else {
+                        btn.classList.remove('selected');
+                    }
+                }
+            });
+
+            document.getElementById(`question-${questionIndex}`).classList.add('answered');
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const answered = userAnswers.filter(ans => ans !== undefined).length;
+            const total = quizData.length;
+            const percent = Math.round((answered / total) * 100);
+
+            document.getElementById('current-question').textContent = answered;
+            document.getElementById('progress-fill').style.width = percent + '%';
+        }
+
+        function submitQuiz() {
+            let correct = 0;
+            let incorrect = 0;
+
+            quizData.forEach((item, index) => {
+                const feedbackDiv = document.getElementById(`feedback-${index}`);
+                const questionItem = document.getElementById(`question-${index}`);
+                const labels = ['A', 'B', 'C', 'D'];
+                const isCorrect = userAnswers[index] === item.answer;
+
+                if (isCorrect) {
+                    correct++;
+                    const btn = document.getElementById(`option-${index}-${userAnswers[index]}`);
+                    if (btn) btn.classList.add('correct');
+                    feedbackDiv.className = 'feedback show correct';
+                    feedbackDiv.textContent = 'Chính xác!';
+                } else {
+                    incorrect++;
+                    const userBtn = document.getElementById(`option-${index}-${userAnswers[index]}`);
+                    if (userBtn) userBtn.classList.add('incorrect');
+                    const correctBtn = document.getElementById(`option-${index}-${item.answer}`);
+                    if (correctBtn) correctBtn.classList.add('correct');
+                    feedbackDiv.className = 'feedback show incorrect';
+                    feedbackDiv.textContent = `Sai! Đáp án đúng là: ${labels[item.answer]}`;
+                    questionItem.classList.add('incorrect');
+                }
+            });
+
+            const percentage = Math.round((correct / quizData.length) * 100);
+            document.getElementById('correct-count').textContent = correct;
+            document.getElementById('incorrect-count').textContent = incorrect;
+            document.getElementById('percentage').textContent = percentage + '%';
+
+            showResults(correct, percentage);
+        }
+
+        function showResults(correct, percentage) {
+            const resultsContainer = document.getElementById('results-container');
+            const scoreCircle = document.getElementById('score-circle');
+            const resultsMessage = document.getElementById('results-message');
+            const resultsDetails = document.getElementById('results-details');
+            const wrongAnswers = document.getElementById('wrong-answers');
+            const labels = ['A', 'B', 'C', 'D'];
+
+            scoreCircle.textContent = correct + '/' + quizData.length;
+
+            if (percentage >= 90) {
+                scoreCircle.className = 'score-circle excellent';
+                resultsMessage.textContent = 'Xuất sắc!';
+            } else if (percentage >= 70) {
+                scoreCircle.className = 'score-circle good';
+                resultsMessage.textContent = 'Tốt lắm!';
+            } else if (percentage >= 50) {
+                scoreCircle.className = 'score-circle fair';
+                resultsMessage.textContent = 'Cần cố gắng thêm!';
+            } else {
+                scoreCircle.className = 'score-circle poor';
+                resultsMessage.textContent = 'Cần ôn luyện thêm!';
+            }
+
+            resultsDetails.innerHTML = `<p>Bạn trả lời đúng <strong>${correct}</strong> trên <strong>${quizData.length}</strong> câu (${percentage}%)</p>`;
+
+            const wrongList = [];
+            quizData.forEach((item, index) => {
+                const userAnswer = userAnswers[index];
+                if (userAnswer !== item.answer) {
+                    const selected = userAnswer !== undefined
+                        ? `${labels[userAnswer]} - ${item.options[userAnswer]}`
+                        : 'Chưa chọn';
+
+                    wrongList.push(`
+                        <div class="wrong-item">
+                            <div><strong>Câu ${index + 1}:</strong> ${item.question}</div>
+                            <div>Bạn chọn: <strong>${selected}</strong></div>
+                            <div>Đáp án đúng: <strong>${labels[item.answer]}</strong> - ${item.options[item.answer]}</div>
+                        </div>
+                    `);
+                }
+            });
+
+            if (wrongList.length > 0) {
+                wrongAnswers.style.display = 'block';
+                wrongAnswers.innerHTML = `<h3>Các câu sai (${wrongList.length})</h3>${wrongList.join('')}`;
+            } else {
+                wrongAnswers.style.display = 'none';
+                wrongAnswers.innerHTML = '';
+            }
+
+            resultsContainer.classList.add('show');
+            document.getElementById('quiz-container').style.display = 'none';
+        }
+
+        function resetQuiz() {
+            userAnswers = [];
+
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('results-container').classList.remove('show');
+
+            document.getElementById('current-question').textContent = '0';
+            document.getElementById('correct-count').textContent = '0';
+            document.getElementById('incorrect-count').textContent = '0';
+            document.getElementById('percentage').textContent = '0%';
+            document.getElementById('progress-fill').style.width = '0%';
+            document.getElementById('wrong-answers').style.display = 'none';
+            document.getElementById('wrong-answers').innerHTML = '';
+
+            renderQuiz();
+        }
+
+        window.addEventListener('load', renderQuiz);
+    </script>
+</body>
+</html>
