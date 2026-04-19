@@ -412,35 +412,35 @@
 
     <script>
         const quizData = [
-            { question: "Hoạt động nào là cơ sở hình thành thanh toán quốc tế?", options: ["Đầu tư ra nước ngoài", "Ngoại thương", "Du lịch quốc tế", "Viện trợ quốc tế"], answer: 1 },
+            { question: "Hoạt động nào là cơ sở hình thành thanh toán quốc tế?", options: ["Ngoại thương", "Đầu tư ra nước ngoài", "Du lịch quốc tế", "Viện trợ quốc tế"], answer: 0 },
             { question: "Trong điều kiện FOB, người bán hoàn thành nghĩa vụ giao hàng khi nào?", options: ["Khi giao hàng cho người chuyên chở đầu tiên", "Khi hàng qua lan can tàu/có mặt trên tàu tại cảng bốc", "Khi hàng đến cảng dỡ", "Khi người mua nhận chứng từ"], answer: 1 },
-            { question: "Trong điều kiện CIF, người bán phải mua bảo hiểm cho chặng nào?", options: ["Từ kho người bán đến kho người mua", "Từ cảng đi đến cảng đến theo hợp đồng", "Chỉ trong nội địa nước xuất khẩu", "Không phải mua bảo hiểm"], answer: 1 },
-            { question: "Theo CIF, thời điểm chuyển rủi ro từ người bán sang người mua là:", options: ["Khi ký hợp đồng", "Khi giao chứng từ", "Khi hàng được xếp lên tàu tại cảng đi", "Khi tàu cập cảng đến"], answer: 2 },
-            { question: "Cơ quan có chức năng chủ trì quản lý tiền tệ đối với thanh toán quốc tế của quốc gia là:", options: ["Ngân hàng thương mại", "Ngân hàng trung ương", "Công ty bảo hiểm", "Hiệp hội doanh nghiệp"], answer: 1 },
+            { question: "Trong điều kiện CIF, người bán phải mua bảo hiểm cho chặng nào?", options: ["Chỉ trong nội địa nước xuất khẩu", "Từ kho người bán đến kho người mua", "Từ cảng đi đến cảng đến theo hợp đồng", "Không phải mua bảo hiểm"], answer: 2 },
+            { question: "Theo CIF, thời điểm chuyển rủi ro từ người bán sang người mua là:", options: ["Khi tàu cập cảng đến", "Khi giao chứng từ", "Khi ký hợp đồng", "Khi hàng được xếp lên tàu tại cảng đi"], answer: 3 },
+            { question: "Cơ quan có chức năng chủ trì quản lý tiền tệ đối với thanh toán quốc tế của quốc gia là:", options: ["Ngân hàng trung ương", "Ngân hàng thương mại", "Công ty bảo hiểm", "Hiệp hội doanh nghiệp"], answer: 0 },
             { question: "Yếu tố nào sau đây KHÔNG phải đặc điểm của thanh toán quốc tế?", options: ["Chịu ảnh hưởng luật pháp quốc gia và quốc tế", "Chỉ liên quan đến nội tệ của một nước", "Liên quan ngoại tệ và tỷ giá", "Thường thực hiện qua hệ thống ngân hàng"], answer: 1 },
-            { question: "Rủi ro do bất ổn chính trị, chiến tranh, cấm vận gây ra thuộc nhóm nào?", options: ["Rủi ro tín dụng", "Rủi ro quốc gia", "Rủi ro tác nghiệp", "Rủi ro thanh khoản"], answer: 1 },
-            { question: "Rủi ro phát sinh do đối tác không thực hiện nghĩa vụ thanh toán gọi là:", options: ["Rủi ro tỷ giá", "Rủi ro tín dụng", "Rủi ro pháp lý", "Rủi ro quốc gia"], answer: 1 },
-            { question: "Incoterms 2020 do tổ chức nào ban hành?", options: ["WTO", "IMF", "ICC", "WB"], answer: 2 },
+            { question: "Rủi ro do bất ổn chính trị, chiến tranh, cấm vận gây ra thuộc nhóm nào?", options: ["Rủi ro tác nghiệp", "Rủi ro tín dụng", "Rủi ro quốc gia", "Rủi ro thanh khoản"], answer: 2 },
+            { question: "Rủi ro phát sinh do đối tác không thực hiện nghĩa vụ thanh toán gọi là:", options: ["Rủi ro quốc gia", "Rủi ro tỷ giá", "Rủi ro pháp lý", "Rủi ro tín dụng"], answer: 3 },
+            { question: "Incoterms 2020 do tổ chức nào ban hành?", options: ["ICC", "IMF", "WTO", "WB"], answer: 0 },
             { question: "Nếu doanh nghiệp xuất khẩu Việt Nam muốn giảm chi phí vận tải và bảo hiểm, điều kiện nào thường được chọn?", options: ["CIF", "FOB", "DDP", "CFR"], answer: 1 },
-            { question: "Khi dùng FOB, người mua chịu trách nhiệm thuê tàu và mua bảo hiểm từ đâu?", options: ["Từ kho người bán", "Từ sau khi hàng được xếp lên tàu", "Từ khi ký hợp đồng", "Từ cảng dỡ về kho"], answer: 1 },
-            { question: "Trong CIF, người bán phải cung cấp cho người mua loại chứng từ nào liên quan bảo hiểm?", options: ["Chứng thư kiểm dịch", "Hợp đồng đại lý", "Chứng từ bảo hiểm", "Giấy phép nhập khẩu"], answer: 2 },
-            { question: "Vai trò quan trọng của ngân hàng thương mại trong thanh toán quốc tế là:", options: ["Ban hành luật ngoại hối", "Trung gian thanh toán và tài trợ thương mại", "Quản lý dự trữ ngoại hối quốc gia", "Cấp phép hãng tàu"], answer: 1 },
-            { question: "Phương thức thanh toán nào giúp giảm rủi ro cho người xuất khẩu tốt hơn chuyển tiền trả sau?", options: ["Ghi sổ", "Nhờ thu trơn", "Tín dụng chứng từ (L/C)", "Trả chậm không bảo lãnh"], answer: 2 },
-            { question: "Rủi ro tỷ giá trong thanh toán quốc tế là:", options: ["Do sai sót chứng từ vận tải", "Do biến động tỷ giá làm thay đổi giá trị khoản thu/chi", "Do thiên tai tại cảng đi", "Do ngân hàng chậm mở cửa"], answer: 1 },
-            { question: "Trong điều kiện FOB, chi phí bốc hàng lên tàu tại cảng đi thường do ai chịu?", options: ["Người mua", "Người bán", "Hãng tàu", "Bên bảo hiểm"], answer: 1 },
-            { question: "Trong CIF, chi phí cước biển đến cảng đích do ai trả?", options: ["Người mua", "Người bán", "Ngân hàng phát hành L/C", "Công ty bảo hiểm"], answer: 1 },
+            { question: "Khi dùng FOB, người mua chịu trách nhiệm thuê tàu và mua bảo hiểm từ đâu?", options: ["Từ khi ký hợp đồng", "Từ kho người bán", "Từ sau khi hàng được xếp lên tàu", "Từ cảng dỡ về kho"], answer: 2 },
+            { question: "Trong CIF, người bán phải cung cấp cho người mua loại chứng từ nào liên quan bảo hiểm?", options: ["Giấy phép nhập khẩu", "Hợp đồng đại lý", "Chứng thư kiểm dịch", "Chứng từ bảo hiểm"], answer: 3 },
+            { question: "Vai trò quan trọng của ngân hàng thương mại trong thanh toán quốc tế là:", options: ["Trung gian thanh toán và tài trợ thương mại", "Ban hành luật ngoại hối", "Quản lý dự trữ ngoại hối quốc gia", "Cấp phép hãng tàu"], answer: 0 },
+            { question: "Phương thức thanh toán nào giúp giảm rủi ro cho người xuất khẩu tốt hơn chuyển tiền trả sau?", options: ["Nhờ thu trơn", "Tín dụng chứng từ (L/C)", "Ghi sổ", "Trả chậm không bảo lãnh"], answer: 1 },
+            { question: "Rủi ro tỷ giá trong thanh toán quốc tế là:", options: ["Do thiên tai tại cảng đi", "Do sai sót chứng từ vận tải", "Do biến động tỷ giá làm thay đổi giá trị khoản thu/chi", "Do ngân hàng chậm mở cửa"], answer: 2 },
+            { question: "Trong điều kiện FOB, chi phí bốc hàng lên tàu tại cảng đi thường do ai chịu?", options: ["Bên bảo hiểm", "Người mua", "Hãng tàu", "Người bán"], answer: 3 },
+            { question: "Trong CIF, chi phí cước biển đến cảng đích do ai trả?", options: ["Người bán", "Người mua", "Ngân hàng phát hành L/C", "Công ty bảo hiểm"], answer: 0 },
             { question: "Một biện pháp giảm rủi ro không thanh toán của người mua là:", options: ["Chỉ giao dịch bằng miệng", "Dùng L/C không hủy ngang, xác nhận khi cần", "Giao hàng trước, nhận tiền sau không điều kiện", "Không kiểm tra năng lực tài chính đối tác"], answer: 1 },
-            { question: "Rủi ro pháp lý trong thanh toán quốc tế có thể phát sinh từ:", options: ["Khác biệt hệ thống luật giữa các nước", "Biến động giá dầu", "Tắc nghẽn cảng", "Hỏng container"], answer: 0 },
-            { question: "Theo thực tiễn, doanh nghiệp nên làm gì trước khi ký hợp đồng ngoại thương để hạn chế rủi ro?", options: ["Không cần thẩm định đối tác", "Thẩm định tín nhiệm và lịch sử giao dịch đối tác", "Chỉ xem giá thấp nhất", "Bỏ qua điều khoản phạt"], answer: 1 },
-            { question: "Chứng từ nào là bằng chứng quan trọng người bán đã giao hàng lên tàu?", options: ["Hóa đơn thương mại", "Vận đơn đường biển (B/L)", "Phiếu đóng gói", "Giấy chứng nhận xuất xứ"], answer: 1 },
+            { question: "Rủi ro pháp lý trong thanh toán quốc tế có thể phát sinh từ:", options: ["Tắc nghẽn cảng", "Biến động giá dầu", "Khác biệt hệ thống luật giữa các nước", "Hỏng container"], answer: 2 },
+            { question: "Theo thực tiễn, doanh nghiệp nên làm gì trước khi ký hợp đồng ngoại thương để hạn chế rủi ro?", options: ["Bỏ qua điều khoản phạt", "Không cần thẩm định đối tác", "Chỉ xem giá thấp nhất", "Thẩm định tín nhiệm và lịch sử giao dịch đối tác"], answer: 3 },
+            { question: "Chứng từ nào là bằng chứng quan trọng người bán đã giao hàng lên tàu?", options: ["Vận đơn đường biển (B/L)", "Hóa đơn thương mại", "Phiếu đóng gói", "Giấy chứng nhận xuất xứ"], answer: 0 },
             { question: "Trong thanh toán quốc tế, ngân hàng thường thu phí dịch vụ vì:", options: ["Phí là bắt buộc theo luật hình sự", "Ngân hàng cung cấp dịch vụ trung gian, kiểm tra chứng từ, chuyển tiền", "Doanh nghiệp không được phép tự thanh toán", "Để thay thế thuế xuất nhập khẩu"], answer: 1 },
-            { question: "Nếu đồng tiền thanh toán tăng giá so với nội tệ trong thời gian chờ trả nợ nhập khẩu, nhà nhập khẩu chịu:", options: ["Lợi ích tỷ giá", "Thiệt hại tỷ giá", "Không ảnh hưởng", "Chỉ ảnh hưởng thuế"], answer: 1 },
-            { question: "Rủi ro tác nghiệp trong ngân hàng thanh toán quốc tế thường liên quan:", options: ["Sai sót nhập liệu, xử lý chứng từ, hệ thống kỹ thuật", "Chiến tranh khu vực", "Lạm phát toàn cầu", "Thuế tiêu thụ đặc biệt"], answer: 0 },
-            { question: "Điểm khác biệt chính giữa FOB và CIF là:", options: ["FOB không dùng đường biển", "CIF yêu cầu người bán trả cước và mua bảo hiểm chặng biển", "FOB yêu cầu người bán giao tại kho người mua", "CIF không cần chứng từ vận tải"], answer: 1 },
+            { question: "Nếu đồng tiền thanh toán tăng giá so với nội tệ trong thời gian chờ trả nợ nhập khẩu, nhà nhập khẩu chịu:", options: ["Không ảnh hưởng", "Lợi ích tỷ giá", "Thiệt hại tỷ giá", "Chỉ ảnh hưởng thuế"], answer: 2 },
+            { question: "Rủi ro tác nghiệp trong ngân hàng thanh toán quốc tế thường liên quan:", options: ["Thuế tiêu thụ đặc biệt", "Chiến tranh khu vực", "Lạm phát toàn cầu", "Sai sót nhập liệu, xử lý chứng từ, hệ thống kỹ thuật"], answer: 3 },
+            { question: "Điểm khác biệt chính giữa FOB và CIF là:", options: ["CIF yêu cầu người bán trả cước và mua bảo hiểm chặng biển", "FOB không dùng đường biển", "FOB yêu cầu người bán giao tại kho người mua", "CIF không cần chứng từ vận tải"], answer: 0 },
             { question: "Trong hợp đồng ngoại thương, điều khoản nào giúp giảm tranh chấp khi có vi phạm thanh toán?", options: ["Điều khoản quảng cáo", "Điều khoản luật áp dụng và giải quyết tranh chấp", "Điều khoản màu bao bì", "Điều khoản khuyến mãi"], answer: 1 },
-            { question: "Mục tiêu chính của phòng ngừa rủi ro tỷ giá là:", options: ["Tăng số lượng chứng từ", "Cố định/giảm biến động giá trị dòng tiền ngoại tệ", "Kéo dài thời gian thanh toán", "Tăng chi phí bảo hiểm"], answer: 1 },
-            { question: "Khi doanh nghiệp xuất khẩu chọn FOB, rủi ro vận chuyển biển sau điểm giao thuộc về:", options: ["Người bán", "Người mua", "Ngân hàng thông báo", "Hải quan"], answer: 1 },
-            { question: "Một biện pháp phòng ngừa rủi ro quốc gia là:", options: ["Tăng mua hàng từ một thị trường duy nhất", "Đa dạng hóa thị trường và dùng bảo hiểm rủi ro phù hợp", "Bỏ điều khoản thanh toán trong hợp đồng", "Chỉ thanh toán tiền mặt"], answer: 1 },
+            { question: "Mục tiêu chính của phòng ngừa rủi ro tỷ giá là:", options: ["Kéo dài thời gian thanh toán", "Tăng số lượng chứng từ", "Cố định/giảm biến động giá trị dòng tiền ngoại tệ", "Tăng chi phí bảo hiểm"], answer: 2 },
+            { question: "Khi doanh nghiệp xuất khẩu chọn FOB, rủi ro vận chuyển biển sau điểm giao thuộc về:", options: ["Hải quan", "Người bán", "Ngân hàng thông báo", "Người mua"], answer: 3 },
+            { question: "Một biện pháp phòng ngừa rủi ro quốc gia là:", options: ["Đa dạng hóa thị trường và dùng bảo hiểm rủi ro phù hợp", "Tăng mua hàng từ một thị trường duy nhất", "Bỏ điều khoản thanh toán trong hợp đồng", "Chỉ thanh toán tiền mặt"], answer: 0 },
             { question: "Phát biểu đúng về vai trò thanh toán quốc tế đối với ngoại thương là:", options: ["Không ảnh hưởng tốc độ luân chuyển hàng hóa", "Là công cụ hoàn tất giá trị hàng hóa giữa bên mua và bên bán ở các quốc gia khác nhau", "Chỉ dùng cho dịch vụ, không dùng cho hàng hóa", "Không cần ngân hàng tham gia"], answer: 1 }
         ];
 
@@ -630,3 +630,4 @@
     </script>
 </body>
 </html>
+
