@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chương 2 - 45 câu trắc nghiệm thanh toán quốc tế</title>
+    <title>Chương 2 - 30 câu trắc nghiệm chuyển đổi số</title>
     <style>
         * {
             margin: 0;
@@ -356,8 +356,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Chương 2 - Trắc nghiệm thanh toán quốc tế</h1>
-            <p>Bộ 45 câu hỏi A/B/C/D</p>
+            <h1>Chương 2 - Trắc nghiệm chuyển đổi số</h1>
+            <p>Bộ 30 câu hỏi A/B/C/D</p>
         </div>
 
         <nav class="main-menu">
@@ -374,7 +374,7 @@
             <div class="quiz-info">
                 <div class="info-item">
                     <span class="info-label">Câu hỏi</span>
-                    <span class="info-value"><span id="current-question">0</span>/45</span>
+                    <span class="info-value"><span id="current-question">0</span>/30</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Câu đúng</span>
@@ -397,7 +397,7 @@
             <div id="quiz-container"></div>
 
             <div id="results-container" class="results-container">
-                <div class="score-circle" id="score-circle">0/45</div>
+                <div class="score-circle" id="score-circle">0/30</div>
                 <div class="results-message" id="results-message"></div>
                 <div class="results-details" id="results-details"></div>
                 <div class="wrong-answers" id="wrong-answers" style="display: none;"></div>
@@ -412,51 +412,36 @@
 
     <script>
         const quizData = [
-            { question: "Đặc điểm nào phản ánh đúng bản chất pháp lý của Hối phiếu đòi nợ (Bill of Exchange)?", options: ["Là mệnh lệnh trả tiền vô điều kiện do người ký phát lập", "Là cam kết trả tiền vô điều kiện của người lập", "Là hợp đồng mua bán hàng hóa quốc tế", "Là bảo lãnh bắt buộc của ngân hàng"], answer: 0 },
-            { question: "Kỳ phiếu/ Hối phiếu nhận nợ (Promissory Note) khác Hối phiếu đòi nợ ở điểm cốt lõi nào?", options: ["Kỳ phiếu là lệnh đòi tiền người bị ký phát", "Kỳ phiếu là cam kết trả tiền của người lập cho người thụ hưởng", "Kỳ phiếu không có giá trị pháp lý", "Kỳ phiếu chỉ dùng trong giao dịch nội địa"], answer: 1 },
-            { question: "Hối phiếu trơn (Clean Bill) là loại hối phiếu:", options: ["Chỉ do ngân hàng phát hành", "Kèm đầy đủ chứng từ thương mại", "Không kèm chứng từ thương mại", "Chỉ sử dụng trong phương thức L/C"], answer: 2 },
-            { question: "Hối phiếu kèm chứng từ (Documentary Bill) thường được sử dụng phổ biến trong:", options: ["Thanh toán học phí quốc tế", "Giao dịch phi thương mại", "Chuyển tiền kiều hối cá nhân", "Nhờ thu và tín dụng chứng từ"], answer: 3 },
-            { question: "Trong quan hệ hối phiếu, người ký phát (drawer) là người:", options: ["Lập và phát hành hối phiếu", "Nhận tiền cuối cùng", "Bị yêu cầu trả tiền", "Xác nhận vận đơn đường biển"], answer: 0 },
-            { question: "Người bị ký phát (drawee) trong hối phiếu là:", options: ["Người được quyền nhận tiền", "Người bị yêu cầu thanh toán theo hối phiếu", "Người thu hộ của ngân hàng", "Người bảo hiểm hàng hóa"], answer: 1 },
-            { question: "Người thụ hưởng (payee/beneficiary) của hối phiếu là:", options: ["Người kiểm tra chất lượng hàng", "Người phát hành vận đơn", "Người nhận được số tiền ghi trên hối phiếu", "Người lập hóa đơn thương mại"], answer: 2 },
-            { question: "Tính trừu tượng của hối phiếu được hiểu là:", options: ["Hối phiếu chỉ dùng cho giao dịch hàng hóa", "Hối phiếu luôn phải ghi chi tiết hợp đồng gốc", "Hối phiếu chỉ có hiệu lực khi có bảo lãnh ngân hàng", "Nghĩa vụ trả tiền trên hối phiếu độc lập tương đối với quan hệ cơ sở"], answer: 3 },
-            { question: "Tính bắt buộc của hối phiếu thể hiện ở:", options: ["Nghĩa vụ thanh toán phải thực hiện theo điều kiện ghi trên hối phiếu khi đã chấp nhận/đến hạn", "Người bị ký phát có thể trả hoặc không trả tùy ý", "Chỉ trả khi người ký phát có yêu cầu lại", "Chỉ trả nếu có lợi nhuận từ lô hàng"], answer: 0 },
-            { question: "Tính lưu thông của hối phiếu cho phép:", options: ["Thay đổi hàng hóa trong hợp đồng mua bán", "Chuyển nhượng quyền hưởng lợi hợp pháp cho người khác", "Miễn mọi loại phí ngân hàng", "Hủy bỏ mọi nghĩa vụ thanh toán"], answer: 1 },
-            { question: "Chấp nhận hối phiếu (acceptance) thường áp dụng chủ yếu đối với:", options: ["Séc du lịch", "Hối phiếu trả ngay khi xuất trình (sight)", "Hối phiếu trả chậm (usance/time bill)", "Thẻ ghi nợ"], answer: 2 },
-            { question: "Khi người bị ký phát ký chấp nhận trên hối phiếu, ý nghĩa chính là:", options: ["Miễn trách cho người ký phát", "Từ chối thanh toán", "Chuyển quyền sở hữu hàng hóa", "Cam kết thanh toán khi đến hạn"], answer: 3 },
-            { question: "Ký hậu để trắng (Blank Endorsement) có đặc điểm:", options: ["Không ghi tên người nhận tiếp theo, làm hối phiếu lưu thông như vô danh", "Cấm chuyển nhượng tiếp", "Chỉ định đích danh người nhận tiếp theo", "Chỉ dùng cho séc bảo chi"], answer: 0 },
-            { question: "Ký hậu theo lệnh (Order Endorsement) là:", options: ["Ký hậu cấm chuyển nhượng", "Ký hậu có chỉ định người thụ hưởng tiếp theo", "Ký hậu miễn truy đòi mặc định", "Ký hậu chỉ hợp lệ với thẻ tín dụng"], answer: 1 },
-            { question: "Ký hậu hạn chế (Restrictive Endorsement) nhằm mục đích:", options: ["Xóa mọi trách nhiệm của người ký hậu", "Tăng khả năng chuyển nhượng tự do", "Hạn chế phạm vi sử dụng/chuyển nhượng của hối phiếu", "Bắt buộc ngân hàng xác nhận"], answer: 2 },
-            { question: "Ký hậu miễn truy đòi (Without Recourse Endorsement) có nghĩa:", options: ["Chỉ áp dụng với giao dịch nội địa", "Người ký hậu chịu trách nhiệm cao hơn bình thường", "Hối phiếu mất hiệu lực pháp lý", "Người ký hậu không chịu trách nhiệm thanh toán khi bị truy đòi"], answer: 3 },
-            { question: "Truy đòi hối phiếu (recourse) thường phát sinh khi:", options: ["Hối phiếu bị từ chối chấp nhận hoặc từ chối thanh toán", "Hối phiếu được thanh toán đầy đủ đúng hạn", "Hàng hóa được giao sớm", "Tỷ giá ổn định"], answer: 0 },
-            { question: "Séc (Cheque) là:", options: ["Cam kết trả tiền của người nhập khẩu cho người xuất khẩu", "Mệnh lệnh trả tiền vô điều kiện do chủ tài khoản ký phát cho ngân hàng trích tiền trả người thụ hưởng", "Hợp đồng bảo hiểm hàng hải", "Chứng từ vận tải đường biển"], answer: 1 },
-            { question: "Đặc điểm nổi bật của séc so với hối phiếu thương mại là:", options: ["Séc luôn là công cụ trả chậm dài hạn", "Séc do ngân hàng phát hành bắt buộc", "Séc thường gắn với tài khoản tiền gửi thanh toán tại ngân hàng và có tính trả tiền ngay khi hợp lệ", "Séc chỉ dùng trong L/C"], answer: 2 },
-            { question: "Điều kiện quan trọng để séc được thanh toán là:", options: ["Có xác nhận của hãng tàu", "Người thụ hưởng có hợp đồng ngoại thương", "Có vận đơn gốc đi kèm", "Người ký phát có đủ số dư hoặc hạn mức thanh toán hợp lệ"], answer: 3 },
-            { question: "Trong thanh toán thẻ, đơn vị chấp nhận thẻ (merchant) là:", options: ["Cơ sở bán hàng/dịch vụ chấp nhận thanh toán bằng thẻ", "Tổ chức phát hành thẻ", "Ngân hàng trung ương", "Công ty bảo hiểm tín dụng xuất khẩu"], answer: 0 },
-            { question: "Ngân hàng phát hành thẻ (issuing bank) là ngân hàng:", options: ["Mở tài khoản cho đơn vị chấp nhận thẻ bắt buộc", "Phát hành thẻ cho chủ thẻ và quản lý hạn mức/chứng từ nợ của chủ thẻ", "Cung cấp máy POS cho cửa hàng", "Chỉ làm nhiệm vụ thu đổi ngoại tệ"], answer: 1 },
-            { question: "Ngân hàng thanh toán thẻ (acquiring bank) chủ yếu:", options: ["Ban hành chuẩn mực kế toán quốc tế", "Phát hành thẻ tín dụng cá nhân", "Ký hợp đồng với đơn vị chấp nhận thẻ, tiếp nhận và thanh toán giao dịch thẻ cho đơn vị này", "Kiểm dịch hàng xuất khẩu"], answer: 2 },
-            { question: "Điểm khác biệt cốt lõi giữa thẻ ghi nợ (Debit Card) và thẻ tín dụng (Credit Card) là:", options: ["Không có khác biệt", "Debit chỉ thanh toán quốc tế, Credit chỉ nội địa", "Debit luôn có lãi suất, Credit không có lãi", "Debit dùng tiền có sẵn/tài khoản, Credit dùng hạn mức tín dụng do ngân hàng cấp"], answer: 3 },
-            { question: "Với thẻ ghi nợ, khi mua hàng thành công, tiền thường:", options: ["Trích trực tiếp/giữ chỗ ngay trên tài khoản của chủ thẻ", "Được ngân hàng cho vay không cần hoàn trả", "Trích từ quỹ bảo hiểm thương mại", "Chỉ thanh toán vào cuối năm"], answer: 0 },
-            { question: "Với thẻ tín dụng, chủ thẻ thường thanh toán cho ngân hàng phát hành:", options: ["Ngay tại thời điểm quẹt thẻ bắt buộc", "Theo sao kê vào kỳ hạn, có thể phát sinh lãi nếu không trả đủ đúng hạn", "Chỉ khi ngân hàng yêu cầu bằng văn bản giấy", "Sau khi người bán xác nhận giao đủ hàng"], answer: 1 },
-            { question: "Rủi ro thường gặp của đơn vị chấp nhận thẻ là:", options: ["Không cần tuân thủ chuẩn bảo mật nào", "Không cần trả phí chiết khấu thương mại (MDR)", "Không nhận được tiền vì giao dịch gian lận/chargeback", "Luôn được đảm bảo doanh số tăng"], answer: 2 },
-            { question: "Trong quy trình thanh toán thẻ, tổ chức thẻ quốc tế (Visa/Mastercard...) có vai trò:", options: ["Là cơ quan hải quan cửa khẩu", "Ban hành pháp luật quốc gia về ngoại hối", "Trực tiếp bán hàng hóa cho người tiêu dùng", "Kết nối mạng lưới, chuẩn hóa thông điệp, bù trừ và quy tắc vận hành hệ thống thẻ"], answer: 3 },
-            { question: "Phương thức nhờ thu trả chậm D/A (Documents against Acceptance) đặc trưng bởi:", options: ["Giao chứng từ khi người mua chấp nhận hối phiếu kỳ hạn", "Giao chứng từ khi người mua trả tiền ngay", "Ngân hàng phát hành cam kết trả thay vô điều kiện", "Không có chứng từ thương mại"], answer: 0 },
-            { question: "Trong D/A, rủi ro lớn hơn đối với người xuất khẩu vì:", options: ["Ngân hàng luôn bảo lãnh thanh toán", "Người mua có thể nhận chứng từ sau khi chấp nhận nhưng đến hạn không trả tiền", "Người mua phải trả ngay khi nhận chứng từ", "Không có biến động tỷ giá"], answer: 1 },
-            { question: "Trong phương thức L/C, hối phiếu ký phát theo L/C thường đòi tiền:", options: ["Hãng tàu vận chuyển", "Người xuất khẩu", "Ngân hàng phát hành hoặc ngân hàng được chỉ định theo quy định L/C", "Công ty bảo hiểm"], answer: 2 },
-            { question: "L/C không hủy ngang (Irrevocable L/C) nghĩa là:", options: ["Không cần chứng từ", "Có thể hủy bất cứ lúc nào bởi người mua", "Chỉ áp dụng cho giao dịch nội địa", "Không thể sửa đổi/hủy nếu không có sự đồng ý của các bên liên quan theo quy định"], answer: 3 },
-            { question: "Trong giao dịch L/C, nguyên tắc độc lập thể hiện rằng:", options: ["Ngân hàng xử lý dựa trên chứng từ phù hợp, độc lập với hợp đồng cơ sở", "Ngân hàng xử lý dựa trên hàng hóa thực tế", "Ngân hàng chịu mọi tranh chấp chất lượng hàng", "Người mua không có nghĩa vụ thanh toán"], answer: 0 },
-            { question: "Chứng từ nào dưới đây thường là căn cứ quan trọng để ngân hàng xem xét giao hàng đã được xếp lên tàu?", options: ["Phiếu xuất kho nội bộ", "Vận đơn đường biển (B/L)", "Giấy giới thiệu", "Biên bản họp công ty"], answer: 1 },
-            { question: "Trong thanh toán quốc tế bằng công cụ hối phiếu, biện pháp giúp giảm rủi ro không thanh toán là:", options: ["Không thẩm định người mua", "Chỉ giao dịch bằng thỏa thuận miệng", "Kết hợp bảo lãnh/xác nhận ngân hàng hoặc chọn phương thức L/C phù hợp", "Luôn giao chứng từ trước khi có ràng buộc thanh toán"], answer: 2 },
-            { question: "Hối phiếu trả ngay (at sight) được thanh toán:", options: ["Sau khi người mua bán lại hàng hóa", "Vào một ngày cố định sau 180 ngày", "Chỉ khi có phán quyết tòa án", "Khi xuất trình hợp lệ theo quy định"], answer: 3 },
-            { question: "Hối phiếu kỳ hạn 90 ngày sau khi nhìn thấy (90 days after sight) được hiểu là:", options: ["Trả sau 90 ngày kể từ ngày chấp nhận/nhìn thấy theo quy định", "Trả sau 90 ngày kể từ ngày giao hàng", "Trả ngay khi ký phát", "Trả sau 90 ngày kể từ ngày mở L/C"], answer: 0 },
-            { question: "Khi ký phát hối phiếu trong hợp đồng xuất khẩu, nội dung nào là thiết yếu để đảm bảo hiệu lực nghiệp vụ?", options: ["Màu sắc logo công ty xuất khẩu", "Mệnh lệnh trả tiền vô điều kiện, số tiền, người bị ký phát, người thụ hưởng, thời hạn trả", "Thông số kỹ thuật container lạnh", "Tên tàu dự kiến nhưng không cần số tiền"], answer: 1 },
-            { question: "Trong phương thức nhờ thu kèm chứng từ, ngân hàng thu hộ thường:", options: ["Mua luôn hàng hóa của người bán", "Cam kết chắc chắn người mua sẽ thanh toán", "Chỉ đóng vai trò trung gian thu hộ theo chỉ thị, không cam kết thanh toán thay người mua (trừ khi có bảo lãnh riêng)", "Quyết định thay giá hàng hóa trong hợp đồng"], answer: 2 },
-            { question: "Nhận định nào đúng về vai trò của các công cụ thanh toán chương 2 (hối phiếu, kỳ phiếu, séc, thẻ)?", options: ["Chỉ áp dụng cho giao dịch dưới 10.000 USD", "Chỉ có giá trị kế toán, không hỗ trợ quản trị rủi ro", "Không liên quan đến ngân hàng", "Giúp chuẩn hóa nghĩa vụ thanh toán, tạo cơ sở pháp lý và hỗ trợ lưu thông vốn trong thương mại"], answer: 3 },
-            { question: "Câu hỏi tình huống: Doanh nghiệp xuất khẩu Việt Nam giao hàng theo hợp đồng nhờ thu D/P. Người mua đề nghị nhận bộ chứng từ trước để kịp thông quan và hứa sẽ chuyển tiền sau 3 ngày. Cách xử lý phù hợp nhất là gì?", options: ["Chỉ giao chứng từ khi ngân hàng xác nhận đã thu đủ tiền theo đúng điều kiện D/P", "Giao chứng từ ngay để giữ quan hệ khách hàng", "Chuyển luôn sang D/A mà không cần phụ lục hợp đồng", "Giao một phần chứng từ gốc để người mua lấy hàng trước"], answer: 0 },
-            { question: "Câu hỏi tình huống: Công ty A nhận L/C trả chậm 90 ngày từ ngân hàng phát hành ở thị trường có rủi ro cao. Để giảm rủi ro không được thanh toán khi đến hạn, lựa chọn nào tốt nhất?", options: ["Giữ nguyên L/C, không cần điều chỉnh", "Đề nghị ngân hàng thông báo thêm xác nhận L/C (confirmed L/C)", "Chuyển sang nhờ thu trơn để giảm phí", "Bỏ yêu cầu kiểm tra chứng từ để xuất hàng nhanh hơn"], answer: 1 },
-            { question: "Câu hỏi tình huống: Chủ thẻ tín dụng phát hiện giao dịch lạ tại một website quốc tế và lập khiếu nại. Rủi ro lớn nhất đối với đơn vị chấp nhận thẻ trong trường hợp này là gì?", options: ["Ngân hàng phát hành tự chịu toàn bộ thiệt hại, không ảnh hưởng người bán", "Được nhận thêm phí thưởng từ ngân hàng thanh toán", "Giao dịch có thể bị chargeback, bị hoàn tiền và phát sinh phí phạt", "Giao dịch tự động chuyển thành chuyển khoản không hoàn lại"], answer: 2 },
-            { question: "Câu hỏi tình huống: Người xuất khẩu ký phát hối phiếu kỳ hạn 60 ngày sau khi nhìn thấy và gửi nhờ thu. Người mua đã ký chấp nhận trên hối phiếu. Ý nghĩa pháp lý trực tiếp của hành vi này là gì?", options: ["Hối phiếu tự động trở thành séc", "Người mua chỉ xác nhận đã nhận hàng, chưa có nghĩa vụ trả tiền", "Ngân hàng thu hộ trở thành bên chịu trách nhiệm thanh toán thay", "Người mua cam kết thanh toán số tiền hối phiếu khi đến hạn"], answer: 3 },
-            { question: "Câu hỏi tình huống: Doanh nghiệp xuất khẩu lần đầu giao dịch với khách hàng mới, giá trị hợp đồng lớn. Biện pháp kết hợp nào hợp lý nhất để giảm rủi ro thanh toán?", options: ["Dùng L/C không hủy ngang, thẩm định tín nhiệm đối tác và kiểm soát chặt bộ chứng từ", "Chấp nhận ghi sổ toàn bộ để tăng khả năng chốt đơn", "Giao hàng trước rồi đàm phán phương thức thanh toán sau", "Chỉ yêu cầu đặt cọc tượng trưng 1% và bỏ điều khoản phạt"], answer: 0 }
+            { question: "‘Dữ liệu số’ theo Nghị định 47/2020/NĐ-CP là gì?", options: ["Văn bản giấy tờ", "Thông tin dạng ký hiệu, chữ viết, chữ số, hình ảnh, âm thanh biểu diễn bằng tín hiệu số", "Tài sản hữu hình", "Vật liệu kỹ thuật số"], answer: 1 },
+            { question: "Thông tin khác dữ liệu ở điểm nào?", options: ["Là kết quả xử lý dữ liệu, có tổ chức và mang ý nghĩa", "Là dữ liệu thô chưa qua xử lý", "Chỉ bao gồm ảnh và âm thanh", "Là mã số nhị phân"], answer: 0 },
+            { question: "Tri thức (Knowledge) được hiểu là:", options: ["Dữ liệu thô", "Sự tổng hợp, tích lũy thông tin qua kinh nghiệm, phân tích và nhận thức sâu sắc", "Văn bản giấy tờ", "Mã số nhị phân"], answer: 1 },
+            { question: "Môi trường số là gì?", options: ["Không gian vật lý", "Không gian ảo nơi dữ liệu, thông tin được tạo ra, lưu trữ và trao đổi qua công nghệ số", "Hệ thống máy chủ vật lý", "Văn phòng truyền thống"], answer: 1 },
+            { question: "Siêu dữ liệu (Metadata) là:", options: ["Dữ liệu mô tả chi tiết về dữ liệu", "Dữ liệu thô", "Văn bản giấy tờ", "Thông tin khách hàng"], answer: 0 },
+            { question: "Khách hàng trong hệ sinh thái CĐS được coi là:", options: ["Tài sản hữu hình", "Động lực trung tâm của mọi nỗ lực chuyển đổi số", "Một yếu tố phụ trợ", "Nguồn vốn không quan trọng"], answer: 1 },
+            { question: "Nguồn thông tin khách hàng gồm:", options: ["Chỉ mạng xã hội", "Chỉ khảo sát trực tiếp", "Nội bộ và bên ngoài", "Chỉ dữ liệu mua ngoài"], answer: 2 },
+            { question: "Giá trị khách hàng trong chuyển đổi số là gì?", options: ["Chỉ giá cả sản phẩm/dịch vụ", "Cách thức doanh nghiệp cung ứng SP/DV nhằm thỏa mãn nhu cầu và mang đến trải nghiệm", "Văn bản giấy tờ", "Mã số nhị phân"], answer: 1 },
+            { question: "Nhân lực số là:", options: ["Lao động phổ thông", "Lực lượng lao động kỹ thuật chuyên nghiệp tham gia trực tiếp vào sản xuất SP/DV công nghệ thông tin", "Khách hàng trung thành", "Nhà quản lý tài chính"], answer: 1 },
+            { question: "Công nghệ số là:", options: ["Máy móc truyền thống", "Các công nghệ dựa trên tín hiệu số phục vụ hoạt động trong môi trường số", "Văn bản giấy tờ", "Tài sản hữu hình"], answer: 1 },
+            { question: "Hạ tầng số bao gồm thành phần nào sau đây?", options: ["Trung tâm dữ liệu, cáp quang, phần cứng máy chủ, phần mềm cơ sở hạ tầng", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Nền tảng số được phân loại thành:", options: ["Tài chính – Thuế – Hải quan", "Marketing – PR – Bán hàng", "Nội bộ – Kinh doanh – Quốc gia", "Sản xuất – Kho – Vận tải"], answer: 2 },
+            { question: "Niềm tin số là gì?", options: ["Niềm tin vào hệ thống và giao dịch số của người dân và doanh nghiệp", "Niềm tin vào văn bản giấy tờ", "Niềm tin vào tài sản hữu hình", "Niềm tin vào mã số nhị phân"], answer: 0 },
+            { question: "Vai trò của dữ liệu trong CĐS là:", options: ["Không quan trọng", "Là nền tảng để tạo ra thông tin và tri thức, hỗ trợ ra quyết định", "Chỉ là dữ liệu thô", "Chỉ dùng cho lưu trữ"], answer: 1 },
+            { question: "Trải nghiệm khách hàng (CX) trong CĐS được coi là:", options: ["Yếu tố phụ trợ", "Động lực trung tâm của mọi nỗ lực CĐS", "Văn bản giấy tờ", "Mã số nhị phân"], answer: 1 },
+            { question: "Năng lực lãnh đạo số bao gồm:", options: ["Xây dựng chiến lược, thay đổi mô hình kinh doanh, đầu tư hạ tầng mới, phát triển chương trình đào tạo", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Công nghệ số giúp doanh nghiệp:", options: ["Giảm giá trị khách hàng", "Gia tăng giá trị và trải nghiệm khách hàng", "Loại bỏ khách hàng", "Chỉ lưu trữ dữ liệu"], answer: 1 },
+            { question: "Chính sách phát triển CĐS nhằm:", options: ["Kiến tạo môi trường thúc đẩy sự tương tác giữa các đối tượng trong quá trình CĐS", "Văn bản giấy tờ", "Tài sản hữu hình", "Mã số nhị phân"], answer: 0 },
+            { question: "Ví dụ về giá trị khách hàng trong TMĐT là:", options: ["Cá nhân hóa sản phẩm/dịch vụ, tiết kiệm chi phí tìm kiếm, thuận tiện giao dịch", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Nhân lực số trong CĐS đòi hỏi:", options: ["Trình độ và kỹ năng vận dụng, xử lý nhanh, chính xác cao", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Phân biệt hạ tầng số và nền tảng số qua ví dụ:", options: ["Hạ tầng số: cáp quang; Nền tảng số: hệ thống e-banking", "Hạ tầng số: văn bản giấy tờ; Nền tảng số: khách hàng trung thành", "Hạ tầng số: tài sản hữu hình; Nền tảng số: mã số nhị phân", "Hạ tầng số: văn phòng truyền thống; Nền tảng số: giấy tờ"], answer: 0 },
+            { question: "Nguồn thông tin khách hàng có thể đến từ:", options: ["Nội bộ doanh nghiệp, khảo sát trực tiếp, dữ liệu phân tích từ Google, Facebook", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Rủi ro của doanh nghiệp khi không hiểu đúng nhu cầu khách hàng trong CĐS là:", options: ["Bỏ lỡ cơ hội kinh doanh và mang đến những gì khách hàng không cần", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Ví dụ về ứng dụng công nghệ số trong nông nghiệp là:", options: ["Máy móc và drones", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Tiêu chuẩn của lãnh đạo số gồm:", options: ["Sáng tạo, kiến thức, năng lực, thích nghi thay đổi, tầm nhìn toàn cầu", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Chính sách pháp luật trong CĐS có vai trò:", options: ["Tạo hành lang pháp lý, đảm bảo an ninh mạng, xây dựng niềm tin số", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Ví dụ về nền tảng kinh doanh (Business Platform):", options: ["Website thương mại điện tử", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Ví dụ về nền tảng quản trị nội bộ:", options: ["Hệ thống ERP quản lý nguồn lực doanh nghiệp", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Ví dụ về nền tảng quốc gia:", options: ["Nền tảng danh tính số", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 },
+            { question: "Tạo lập niềm tin số là yếu tố sống còn vì:", options: ["Khuyến khích người dân sử dụng dịch vụ số và duy trì sự phát triển của CĐS", "Văn bản giấy tờ", "Khách hàng trung thành", "Tài sản hữu hình"], answer: 0 }
         ];
 
         let userAnswers = [];

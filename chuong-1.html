@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chương 1 - 30 câu trắc nghiệm thanh toán quốc tế</title>
+    <title>Chương 1 - 40 câu trắc nghiệm CĐS</title>
     <style>
         * {
             margin: 0;
@@ -356,8 +356,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Chương 1 - Trắc nghiệm thanh toán quốc tế</h1>
-            <p>Bộ 30 câu hỏi A/B/C/D</p>
+            <h1>Chương 1 - Trắc nghiệm CĐS</h1>
+            <p>Bộ 40 câu hỏi A/B/C/D</p>
         </div>
 
         <nav class="main-menu">
@@ -374,7 +374,7 @@
             <div class="quiz-info">
                 <div class="info-item">
                     <span class="info-label">Câu hỏi</span>
-                    <span class="info-value"><span id="current-question">0</span>/30</span>
+                    <span class="info-value"><span id="current-question">0</span>/40</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Câu đúng</span>
@@ -397,7 +397,7 @@
             <div id="quiz-container"></div>
 
             <div id="results-container" class="results-container">
-                <div class="score-circle" id="score-circle">0/30</div>
+                <div class="score-circle" id="score-circle">0/40</div>
                 <div class="results-message" id="results-message"></div>
                 <div class="results-details" id="results-details"></div>
                 <div class="wrong-answers" id="wrong-answers" style="display: none;"></div>
@@ -412,36 +412,46 @@
 
     <script>
         const quizData = [
-            { question: "Hoạt động nào là cơ sở hình thành thanh toán quốc tế?", options: ["Ngoại thương", "Đầu tư ra nước ngoài", "Du lịch quốc tế", "Viện trợ quốc tế"], answer: 0 },
-            { question: "Trong điều kiện FOB, người bán hoàn thành nghĩa vụ giao hàng khi nào?", options: ["Khi giao hàng cho người chuyên chở đầu tiên", "Khi hàng qua lan can tàu/có mặt trên tàu tại cảng bốc", "Khi hàng đến cảng dỡ", "Khi người mua nhận chứng từ"], answer: 1 },
-            { question: "Trong điều kiện CIF, người bán phải mua bảo hiểm cho chặng nào?", options: ["Chỉ trong nội địa nước xuất khẩu", "Từ kho người bán đến kho người mua", "Từ cảng đi đến cảng đến theo hợp đồng", "Không phải mua bảo hiểm"], answer: 2 },
-            { question: "Theo CIF, thời điểm chuyển rủi ro từ người bán sang người mua là:", options: ["Khi tàu cập cảng đến", "Khi giao chứng từ", "Khi ký hợp đồng", "Khi hàng được xếp lên tàu tại cảng đi"], answer: 3 },
-            { question: "Cơ quan có chức năng chủ trì quản lý tiền tệ đối với thanh toán quốc tế của quốc gia là:", options: ["Ngân hàng trung ương", "Ngân hàng thương mại", "Công ty bảo hiểm", "Hiệp hội doanh nghiệp"], answer: 0 },
-            { question: "Yếu tố nào sau đây KHÔNG phải đặc điểm của thanh toán quốc tế?", options: ["Chịu ảnh hưởng luật pháp quốc gia và quốc tế", "Chỉ liên quan đến nội tệ của một nước", "Liên quan ngoại tệ và tỷ giá", "Thường thực hiện qua hệ thống ngân hàng"], answer: 1 },
-            { question: "Rủi ro do bất ổn chính trị, chiến tranh, cấm vận gây ra thuộc nhóm nào?", options: ["Rủi ro tác nghiệp", "Rủi ro tín dụng", "Rủi ro quốc gia", "Rủi ro thanh khoản"], answer: 2 },
-            { question: "Rủi ro phát sinh do đối tác không thực hiện nghĩa vụ thanh toán gọi là:", options: ["Rủi ro quốc gia", "Rủi ro tỷ giá", "Rủi ro pháp lý", "Rủi ro tín dụng"], answer: 3 },
-            { question: "Incoterms 2020 do tổ chức nào ban hành?", options: ["ICC", "IMF", "WTO", "WB"], answer: 0 },
-            { question: "Nếu doanh nghiệp xuất khẩu Việt Nam muốn giảm chi phí vận tải và bảo hiểm, điều kiện nào thường được chọn?", options: ["CIF", "FOB", "DDP", "CFR"], answer: 1 },
-            { question: "Khi dùng FOB, người mua chịu trách nhiệm thuê tàu và mua bảo hiểm từ đâu?", options: ["Từ khi ký hợp đồng", "Từ kho người bán", "Từ sau khi hàng được xếp lên tàu", "Từ cảng dỡ về kho"], answer: 2 },
-            { question: "Trong CIF, người bán phải cung cấp cho người mua loại chứng từ nào liên quan bảo hiểm?", options: ["Giấy phép nhập khẩu", "Hợp đồng đại lý", "Chứng thư kiểm dịch", "Chứng từ bảo hiểm"], answer: 3 },
-            { question: "Vai trò quan trọng của ngân hàng thương mại trong thanh toán quốc tế là:", options: ["Trung gian thanh toán và tài trợ thương mại", "Ban hành luật ngoại hối", "Quản lý dự trữ ngoại hối quốc gia", "Cấp phép hãng tàu"], answer: 0 },
-            { question: "Phương thức thanh toán nào giúp giảm rủi ro cho người xuất khẩu tốt hơn chuyển tiền trả sau?", options: ["Nhờ thu trơn", "Tín dụng chứng từ (L/C)", "Ghi sổ", "Trả chậm không bảo lãnh"], answer: 1 },
-            { question: "Rủi ro tỷ giá trong thanh toán quốc tế là:", options: ["Do thiên tai tại cảng đi", "Do sai sót chứng từ vận tải", "Do biến động tỷ giá làm thay đổi giá trị khoản thu/chi", "Do ngân hàng chậm mở cửa"], answer: 2 },
-            { question: "Trong điều kiện FOB, chi phí bốc hàng lên tàu tại cảng đi thường do ai chịu?", options: ["Bên bảo hiểm", "Người mua", "Hãng tàu", "Người bán"], answer: 3 },
-            { question: "Trong CIF, chi phí cước biển đến cảng đích do ai trả?", options: ["Người bán", "Người mua", "Ngân hàng phát hành L/C", "Công ty bảo hiểm"], answer: 0 },
-            { question: "Một biện pháp giảm rủi ro không thanh toán của người mua là:", options: ["Chỉ giao dịch bằng miệng", "Dùng L/C không hủy ngang, xác nhận khi cần", "Giao hàng trước, nhận tiền sau không điều kiện", "Không kiểm tra năng lực tài chính đối tác"], answer: 1 },
-            { question: "Rủi ro pháp lý trong thanh toán quốc tế có thể phát sinh từ:", options: ["Tắc nghẽn cảng", "Biến động giá dầu", "Khác biệt hệ thống luật giữa các nước", "Hỏng container"], answer: 2 },
-            { question: "Theo thực tiễn, doanh nghiệp nên làm gì trước khi ký hợp đồng ngoại thương để hạn chế rủi ro?", options: ["Bỏ qua điều khoản phạt", "Không cần thẩm định đối tác", "Chỉ xem giá thấp nhất", "Thẩm định tín nhiệm và lịch sử giao dịch đối tác"], answer: 3 },
-            { question: "Chứng từ nào là bằng chứng quan trọng người bán đã giao hàng lên tàu?", options: ["Vận đơn đường biển (B/L)", "Hóa đơn thương mại", "Phiếu đóng gói", "Giấy chứng nhận xuất xứ"], answer: 0 },
-            { question: "Trong thanh toán quốc tế, ngân hàng thường thu phí dịch vụ vì:", options: ["Phí là bắt buộc theo luật hình sự", "Ngân hàng cung cấp dịch vụ trung gian, kiểm tra chứng từ, chuyển tiền", "Doanh nghiệp không được phép tự thanh toán", "Để thay thế thuế xuất nhập khẩu"], answer: 1 },
-            { question: "Nếu đồng tiền thanh toán tăng giá so với nội tệ trong thời gian chờ trả nợ nhập khẩu, nhà nhập khẩu chịu:", options: ["Không ảnh hưởng", "Lợi ích tỷ giá", "Thiệt hại tỷ giá", "Chỉ ảnh hưởng thuế"], answer: 2 },
-            { question: "Rủi ro tác nghiệp trong ngân hàng thanh toán quốc tế thường liên quan:", options: ["Thuế tiêu thụ đặc biệt", "Chiến tranh khu vực", "Lạm phát toàn cầu", "Sai sót nhập liệu, xử lý chứng từ, hệ thống kỹ thuật"], answer: 3 },
-            { question: "Điểm khác biệt chính giữa FOB và CIF là:", options: ["CIF yêu cầu người bán trả cước và mua bảo hiểm chặng biển", "FOB không dùng đường biển", "FOB yêu cầu người bán giao tại kho người mua", "CIF không cần chứng từ vận tải"], answer: 0 },
-            { question: "Trong hợp đồng ngoại thương, điều khoản nào giúp giảm tranh chấp khi có vi phạm thanh toán?", options: ["Điều khoản quảng cáo", "Điều khoản luật áp dụng và giải quyết tranh chấp", "Điều khoản màu bao bì", "Điều khoản khuyến mãi"], answer: 1 },
-            { question: "Mục tiêu chính của phòng ngừa rủi ro tỷ giá là:", options: ["Kéo dài thời gian thanh toán", "Tăng số lượng chứng từ", "Cố định/giảm biến động giá trị dòng tiền ngoại tệ", "Tăng chi phí bảo hiểm"], answer: 2 },
-            { question: "Khi doanh nghiệp xuất khẩu chọn FOB, rủi ro vận chuyển biển sau điểm giao thuộc về:", options: ["Hải quan", "Người bán", "Ngân hàng thông báo", "Người mua"], answer: 3 },
-            { question: "Một biện pháp phòng ngừa rủi ro quốc gia là:", options: ["Đa dạng hóa thị trường và dùng bảo hiểm rủi ro phù hợp", "Tăng mua hàng từ một thị trường duy nhất", "Bỏ điều khoản thanh toán trong hợp đồng", "Chỉ thanh toán tiền mặt"], answer: 0 },
-            { question: "Phát biểu đúng về vai trò thanh toán quốc tế đối với ngoại thương là:", options: ["Không ảnh hưởng tốc độ luân chuyển hàng hóa", "Là công cụ hoàn tất giá trị hàng hóa giữa bên mua và bên bán ở các quốc gia khác nhau", "Chỉ dùng cho dịch vụ, không dùng cho hàng hóa", "Không cần ngân hàng tham gia"], answer: 1 }
+            { question: "CĐS là viết tắt của cụm từ nào?", options: ["Công đoạn số", "Chuyển đổi số", "Công nghệ số", "Cơ điện số"], answer: 1 },
+            { question: "Mục tiêu chính của chuyển đổi số là gì?", options: ["Giảm chi phí", "Tăng năng suất và hiệu quả", "Thay thế hoàn toàn con người", "Tạo ra sản phẩm mới"], answer: 1 },
+            { question: "Yếu tố nào KHÔNG phải là trụ cột của CĐS?", options: ["Công nghệ", "Con người", "Quy trình", "Thời tiết"], answer: 3 },
+            { question: "Trong CĐS, dữ liệu được xem là gì?", options: ["Tài nguyên", "Chi phí", "Rủi ro", "Phụ trợ"], answer: 0 },
+            { question: "Công nghệ nào thường được nhắc đến trong CĐS?", options: ["AI", "Blockchain", "IoT", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Vì sao doanh nghiệp cần CĐS?", options: ["Để tồn tại và phát triển trong môi trường cạnh tranh", "Để giảm nhân sự", "Để thay đổi thương hiệu", "Để tăng giá sản phẩm"], answer: 0 },
+            { question: "Chính phủ điện tử là một ví dụ của?", options: ["CĐS trong doanh nghiệp", "CĐS trong giáo dục", "CĐS trong quản lý nhà nước", "CĐS trong y tế"], answer: 2 },
+            { question: "Lợi ích của CĐS đối với khách hàng là gì?", options: ["Trải nghiệm tốt hơn", "Dịch vụ nhanh hơn", "Cá nhân hóa sản phẩm", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Một trong những thách thức lớn nhất của CĐS là?", options: ["Thiếu công nghệ", "Kháng cự thay đổi từ con người", "Thiếu vốn đầu tư", "Thiếu dữ liệu"], answer: 1 },
+            { question: "CĐS trong giáo dục giúp gì?", options: ["Học tập mọi lúc mọi nơi", "Cá nhân hóa chương trình học", "Tăng tính tương tác", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Doanh nghiệp muốn triển khai CĐS cần bước đầu tiên là?", options: ["Đầu tư công nghệ ngay", "Xây dựng chiến lược và lộ trình", "Tuyển thêm nhân sự", "Thay đổi sản phẩm"], answer: 1 },
+            { question: "Big Data trong CĐS có vai trò gì?", options: ["Lưu trữ dữ liệu lớn", "Phân tích để ra quyết định", "Tăng tốc độ xử lý", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Một ví dụ về CĐS trong y tế là?", options: ["Hồ sơ bệnh án điện tử", "Khám bệnh trực tuyến", "Ứng dụng theo dõi sức khỏe", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Blockchain trong CĐS thường được ứng dụng vào?", options: ["Quản lý chuỗi cung ứng", "Giao dịch tài chính", "Xác thực thông tin", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "AI trong CĐS giúp gì?", options: ["Tự động hóa quy trình", "Dự đoán hành vi khách hàng", "Phân tích dữ liệu nhanh chóng", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Một doanh nghiệp nhỏ muốn CĐS nhưng thiếu vốn, giải pháp nào phù hợp nhất?", options: ["Tự phát triển công nghệ", "Sử dụng dịch vụ điện toán đám mây", "Tuyển chuyên gia công nghệ riêng", "Mua hệ thống lớn"], answer: 1 },
+            { question: "Trong CĐS, yếu tố nào quyết định thành công lâu dài?", options: ["Công nghệ hiện đại", "Văn hóa doanh nghiệp", "Vốn đầu tư", "Chính sách nhà nước"], answer: 1 },
+            { question: "Khi triển khai CĐS, doanh nghiệp cần chú ý đến vấn đề nào về dữ liệu?", options: ["Bảo mật và quyền riêng tư", "Tốc độ xử lý", "Dung lượng lưu trữ", "Định dạng dữ liệu"], answer: 0 },
+            { question: "Một ví dụ về thất bại trong CĐS là?", options: ["Đầu tư công nghệ nhưng không đào tạo nhân sự", "Không có chiến lược rõ ràng", "Thiếu sự đồng thuận trong tổ chức", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Trong bối cảnh toàn cầu hóa, CĐS giúp doanh nghiệp gì?", options: ["Mở rộng thị trường quốc tế", "Tăng khả năng cạnh tranh", "Tối ưu hóa chuỗi cung ứng", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "“Digitization” là gì?", options: ["Chuyển dữ liệu giấy sang dạng số", "Tăng tự động hóa quy trình", "Đổi mô hình kinh doanh", "Lưu trữ dữ liệu lên đám mây"], answer: 0 },
+            { question: "“Digitalization” nhấn mạnh vào yếu tố nào?", options: ["Tăng tự động hóa quy trình", "Mua phần cứng mới", "Dựng website tĩnh", "Thuê ngoài CNTT"], answer: 0 },
+            { question: "Chuyển đổi số tăng tốc mạnh trong bối cảnh nào?", options: ["CMCN 3.0", "CMCN 4.0", "Internet 1.0", "Máy in phun"], answer: 1 },
+            { question: "Ba trụ cột của CĐS là?", options: ["Sản phẩm – Giá – Kênh", "Dữ liệu – Pháp lý – Tài chính", "Con người – Quy trình – Công nghệ", "Marketing – Bán hàng – Truyền thông"], answer: 2 },
+            { question: "Ví dụ “không dùng tiền mặt” là gì?", options: ["Tiền mặt tại quầy", "Séc giấy", "Ví điện tử (eWallet)", "Phiếu giấy"], answer: 2 },
+            { question: "Lợi ích nổi bật của CĐS với Chính phủ là?", options: ["Tăng giấy tờ thủ tục", "Dịch vụ số tốt, quyết định kịp thời", "Cắt giảm dịch vụ công", "Thu thuế cao hơn mọi nơi"], answer: 1 },
+            { question: "Ngày Chuyển đổi số quốc gia ở Việt Nam là?", options: ["01/01", "10/10", "20/10", "10/11"], answer: 1 },
+            { question: "“DTI” trong CĐS tại Việt Nam là gì?", options: ["Digital Technology Innovation", "Digital Transformation Index", "Data Transfer Infrastructure", "Digital Training Initiative"], answer: 1 },
+            { question: "Lợi ích của CĐS đối với doanh nghiệp là?", options: ["Tăng minh bạch và hiệu quả quản trị", "Tối ưu hóa quy trình kinh doanh", "Nâng cao năng lực cạnh tranh", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Lợi ích của CĐS đối với người tiêu dùng là?", options: ["Bình đẳng cơ hội tiếp cận dịch vụ", "Tiếp cận thị trường nhanh chóng", "Nâng cao trải nghiệm và lưu trữ thông tin", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Thách thức lớn nhất khi triển khai CĐS tại Việt Nam là?", options: ["Thiếu chiến lược rõ ràng", "Thiếu lãnh đạo có năng lực", "Thiếu cơ sở hạ tầng và chi phí vận hành", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Yếu tố dữ liệu trong CĐS yêu cầu gì?", options: ["Khối lượng đủ lớn", "Tính xác thực và đáng tin cậy", "Khả năng truy cập và phân tích", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Khách hàng trong CĐS đóng vai trò gì?", options: ["Kim chỉ nam cho chiến lược", "Động lực cốt lõi của quá trình", "Quyết định trải nghiệm và sản phẩm", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Nhân lực và văn hóa ảnh hưởng đến CĐS như thế nào?", options: ["Quyết định sự thành bại", "Đòi hỏi kỹ năng số mới", "Cần văn hóa chấp nhận rủi ro", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Công nghệ nền tảng trong CĐS gồm?", options: ["Cloud, AI, IoT, Blockchain", "Điện thoại, máy in, máy fax", "Website, email, mạng LAN", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Chính sách pháp luật trong CĐS cần chú trọng điều gì?", options: ["Giao dịch điện tử", "Chữ ký số", "Bảo vệ dữ liệu cá nhân", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Một ví dụ về thất bại trong CĐS là?", options: ["Đầu tư công nghệ nhưng không đào tạo nhân sự", "Không có chiến lược rõ ràng", "Thiếu sự đồng thuận trong tổ chức", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "CĐS trong bối cảnh Covid-19 giúp gì?", options: ["Chính phủ số cung cấp dịch vụ công trực tuyến", "Kinh tế số qua thương mại điện tử và giao hàng", "Nền tảng số hỗ trợ làm việc tại nhà", "Tất cả các đáp án trên"], answer: 3 },
+            { question: "Xu hướng công nghệ của CMCN 4.0 gồm?", options: ["IoT, AI, Blockchain, Big Data", "Điện thoại bàn, máy fax", "Máy hơi nước, luyện thép", "Tất cả các đáp án trên"], answer: 0 },
+            { question: "Yếu tố quyết định thành công lâu dài của CĐS là?", options: ["Công nghệ hiện đại", "Văn hóa doanh nghiệp và con người", "Vốn đầu tư lớn", "Chính sách nhà nước"], answer: 1 }
         ];
 
         let userAnswers = [];

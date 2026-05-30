@@ -356,8 +356,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Chương 6 - Trắc nghiệm thanh toán quốc tế</h1>
-            <p>Bộ 45 câu hỏi A/B/C/D</p>
+            <h1>Chương 6 - Trắc nghiệm Kỹ năng Số</h1>
+            <p>Bộ 30 câu hỏi A/B/C/D</p>
         </div>
 
         <nav class="main-menu">
@@ -374,7 +374,7 @@
             <div class="quiz-info">
                 <div class="info-item">
                     <span class="info-label">Câu hỏi</span>
-                    <span class="info-value"><span id="current-question">0</span>/45</span>
+                    <span class="info-value"><span id="current-question">0</span>/30</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Câu đúng</span>
@@ -397,7 +397,7 @@
             <div id="quiz-container"></div>
 
             <div id="results-container" class="results-container">
-                <div class="score-circle" id="score-circle">0/45</div>
+                <div class="score-circle" id="score-circle">0/30</div>
                 <div class="results-message" id="results-message"></div>
                 <div class="results-details" id="results-details"></div>
                 <div class="wrong-answers" id="wrong-answers" style="display: none;"></div>
@@ -412,51 +412,36 @@
 
     <script>
         const quizData = [
-            { question: 'Theo UCP 600, nguyên tắc cốt lõi khi ngân hàng xử lý L/C là:', options: ['Kiểm tra sự phù hợp trên bề mặt của bộ chứng từ với điều khoản L/C', 'Kiểm tra hàng hóa thực tế tại cảng', 'Bảo đảm người mua luôn có lãi', 'Định giá lại hợp đồng ngoại thương'], answer: 0 },
-            { question: 'Nguyên tắc độc lập của L/C được hiểu là:', options: ['L/C phụ thuộc hoàn toàn vào hợp đồng mua bán', 'L/C độc lập với hợp đồng cơ sở, ngân hàng giao dịch trên chứng từ', 'L/C chỉ có hiệu lực khi hàng đã bán xong', 'L/C không liên quan ngân hàng'], answer: 1 },
-            { question: 'Trong giao dịch L/C, Applicant là:', options: ['Người thụ hưởng', 'Ngân hàng phát hành', 'Người yêu cầu mở L/C (thường là nhà nhập khẩu)', 'Hãng tàu'], answer: 2 },
-            { question: 'Beneficiary trong L/C là:', options: ['Người giám định', 'Ngân hàng trung ương', 'Đơn vị kiểm dịch', 'Người hưởng lợi từ L/C (thường là nhà xuất khẩu)'], answer: 3 },
-            { question: 'Issuing Bank là ngân hàng:', options: ['Phát hành L/C theo yêu cầu Applicant và cam kết thanh toán khi chứng từ phù hợp', 'Thông báo L/C nhưng không cam kết thanh toán', 'Chỉ xử lý vận đơn', 'Chỉ xử lý ngoại hối tiền mặt'], answer: 0 },
-            { question: 'Advising Bank có vai trò chính là:', options: ['Bắt buộc thanh toán thay issuing bank', 'Thông báo L/C cho người thụ hưởng và xác thực tính chân thực bề ngoài của điện L/C', 'Quyết định sửa đổi điều khoản L/C', 'Phát hành C/O'], answer: 1 },
-            { question: 'Confirming Bank trong L/C có xác nhận là ngân hàng:', options: ['Làm dịch vụ vận tải', 'Chỉ thông báo L/C', 'Bổ sung cam kết thanh toán riêng, độc lập với issuing bank', 'Bắt buộc phải là ngân hàng nước người mua'], answer: 2 },
-            { question: 'L/C không hủy ngang (Irrevocable L/C) nghĩa là:', options: ['Không cần bộ chứng từ', 'Applicant được hủy bất kỳ lúc nào', 'Chỉ áp dụng cho giao dịch nội địa', 'Không thể sửa đổi/hủy nếu không có sự đồng ý của các bên liên quan theo quy định'], answer: 3 },
-            { question: 'Theo UCP 600 Điều 14, thời hạn tối đa ngân hàng có để kiểm tra chứng từ là:', options: ['5 ngày làm việc ngân hàng kể từ ngày xuất trình', '3 ngày làm việc ngân hàng', '7 ngày dương lịch', '10 ngày làm việc ngân hàng'], answer: 0 },
-            { question: 'Khái niệm discrepancy trong L/C là:', options: ['Chênh lệch tỷ giá trong hợp đồng', 'Bất hợp lệ/sai biệt của chứng từ so với điều khoản L/C hoặc UCP 600', 'Chậm giao hàng thực tế tại cảng', 'Sai tên tàu trong booking note'], answer: 1 },
-            { question: 'Khi bộ chứng từ có discrepancy, issuing bank có quyền:', options: ['Tự sửa chứng từ', 'Bắt buộc phải thanh toán', 'Từ chối thanh toán hoặc xin ý kiến chấp nhận của applicant theo quy định', 'Phạt ngay người thụ hưởng'], answer: 2 },
-            { question: 'Theo UCP 600, ngân hàng giao dịch dựa trên:', options: ['Báo cáo thị trường', 'Hàng hóa, dịch vụ, hiệu suất thực tế', 'Kết quả kiểm định của hải quan', 'Chứng từ chứ không phải hàng hóa/dịch vụ'], answer: 3 },
-            { question: 'Một chức năng quan trọng của Commercial Invoice trong L/C là:', options: ['Thể hiện yêu cầu thanh toán và mô tả thương mại phù hợp L/C', 'Chứng minh quyền sở hữu hàng như B/L theo lệnh', 'Thay thế chứng từ bảo hiểm', 'Thay thế giấy chứng nhận xuất xứ'], answer: 0 },
-            { question: 'Chứng từ nào thường là bằng chứng quan trọng hàng đã xếp lên tàu?', options: ['Packing List', 'Bill of Lading (B/L)', 'Certificate of Origin', 'Sales Contract'], answer: 1 },
-            { question: 'Theo UCP 600 Điều 28, chứng từ bảo hiểm tối thiểu thường phải ở mức:', options: ['100% trị giá hóa đơn', '105% trị giá hóa đơn', '110% trị giá hóa đơn', '120% trị giá hóa đơn'], answer: 2 },
-            { question: 'Chứng từ bảo hiểm nào không được chấp nhận theo Điều 28 UCP 600?', options: ['Declaration under open cover', 'Insurance Certificate', 'Insurance Policy', 'Cover Note'], answer: 3 },
-            { question: 'Nếu L/C yêu cầu clean on board B/L, hiểu đúng là:', options: ['B/L thể hiện hàng đã xếp lên tàu và không có ghi chú bất lợi', 'B/L có thể có ghi chú bất lợi miễn người mua đồng ý', 'Chỉ cần bản copy B/L', 'Chỉ cần booking confirmation'], answer: 0 },
-            { question: 'Khi L/C cấm chuyển tải nhưng B/L thể hiện có transshipment, khả năng là:', options: ['Không ảnh hưởng', 'Bất hợp lệ/sai biệt chứng từ', 'Tự động được miễn trừ', 'Chỉ ảnh hưởng phí vận tải'], answer: 1 },
-            { question: 'Latest shipment date trong L/C có ý nghĩa:', options: ['Ngày hết hiệu lực bảo hiểm', 'Ngày lập hóa đơn', 'Hạn cuối cùng hàng phải được giao/xếp theo điều kiện L/C', 'Ngày nộp thuế nhập khẩu'], answer: 2 },
-            { question: 'Nếu ngày shipped on board muộn hơn latest shipment date:', options: ['Chỉ cần sửa invoice', 'Vẫn phù hợp nếu trị giá đúng', 'Được bỏ qua mặc định', 'Là sai biệt nghiêm trọng về thời hạn giao hàng'], answer: 3 },
-            { question: 'Theo ISBP 745, dữ liệu giữa các chứng từ phải:', options: ['Không mâu thuẫn trọng yếu (not to conflict)', 'Giống từng ký tự tuyệt đối mọi nơi', 'Chỉ cần khớp trên hóa đơn', 'Có thể mâu thuẫn nếu người bán giải trình'], answer: 0 },
-            { question: 'Vai trò của ISBP 745 là:', options: ['Thay thế UCP 600', 'Hướng dẫn thực hành kiểm tra chứng từ khi áp dụng UCP 600', 'Quy định biểu thuế hải quan', 'Quy định Incoterms'], answer: 1 },
-            { question: 'L/C at sight có nghĩa là:', options: ['Chỉ thanh toán sau khi hàng bán hết', 'Thanh toán sau 60 ngày kể từ ngày chấp nhận', 'Thanh toán khi xuất trình chứng từ phù hợp theo quy định', 'Chỉ dùng cho dịch vụ'], answer: 2 },
-            { question: 'L/C usance (deferred/usance) thường là:', options: ['Không thể chiết khấu', 'Trả tiền ngay tại thời điểm xuất trình', 'Không cần chứng từ vận tải', 'Trả tiền tại thời điểm tương lai theo kỳ hạn quy định'], answer: 3 },
-            { question: 'Mục tiêu chính của việc soạn L/C chi tiết là:', options: ['Giảm mơ hồ, hạn chế tranh chấp và sai biệt chứng từ', 'Tăng số lượng chứng từ không cần thiết', 'Chỉ để tăng phí ngân hàng', 'Thay thế hợp đồng ngoại thương'], answer: 0 },
-            { question: 'Nếu điều kiện Incoterms trong invoice khác nội dung L/C, đây thường là:', options: ['Không quan trọng', 'Sai biệt có thể dẫn đến từ chối thanh toán', 'Tự động điều chỉnh theo hợp đồng', 'Chỉ ảnh hưởng người vận tải'], answer: 1 },
-            { question: 'Chọn nhận định đúng về trách nhiệm ngân hàng trong L/C:', options: ['Ngân hàng chịu trách nhiệm mọi tranh chấp thương mại', 'Ngân hàng chịu trách nhiệm chất lượng hàng', 'Ngân hàng không chịu trách nhiệm chất lượng hàng, chỉ xử lý chứng từ', 'Ngân hàng chịu trách nhiệm biến động giá hàng'], answer: 2 },
-            { question: 'Trong bộ chứng từ L/C, việc thiếu một bản gốc khi L/C yêu cầu full set có thể bị coi là:', options: ['Tự động chấp nhận nếu có bản scan', 'Không vấn đề', 'Chỉ là lỗi kỹ thuật nhỏ luôn bỏ qua', 'Discrepancy'], answer: 3 },
-            { question: 'Khi nhận thông báo từ chối chứng từ, người xuất khẩu nên:', options: ['Xem chi tiết sai biệt, quyết định sửa/chấp nhận/đàm phán waiver với applicant theo thời hạn', 'Bỏ qua vì ngân hàng sẽ tự sửa', 'Gửi lại đúng bộ cũ nhiều lần', 'Chỉ gọi điện miệng cho ngân hàng'], answer: 0 },
-            { question: 'Waiver of discrepancies trong thực tế là:', options: ['Ngân hàng tự miễn sai biệt không cần applicant', 'Applicant chấp nhận các sai biệt để ngân hàng vẫn thanh toán theo quyết định của họ', 'Người bán tự tuyên bố miễn sai biệt', 'Cơ quan hải quan miễn thuế'], answer: 1 },
-            { question: 'Tình huống: L/C yêu cầu Invoice mô tả 1,000 pcs brand new, nhưng invoice ghi 1,050 pcs và không có brand new. Đánh giá đúng là:', options: ['Chỉ sai khi người mua khiếu nại', 'Phù hợp vì cùng loại hàng', 'Sai biệt về số lượng và mô tả hàng', 'Không ảnh hưởng nếu tổng tiền đúng'], answer: 2 },
-            { question: 'Tình huống: L/C yêu cầu Insurance Certificate 110% Invoice Value, ICC (A). Chứng từ xuất trình 100% và ICC (C). Đây là:', options: ['Không cần kiểm tra theo UCP', 'Phù hợp vì vẫn có bảo hiểm', 'Chỉ sai về hình thức', 'Sai biệt về cả mức bảo hiểm và phạm vi rủi ro'], answer: 3 },
-            { question: 'Tình huống: L/C yêu cầu 3/3 original B/L, bộ chứng từ chỉ nộp 2/3. Kết luận phù hợp nhất:', options: ['Sai biệt do không đủ full set theo yêu cầu', 'Có thể chấp nhận vì đã có đa số', 'Tự động thay bằng telex release', 'Chỉ sai khi hàng chưa cập cảng'], answer: 0 },
-            { question: 'Tình huống: L/C cấm transshipment, nhưng B/L có ghi chú chuyển tải tại cảng trung chuyển. Đây là:', options: ['Không ảnh hưởng', 'Discrepancy vì mâu thuẫn điều kiện L/C', 'Được chấp nhận mặc định theo ISBP', 'Chỉ ảnh hưởng bảo hiểm'], answer: 1 },
-            { question: 'Tình huống: Ngày shipment trên B/L là 20/07, trong khi latest shipment date là 15/07. Nhận định đúng:', options: ['Chỉ cần sửa packing list', 'Có thể bỏ qua nếu người mua chưa khiếu nại', 'Sai biệt giao hàng trễ hạn', 'Không liên quan thanh toán L/C'], answer: 2 },
-            { question: 'Tình huống: L/C quy định chứng từ phải xuất trình trong vòng 21 ngày từ ngày shipment, nhưng doanh nghiệp nộp ngày thứ 28. Đây là:', options: ['Không ảnh hưởng nếu chứng từ đầy đủ', 'Luôn được chấp nhận', 'Chỉ ảnh hưởng phí', 'Sai biệt về thời hạn xuất trình'], answer: 3 },
-            { question: 'Tình huống: Applicant yêu cầu sửa L/C, nhưng Beneficiary chưa chấp nhận amendment. Trạng thái amendment là:', options: ['Chưa ràng buộc Beneficiary cho đến khi được chấp nhận theo nguyên tắc áp dụng', 'Tự động có hiệu lực', 'Vẫn có hiệu lực bắt buộc với mọi bên', 'Do Advising Bank tự quyết'], answer: 0 },
-            { question: 'Tình huống: Bộ chứng từ có discrepancy, applicant đồng ý waiver bằng văn bản. Ngân hàng phát hành có thể:', options: ['Vẫn từ chối trong mọi trường hợp', 'Thanh toán/chấp nhận theo quyết định xử lý sau khi có waiver phù hợp', 'Tự động chuyển thành D/P', 'Yêu cầu hủy toàn bộ hợp đồng'], answer: 1 },
-            { question: 'Tình huống: Người bán giao đúng hàng thực tế nhưng chứng từ sai điều kiện L/C. Theo nguyên tắc L/C:', options: ['Ngân hàng phải đi kiểm tra hàng', 'Ngân hàng phải thanh toán vì hàng đúng', 'Ngân hàng có thể từ chối vì giao dịch dựa trên chứng từ', 'Không cần sửa chứng từ'], answer: 2 },
-            { question: 'Tình huống: Advising Bank thông báo L/C giả mạo do không xác thực điện SWIFT đúng quy trình. Rủi ro chính phản ánh tầm quan trọng của:', options: ['Chứng từ bảo hiểm', 'Nguyên tắc độc lập', 'Điều kiện Incoterms', 'Quy trình xác thực tính chân thực của thông điệp L/C'], answer: 3 },
-            { question: 'Tình huống: Confirming Bank đã xác nhận L/C và chứng từ xuất trình phù hợp, nhưng issuing bank mất khả năng thanh toán. Nhận định đúng là:', options: ['Confirming Bank vẫn phải thực hiện cam kết thanh toán theo xác nhận của mình', 'Beneficiary không được trả tiền', 'Applicant phải trả trực tiếp cho Beneficiary trước', 'Advising Bank phải trả thay'], answer: 0 },
-            { question: 'Tình huống: L/C yêu cầu tất cả chứng từ bằng tiếng Anh, nhưng C/O nộp bằng ngôn ngữ khác không có bản dịch theo yêu cầu. Khả năng cao:', options: ['Vẫn phù hợp', 'Có thể bị nêu sai biệt vì không đáp ứng điều kiện L/C', 'Tự động hợp lệ nếu có dấu đỏ', 'Không liên quan đến ngân hàng'], answer: 1 },
-            { question: 'Tình huống: Doanh nghiệp muốn giảm sai biệt chứng từ lặp lại nhiều lần. Biện pháp phù hợp nhất là:', options: ['Chỉ dựa vào kinh nghiệm cá nhân', 'Nộp chứng từ sớm hơn nhưng không kiểm tra', 'Thiết lập checklist chứng từ theo từng field L/C và rà soát nội bộ trước xuất trình', 'Bỏ qua ISBP 745'], answer: 2 },
-            { question: 'Tình huống: Một bất hợp lệ nhỏ được phát hiện sớm trước khi xuất trình trong khi còn thời gian. Hành động tối ưu cho Beneficiary là:', options: ['Chờ applicant liên hệ trước', 'Xuất trình ngay để thử vận may', 'Hủy lô hàng', 'Sửa chứng từ cho phù hợp hoặc xin amendment trước khi xuất trình'], answer: 3 },
-            { question: 'Tình huống: Giao dịch với đối tác mới, thị trường rủi ro cao, người bán muốn tăng chắc chắn thu tiền. Phương án phù hợp hơn là:', options: ['L/C không hủy ngang có xác nhận (khi cần) và kiểm soát chặt chứng từ', 'D/A dài ngày', 'Ghi sổ không bảo đảm', 'Chuyển tiền trả sau toàn bộ'], answer: 0 }
+            { question: 'Kỹ năng số là gì?', options: ['Khả năng đọc hiểu văn bản', 'Khả năng tìm kiếm, đánh giá, sử dụng, chia sẻ và tạo nội dung bằng CNTT và Internet', 'Khả năng viết báo cáo', 'Khả năng giao tiếp bằng tiếng Anh'], answer: 1 },
+            { question: 'Kiến thức kỹ thuật số theo UNESCO là gì?', options: ['Khả năng lập trình', 'Khả năng tiếp cận, quản lý, hiểu, tích hợp, giao tiếp, đánh giá và tạo thông tin qua công nghệ số', 'Khả năng sử dụng email', 'Khả năng thiết kế đồ họa'], answer: 1 },
+            { question: 'Theo Microsoft, kiến thức kỹ thuật số bao gồm:', options: ['Kỹ năng đọc, viết, kỹ thuật và tư duy phản biện', 'Kỹ năng nói trước đám đông', 'Kỹ năng quản lý dự án', 'Kỹ năng lãnh đạo'], answer: 0 },
+            { question: 'Điểm khác biệt chính giữa kỹ năng số và kiến thức kỹ thuật số là:', options: ['Kỹ năng số thiên về thao tác, kiến thức kỹ thuật số thiên về hiểu và tư duy', 'Kỹ năng số chỉ dành cho chuyên gia', 'Kiến thức kỹ thuật số không liên quan đến CNTT', 'Không có sự khác biệt'], answer: 0 },
+            { question: 'Quyết định 146/QĐ-TTg liên quan đến:', options: ['Phát triển nông nghiệp', 'Phê duyệt đề án nâng cao nhận thức, phổ cập kỹ năng và phát triển nguồn nhân lực CĐS quốc gia', 'Chính sách y tế', 'Giáo dục phổ thông'], answer: 1 },
+            { question: 'Vai trò của kỹ năng số trong chuyển đổi số là:', options: ['Giúp người dân giải trí', 'Nâng cao năng lực lao động, thích ứng công nghệ mới', 'Giảm chi phí sản xuất', 'Tăng trưởng GDP trực tiếp'], answer: 1 },
+            { question: 'Nhu cầu bồi dưỡng kỹ năng số xuất phát từ:', options: ['Cách mạng công nghiệp 4.0', 'Nhu cầu giải trí', 'Xu hướng du lịch', 'Xu hướng thời trang'], answer: 0 },
+            { question: 'Khung tiêu chuẩn kỹ năng số phổ biến trên thế giới là:', options: ['DigComp của EU', 'TOEFL', 'IELTS', 'SAT'], answer: 0 },
+            { question: 'Chuẩn kỹ năng sử dụng CNTT tại Việt Nam được ban hành bởi:', options: ['Bộ Giáo dục', 'Bộ Thông tin và Truyền thông', 'Bộ Công thương', 'Bộ Lao động'], answer: 1 },
+            { question: 'Khung tiêu chuẩn kỹ năng số giúp:', options: ['Định hướng đào tạo và đánh giá năng lực số', 'Giảm chi phí sản xuất', 'Tăng trưởng kinh tế trực tiếp', 'Giải trí cho người dân'], answer: 0 },
+            { question: 'Một kỹ năng cốt lõi của nhân lực số là:', options: ['Tư duy phản biện', 'Nấu ăn', 'Thể thao', 'Nghệ thuật'], answer: 0 },
+            { question: 'Kỹ năng hợp tác trực tuyến thuộc nhóm:', options: ['Kỹ năng số cốt lõi', 'Kỹ năng mềm truyền thống', 'Kỹ năng quản lý', 'Kỹ năng lãnh đạo'], answer: 0 },
+            { question: 'Kỹ năng sáng tạo nội dung số giúp:', options: ['Tăng khả năng cạnh tranh trong thị trường lao động', 'Giảm chi phí sản xuất', 'Giải trí', 'Tăng trưởng GDP'], answer: 0 },
+            { question: 'An toàn thông tin là:', options: ['Bảo vệ dữ liệu và hệ thống khỏi truy cập trái phép', 'Giải trí trực tuyến', 'Quản lý dự án', 'Tăng trưởng kinh tế'], answer: 0 },
+            { question: 'Một rủi ro an ninh mạng phổ biến là:', options: ['Phishing (lừa đảo trực tuyến)', 'Du lịch', 'Thời trang', 'Thể thao'], answer: 0 },
+            { question: 'Giải pháp bảo mật cho doanh nghiệp gồm:', options: ['Sử dụng tường lửa, mã hóa dữ liệu', 'Tổ chức tiệc', 'Mua sắm', 'Quảng cáo'], answer: 0 },
+            { question: 'Luật An toàn thông tin Việt Nam ban hành năm:', options: ['2015', '2010', '2020', '2005'], answer: 0 },
+            { question: 'Chính sách pháp luật về chuyển đổi nhận thức nhằm:', options: ['Thúc đẩy tư duy số trong xã hội', 'Giảm chi phí sản xuất', 'Tăng trưởng GDP trực tiếp', 'Giải trí'], answer: 0 },
+            { question: 'Chính phủ Việt Nam chú trọng phát triển kỹ năng số cho:', options: ['Người dân, doanh nghiệp và cơ quan nhà nước', 'Chỉ doanh nghiệp', 'Chỉ người dân', 'Chỉ cơ quan nhà nước'], answer: 0 },
+            { question: 'Kỹ năng số liên quan trực tiếp đến:', options: ['CNTT và Internet', 'Nông nghiệp', 'Du lịch', 'Thời trang'], answer: 0 },
+            { question: 'Kiến thức kỹ thuật số giúp người lao động:', options: ['Điều hướng thế giới số hiệu quả', 'Giải trí', 'Du lịch', 'Thể thao'], answer: 0 },
+            { question: 'Một ví dụ về kỹ năng số là:', options: ['Sử dụng phần mềm quản lý dự án', 'Nấu ăn', 'Chơi thể thao', 'Vẽ tranh'], answer: 0 },
+            { question: 'Một ví dụ về kiến thức kỹ thuật số là:', options: ['Hiểu cách bảo mật dữ liệu cá nhân', 'Chơi game', 'Du lịch', 'Thời trang'], answer: 0 },
+            { question: 'Chính sách phát triển kỹ năng số tại Việt Nam nhằm:', options: ['Đáp ứng nhu cầu nhân lực cho chuyển đổi số', 'Giải trí', 'Du lịch', 'Thời trang'], answer: 0 },
+            { question: 'Một mối đe dọa an ninh mạng là:', options: ['Malware (phần mềm độc hại)', 'Thời trang', 'Du lịch', 'Thể thao'], answer: 0 },
+            { question: 'Giải pháp bảo mật cho cá nhân là:', options: ['Sử dụng mật khẩu mạnh', 'Mua sắm', 'Du lịch', 'Thể thao'], answer: 0 },
+            { question: 'Chính sách pháp luật về chuyển đổi số ở Việt Nam nhấn mạnh:', options: ['Nâng cao nhận thức và tư duy số', 'Giải trí', 'Du lịch', 'Thời trang'], answer: 0 },
+            { question: 'Một kỹ năng số quan trọng trong doanh nghiệp là:', options: ['Phân tích dữ liệu', 'Nấu ăn', 'Thể thao', 'Nghệ thuật'], answer: 0 },
+            { question: 'Kỹ năng số giúp người tiêu dùng:', options: ['Mua sắm trực tuyến an toàn', 'Du lịch', 'Thời trang', 'Thể thao'], answer: 0 },
+            { question: 'Tư duy số là:', options: ['Khả năng áp dụng công nghệ số để giải quyết vấn đề', 'Khả năng nấu ăn', 'Khả năng chơi thể thao', 'Khả năng vẽ tranh'], answer: 0 }
         ];
 
         let userAnswers = [];
