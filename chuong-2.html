@@ -446,18 +446,63 @@
 
         let userAnswers = [];
         let questionShuffles = []; // stores shuffled option order per question
+        let answerPositionCounts = [0, 0, 0, 0];
+
+        function shuffleArray(items) {
+            const array = items.slice();
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function getBalancedAnswerPosition() {
+            const minCount = Math.min(...answerPositionCounts);
+            const candidates = answerPositionCounts
+                .map((count, index) => ({ count, index }))
+                .filter(item => item.count === minCount)
+                .map(item => item.index);
+
+            return candidates[Math.floor(Math.random() * candidates.length)];
+        }
+
+        function buildBalancedShuffle(item) {
+            const correctOption = {
+                text: item.options[item.answer],
+                originalIndex: item.answer
+            };
+
+            const distractors = item.options
+                .map((opt, index) => ({ text: opt, originalIndex: index }))
+                .filter(opt => opt.originalIndex !== item.answer);
+
+            const shuffledDistractors = shuffleArray(distractors);
+            const answerPosition = getBalancedAnswerPosition();
+            const result = [];
+            let distractorIndex = 0;
+
+            for (let i = 0; i < item.options.length; i++) {
+                if (i === answerPosition) {
+                    result.push(correctOption);
+                } else {
+                    result.push(shuffledDistractors[distractorIndex]);
+                    distractorIndex++;
+                }
+            }
+
+            answerPositionCounts[answerPosition]++;
+            return result;
+        }
 
         function renderQuiz() {
             const container = document.getElementById('quiz-container');
             container.innerHTML = '';
             questionShuffles = [];
+            answerPositionCounts = [0, 0, 0, 0];
 
             quizData.forEach((item, index) => {
-                const opts = item.options.map((opt, i) => ({ text: opt, originalIndex: i }));
-                for (let i = opts.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [opts[i], opts[j]] = [opts[j], opts[i]];
-                }
+                const opts = buildBalancedShuffle(item);
                 questionShuffles.push(opts);
 
                 const questionDiv = document.createElement('div');
@@ -605,16 +650,22 @@
             const wrongList = [];
             quizData.forEach((item, index) => {
                 const userAnswer = userAnswers[index];
+                const userDisplay = userAnswer !== undefined
+                    ? questionShuffles[index].findIndex(o => o.originalIndex === userAnswer)
+                    : -1;
+                const correctDisplay = questionShuffles[index].findIndex(o => o.originalIndex === item.answer);
+
                 if (userAnswer !== item.answer) {
-                    const selected = userAnswer !== undefined
-                        ? `${labels[userAnswer]} - ${item.options[userAnswer]}`
+                    const selected = userDisplay >= 0
+                        ? `${labels[userDisplay]} - ${questionShuffles[index][userDisplay].text}`
                         : 'Chưa chọn';
+                    const correctLabel = correctDisplay >= 0 ? labels[correctDisplay] : '?';
 
                     wrongList.push(`
                         <div class="wrong-item">
                             <div><strong>Câu ${index + 1}:</strong> ${item.question}</div>
                             <div>Bạn chọn: <strong>${selected}</strong></div>
-                            <div>Đáp án đúng: <strong>${labels[item.answer]}</strong> - ${item.options[item.answer]}</div>
+                            <div>Đáp án đúng: <strong>${correctLabel}</strong> - ${questionShuffles[index][correctDisplay].text}</div>
                         </div>
                     `);
                 }
