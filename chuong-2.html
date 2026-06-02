@@ -445,12 +445,21 @@
         ];
 
         let userAnswers = [];
+        let questionShuffles = []; // stores shuffled option order per question
 
         function renderQuiz() {
             const container = document.getElementById('quiz-container');
             container.innerHTML = '';
+            questionShuffles = [];
 
             quizData.forEach((item, index) => {
+                const opts = item.options.map((opt, i) => ({ text: opt, originalIndex: i }));
+                for (let i = opts.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [opts[i], opts[j]] = [opts[j], opts[i]];
+                }
+                questionShuffles.push(opts);
+
                 const questionDiv = document.createElement('div');
                 questionDiv.className = 'question-item';
                 questionDiv.id = `question-${index}`;
@@ -467,12 +476,13 @@
                 optionsDiv.className = 'options-container';
 
                 const labels = ['A', 'B', 'C', 'D'];
-                item.options.forEach((option, optionIndex) => {
+                opts.forEach((optObj, optionIndex) => {
                     const btn = document.createElement('button');
                     btn.className = 'option-btn';
-                    btn.textContent = labels[optionIndex] + '. ' + option;
+                    btn.textContent = labels[optionIndex] + '. ' + optObj.text;
                     btn.onclick = () => selectAnswer(index, optionIndex);
                     btn.id = `option-${index}-${optionIndex}`;
+                    btn.dataset.original = optObj.originalIndex;
                     optionsDiv.appendChild(btn);
                 });
 
@@ -490,18 +500,17 @@
         }
 
         function selectAnswer(questionIndex, optionIndex) {
-            userAnswers[questionIndex] = optionIndex;
+            const orig = questionShuffles[questionIndex][optionIndex].originalIndex;
+            userAnswers[questionIndex] = orig;
 
-            ['A', 'B', 'C', 'D'].forEach((_, i) => {
+            const displayedCount = questionShuffles[questionIndex].length;
+            for (let i = 0; i < displayedCount; i++) {
                 const btn = document.getElementById(`option-${questionIndex}-${i}`);
                 if (btn) {
-                    if (i === optionIndex) {
-                        btn.classList.add('selected');
-                    } else {
-                        btn.classList.remove('selected');
-                    }
+                    if (i === optionIndex) btn.classList.add('selected');
+                    else btn.classList.remove('selected');
                 }
-            });
+            }
 
             document.getElementById(`question-${questionIndex}`).classList.add('answered');
 
@@ -525,22 +534,36 @@
                 const feedbackDiv = document.getElementById(`feedback-${index}`);
                 const questionItem = document.getElementById(`question-${index}`);
                 const labels = ['A', 'B', 'C', 'D'];
-                const isCorrect = userAnswers[index] === item.answer;
+
+                const userOrig = userAnswers[index];
+                const isCorrect = userOrig === item.answer;
+
+                const userDisplay = userOrig !== undefined
+                    ? questionShuffles[index].findIndex(o => o.originalIndex === userOrig)
+                    : -1;
+                const correctDisplay = questionShuffles[index].findIndex(o => o.originalIndex === item.answer);
 
                 if (isCorrect) {
                     correct++;
-                    const btn = document.getElementById(`option-${index}-${userAnswers[index]}`);
-                    if (btn) btn.classList.add('correct');
+                    if (userDisplay >= 0) {
+                        const btn = document.getElementById(`option-${index}-${userDisplay}`);
+                        if (btn) btn.classList.add('correct');
+                    }
                     feedbackDiv.className = 'feedback show correct';
                     feedbackDiv.textContent = 'Chính xác!';
                 } else {
                     incorrect++;
-                    const userBtn = document.getElementById(`option-${index}-${userAnswers[index]}`);
-                    if (userBtn) userBtn.classList.add('incorrect');
-                    const correctBtn = document.getElementById(`option-${index}-${item.answer}`);
-                    if (correctBtn) correctBtn.classList.add('correct');
+                    if (userDisplay >= 0) {
+                        const userBtn = document.getElementById(`option-${index}-${userDisplay}`);
+                        if (userBtn) userBtn.classList.add('incorrect');
+                    }
+                    if (correctDisplay >= 0) {
+                        const correctBtn = document.getElementById(`option-${index}-${correctDisplay}`);
+                        if (correctBtn) correctBtn.classList.add('correct');
+                    }
                     feedbackDiv.className = 'feedback show incorrect';
-                    feedbackDiv.textContent = `Sai! Đáp án đúng là: ${labels[item.answer]}`;
+                    const correctLabel = correctDisplay >= 0 ? labels[correctDisplay] : '?';
+                    feedbackDiv.textContent = `Sai! Đáp án đúng là: ${correctLabel}`;
                     questionItem.classList.add('incorrect');
                 }
             });
