@@ -347,8 +347,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Chương 5 - Trắc nghiệm Cấu trúc Dữ liệu</h1>
-            <p>Bộ 30 câu hỏi A/B/C/D</p>
+            <h1>Chương 5 - Trắc nghiệm Kinh tế</h1>
+            <p>Bộ 30 câu hỏi Kinh tế – Chương 5</p>
         </div>
 
         <nav class="main-menu">
@@ -403,36 +403,36 @@
 
     <script>
         const quizData = [
-            { question: 'Trong cây nhị phân tìm kiếm (BST), phần tử bên trái của một nút có giá trị…', options: ['Lớn hơn nút gốc', 'Nhỏ hơn nút gốc', 'Bằng nút gốc', 'Không xác định'], answer: 1 },
-            { question: 'Độ phức tạp trung bình của thao tác tìm kiếm trong BST là…', options: ['O(1)', 'O(log n)', 'O(n)', 'O(n log n)'], answer: 1 },
-            { question: 'Trong cây nhị phân, số nút tối đa ở mức k là…', options: ['2^k', 'k', 'k^2', '2^{k-1}'], answer: 0 },
-            { question: 'Một cây nhị phân đầy đủ có n nút thì chiều cao của cây xấp xỉ…', options: ['log_2 n', 'n', 'n/2', 'sqrt(n)'], answer: 0 },
-            { question: 'Heap thường được dùng để cài đặt…', options: ['Stack', 'Queue', 'Priority Queue', 'Linked List'], answer: 2 },
-            { question: 'Trong cây AVL, độ lệch cân bằng của mỗi nút nằm trong khoảng…', options: ['-2 đến 2', '-1 đến 1', '0 đến 2', '-3 đến 3'], answer: 1 },
-            { question: 'Phép xoay đơn trái trong cây AVL được dùng khi…', options: ['Mất cân bằng Left-Left', 'Mất cân bằng Right-Right', 'Mất cân bằng Left-Right', 'Mất cân bằng Right-Left'], answer: 0 },
-            { question: 'Cây đỏ-đen là một loại…', options: ['Heap', 'Cây nhị phân cân bằng', 'Cây B', 'Cây Huffman'], answer: 1 },
-            { question: 'Trong cây đỏ-đen, nút gốc luôn có màu…', options: ['Đỏ', 'Đen', 'Tùy ý', 'Không xác định'], answer: 1 },
-            { question: 'Cây Huffman dùng để…', options: ['Nén dữ liệu', 'Tìm kiếm nhanh', 'Cân bằng cây', 'Quản lý bộ nhớ'], answer: 0 },
-            { question: 'Độ phức tạp xây dựng cây Huffman với n ký tự là…', options: ['O(n log n)', 'O(n)', 'O(log n)', 'O(n^2)'], answer: 0 },
-            { question: 'Trong cây nhị phân, số nút lá tối đa là…', options: ['n/2', 'n', 'n-1', 'log n'], answer: 0 },
-            { question: 'Phép duyệt cây theo thứ tự NLR là…', options: ['Tiền tự (Preorder)', 'Trung tự (Inorder)', 'Hậu tự (Postorder)', 'Level-order'], answer: 0 },
-            { question: 'Duyệt cây theo Inorder trong BST sẽ cho kết quả…', options: ['Ngẫu nhiên', 'Dãy tăng dần', 'Dãy giảm dần', 'Không xác định'], answer: 1 },
-            { question: 'Trong cây nhị phân hoàn chỉnh, số nút ở mức cuối cùng có thể…', options: ['Ít hơn mức đầy đủ', 'Luôn đủ', 'Luôn bằng số nút gốc', 'Không xác định'], answer: 0 },
-            { question: 'Khi chèn phần tử vào heap, ta thực hiện…', options: ['Heapify-up', 'Heapify-down', 'Xoay cây', 'Duyệt cây'], answer: 0 },
-            { question: 'Khi xóa phần tử gốc trong heap, ta thực hiện…', options: ['Heapify-down', 'Heapify-up', 'Xoay cây', 'Duyệt cây'], answer: 0 },
-            { question: 'Cây B (B-tree) thường dùng trong…', options: ['Bộ nhớ ngoài (disk)', 'RAM', 'CPU cache', 'Stack'], answer: 0 },
-            { question: 'Trong cây B, mỗi nút có tối đa…', options: ['m con', '2 con', '3 con', 'Không giới hạn'], answer: 0 },
-            { question: 'Cây B+ khác cây B ở chỗ…', options: ['Các nút lá liên kết với nhau', 'Có nhiều nút gốc', 'Không cân bằng', 'Không có khóa'], answer: 0 },
-            { question: 'Cây nhị phân có chiều cao h thì số nút tối đa là…', options: ['2^{h+1}-1', '2^h', 'h^2', 'h'], answer: 0 },
-            { question: 'Trong cây AVL, khi mất cân bằng Left-Right, ta cần…', options: ['Xoay kép', 'Xoay đơn trái', 'Xoay đơn phải', 'Không cần xoay'], answer: 0 },
-            { question: 'Cây đỏ-đen đảm bảo chiều cao tối đa là…', options: ['2 log n', 'log n', 'n', '√n'], answer: 0 },
-            { question: 'Trong cây Huffman, ký tự có tần suất xuất hiện cao sẽ có…', options: ['Mã dài', 'Mã ngắn', 'Mã ngẫu nhiên', 'Không có mã'], answer: 1 },
-            { question: 'Heap có thể được cài đặt bằng…', options: ['Mảng', 'Linked List', 'Stack', 'Queue'], answer: 0 },
-            { question: 'Trong cây nhị phân, số cạnh luôn bằng…', options: ['Số nút - 1', 'Số nút', 'Số nút + 1', 'Không xác định'], answer: 0 },
-            { question: 'Duyệt cây theo Level-order thường dùng…', options: ['Queue', 'Stack', 'Heap', 'Linked List'], answer: 0 },
-            { question: 'Trong BST, khi xóa một nút có 2 con, ta thay bằng…', options: ['Nút lá bất kỳ', 'Nút kế tiếp Inorder', 'Nút gốc', 'Nút bất kỳ'], answer: 1 },
-            { question: 'Cây nhị phân đầy đủ có số nút lá bằng…', options: ['2^h', 'h', 'h^2', 'n'], answer: 0 },
-            { question: 'Ứng dụng chính của cây tìm kiếm nhị phân là…', options: ['Tìm kiếm nhanh', 'Nén dữ liệu', 'Quản lý bộ nhớ', 'Tính toán số học'], answer: 0 }
+            { question: 'Khi giá hàng hóa tăng, lượng cầu thường…', options: ['Tăng', 'Giảm', 'Không đổi', 'Tăng gấp đôi'], answer: 1 },
+            { question: 'Độ co giãn của cầu theo giá đo lường…', options: ['Mức thay đổi chi phí', 'Mức thay đổi lượng cầu khi giá thay đổi', 'Mức thay đổi cung', 'Mức thay đổi lợi nhuận'], answer: 1 },
+            { question: 'Nếu cầu co giãn > 1, khi giá giảm thì doanh thu…', options: ['Giảm', 'Tăng', 'Không đổi', 'Bằng chi phí'], answer: 1 },
+            { question: 'Trong thị trường cạnh tranh hoàn hảo, doanh nghiệp là…', options: ['Người định giá', 'Người chấp nhận giá', 'Người độc quyền', 'Người kiểm soát cung'], answer: 1 },
+            { question: 'Đường cung dịch chuyển khi…', options: ['Giá thay đổi', 'Công nghệ thay đổi', 'Cầu thay đổi', 'Doanh thu thay đổi'], answer: 1 },
+            { question: 'Chi phí biên (MC) là…', options: ['Tổng chi phí chia sản lượng', 'Chi phí tăng thêm khi sản xuất thêm 1 đơn vị', 'Chi phí cố định', 'Chi phí trung bình'], answer: 1 },
+            { question: 'Doanh thu biên (MR) trong cạnh tranh hoàn hảo bằng…', options: ['Giá thị trường', 'Chi phí trung bình', 'Lợi nhuận', 'Chi phí biên'], answer: 0 },
+            { question: 'Lợi nhuận tối đa khi…', options: ['MR = MC', 'MR > MC', 'MR < MC', 'MR = ATC'], answer: 0 },
+            { question: 'Trong thị trường độc quyền, đường cầu của doanh nghiệp là…', options: ['Ngang', 'Dốc xuống', 'Dốc lên', 'Không xác định'], answer: 1 },
+            { question: 'Độ co giãn của cung theo giá đo lường…', options: ['Mức thay đổi chi phí', 'Mức thay đổi lượng cung khi giá thay đổi', 'Mức thay đổi cầu', 'Mức thay đổi lợi nhuận'], answer: 1 },
+            { question: 'Khi cầu co giãn < 1, tăng giá sẽ làm doanh thu…', options: ['Tăng', 'Giảm', 'Không đổi', 'Bằng chi phí'], answer: 0 },
+            { question: 'Chi phí cố định (FC) là…', options: ['Không đổi theo sản lượng', 'Tăng theo sản lượng', 'Giảm theo sản lượng', 'Bằng chi phí biến đổi'], answer: 0 },
+            { question: 'Chi phí trung bình (AC) bằng…', options: ['TC/Q', 'MC/Q', 'FC/Q', 'MR/Q'], answer: 0 },
+            { question: 'Trong cạnh tranh hoàn hảo, lợi nhuận dài hạn của doanh nghiệp…', options: ['Dương', 'Âm', 'Bằng 0', 'Không xác định'], answer: 2 },
+            { question: 'Đường cầu thị trường là…', options: ['Tổng cầu cá nhân', 'Tổng cung cá nhân', 'Tổng chi phí cá nhân', 'Tổng doanh thu cá nhân'], answer: 0 },
+            { question: 'Khi giá trần thấp hơn giá cân bằng, thị trường sẽ…', options: ['Dư thừa', 'Thiếu hụt', 'Cân bằng', 'Không đổi'], answer: 1 },
+            { question: 'Khi giá sàn cao hơn giá cân bằng, thị trường sẽ…', options: ['Dư thừa', 'Thiếu hụt', 'Cân bằng', 'Không đổi'], answer: 0 },
+            { question: 'Trong độc quyền nhóm (Oligopoly), các doanh nghiệp thường…', options: ['Cạnh tranh hoàn hảo', 'Liên kết hoặc cạnh tranh chiến lược', 'Không sản xuất', 'Độc quyền tuyệt đối'], answer: 1 },
+            { question: 'Đường cung dài hạn trong cạnh tranh hoàn hảo có dạng…', options: ['Ngang', 'Dốc lên', 'Dốc xuống', 'Không xác định'], answer: 0 },
+            { question: 'Khi cầu co giãn vô hạn, đường cầu có dạng…', options: ['Ngang', 'Dốc lên', 'Dốc xuống', 'Thẳng đứng'], answer: 0 },
+            { question: 'Khi cầu co giãn bằng 0, đường cầu có dạng…', options: ['Thẳng đứng', 'Ngang', 'Dốc lên', 'Dốc xuống'], answer: 0 },
+            { question: 'Thặng dư tiêu dùng là…', options: ['Lợi ích người tiêu dùng nhận được khi giá thấp hơn mức sẵn sàng trả', 'Lợi nhuận doanh nghiệp', 'Chi phí sản xuất', 'Doanh thu biên'], answer: 0 },
+            { question: 'Thặng dư sản xuất là…', options: ['Lợi ích người sản xuất nhận được khi giá cao hơn chi phí sản xuất', 'Lợi nhuận doanh nghiệp', 'Chi phí trung bình', 'Doanh thu biên'], answer: 0 },
+            { question: 'Trong độc quyền, giá bán thường…', options: ['Cao hơn cạnh tranh hoàn hảo', 'Thấp hơn cạnh tranh hoàn hảo', 'Bằng cạnh tranh hoàn hảo', 'Không xác định'], answer: 0 },
+            { question: 'Trong cạnh tranh hoàn hảo, đường cầu của doanh nghiệp là…', options: ['Ngang', 'Dốc lên', 'Dốc xuống', 'Thẳng đứng'], answer: 0 },
+            { question: 'Khi chính phủ đánh thuế hàng hóa, đường cung sẽ…', options: ['Dịch lên trên', 'Dịch xuống dưới', 'Không đổi', 'Dịch sang phải'], answer: 0 },
+            { question: 'Tổn thất vô ích (Deadweight loss) xảy ra khi…', options: ['Thị trường không đạt cân bằng tối ưu', 'Thị trường cạnh tranh hoàn hảo', 'Lợi nhuận bằng 0', 'Chi phí bằng doanh thu'], answer: 0 },
+            { question: 'Trong mô hình Cournot, các doanh nghiệp quyết định…', options: ['Giá', 'Sản lượng', 'Chi phí', 'Lợi nhuận'], answer: 1 },
+            { question: 'Trong mô hình Bertrand, các doanh nghiệp quyết định…', options: ['Giá', 'Sản lượng', 'Chi phí', 'Lợi nhuận'], answer: 0 },
+            { question: 'Mục tiêu chính của doanh nghiệp trong kinh tế học vi mô là…', options: ['Tối đa hóa lợi nhuận', 'Tối đa hóa chi phí', 'Tối đa hóa sản lượng', 'Tối đa hóa doanh thu'], answer: 0 }
         ];
 
         let userAnswers = [];
